@@ -1,1 +1,1 @@
-from pycheck import check
+from core import check
