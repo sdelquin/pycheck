@@ -1,4 +1,4 @@
-from config import CONFIG
+from pycheck.config import CONFIG
 
 
 def check(exercise_id: str, argv: list, target_func: callable):
