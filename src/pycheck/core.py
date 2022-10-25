@@ -4,9 +4,9 @@ from pycheck import utils
 
 
 class PyChecker:
-    def __init__(self, exercise_id: str, cli_args: Iterable, target_func: callable):
+    def __init__(self, exercise_id: str, cmd: Iterable, target_func: callable):
         self.exercise_id = exercise_id
-        self.filename, *self.cli_args = cli_args
+        self.filename, *self.cli_args = cmd
         self.flag = self.cli_args[0].strip()
         self.target_func = target_func
         self.config = utils.get_config(exercise_id)
