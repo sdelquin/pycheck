@@ -32,7 +32,7 @@ class PyChecker:
 
     def usage(self):
         print(
-            '''⚠️  Modo de uso:
+            '''🚨 Modo de uso:
 python <program.py> [ARGS]
     -k: Comprueba tu programa contra los casos especificados.
     -l: Muestra un listado de los casos (entradas y salidas esperadas).
