@@ -1,8 +1,8 @@
 from typing import Iterable
 
-from pycheck.core import PyChecker
+from pycheck.lib.core import PyChecker
 
 
-def check(exercise_id: str, cmd: Iterable, target_func: callable):
-    pychecker = PyChecker(exercise_id, cmd, target_func)
+def check(target_func: callable, check_cases: Iterable, cmd: Iterable):
+    pychecker = PyChecker(target_func, check_cases, cmd)
     pychecker.run()
