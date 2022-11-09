@@ -34,18 +34,19 @@ class PyChecker:
         print(
             '''🚨 Modo de uso:
 python <program.py> [ARGS]
-    -k: Comprueba tu programa contra los casos especificados.
+    Comprueba tu programa contra los casos especificados.
+    -h: Muestra esta ayuda.
     -l: Muestra un listado de los casos (entradas y salidas esperadas).
     [ARGS]: Ejecuta tu programa con los argumentos indicados.'''
         )
 
     def run(self):
         match self.flag:
-            case '-k':
+            case '':
                 self.run_cases()
             case '-l':
                 self.list_cases()
-            case '':
+            case '-h':
                 self.usage()
             case _:
                 self.run_custom()
