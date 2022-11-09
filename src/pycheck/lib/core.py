@@ -30,16 +30,6 @@ class PyChecker:
         for args, expected_output in self.check_cases:
             print(f'{args}: {expected_output}')
 
-    def usage(self):
-        print(
-            '''🚨 Modo de uso:
-python <program.py> [ARGS]
-    Comprueba tu programa contra los casos especificados.
-    -h: Muestra esta ayuda.
-    -l: Muestra un listado de los casos (entradas y salidas esperadas).
-    [ARGS]: Ejecuta tu programa con los argumentos indicados.'''
-        )
-
     def run(self):
         match self.flag:
             case '':
@@ -50,3 +40,13 @@ python <program.py> [ARGS]
                 self.usage()
             case _:
                 self.run_custom()
+
+    def usage(self):
+        print(
+            '''🚨 Modo de uso:
+pycheck <program.py> [ARGS]
+    Comprueba tu programa contra los casos especificados.
+    -h: Muestra esta ayuda.
+    -l: Muestra un listado de los casos (entradas y salidas esperadas).
+    [ARGS]: Ejecuta tu programa con los argumentos indicados.'''
+        )
