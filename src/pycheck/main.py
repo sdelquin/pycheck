@@ -19,6 +19,5 @@ def load_module(module_path: str, module_name: str = 'program'):
 
 
 def entrypoint():
-    print(sys.argv)
-    module = load_module(sys.argv[0])
-    check(module.run, module.CHECK_CASES, sys.argv)
+    module = load_module(sys.argv[1])
+    check(module.run, module.CHECK_CASES, sys.argv[1:])
