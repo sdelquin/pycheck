@@ -1,7 +1,9 @@
-python test.py -h
+export PYTHONPATH=../src
+
+python ../src/pycheck/main.py ./test.py -h
 echo '------------------------------------------------------------------------'
-python test.py -l
+python ../src/pycheck/main.py ./test.py -l
 echo '------------------------------------------------------------------------'
-python test.py 10 10
+python ../src/pycheck/main.py ./test.py 10 10
 echo '------------------------------------------------------------------------'
-python test.py
+python ../src/pycheck/main.py ./test.py
