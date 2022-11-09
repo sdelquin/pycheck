@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "pycheck"
-version = "1.0.3"
+version = "1.0.4"
 authors = [
   { name="Sergio Delgado Quintero", email="sdelquin@gmail.com" },
 ]
@@ -22,4 +22,4 @@ classifiers = [
 "Bug Tracker" = "https://github.com/sdelquin/pycheck/issues"
 
 [project.scripts]
-hello = "pycheck.main:hello"
+pycheck = "pycheck.main:entrypoint"
