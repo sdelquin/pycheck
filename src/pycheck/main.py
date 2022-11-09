@@ -1,3 +1,4 @@
+import os
 from typing import Iterable
 
 from pycheck.lib.core import PyChecker
@@ -9,4 +10,4 @@ def check(target_func: callable, check_cases: Iterable, cmd: Iterable):
 
 
 def hello():
-    print('Hellouuu')
+    print(os.getcwd())
