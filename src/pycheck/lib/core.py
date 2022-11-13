@@ -4,11 +4,11 @@ from . import utils
 
 
 class PyChecker:
-    def __init__(self, target_func: callable, check_cases: Iterable, cmd: Iterable):
-        self.target_func = target_func
-        self.check_cases = check_cases
-        self.arg_casts = utils.get_arg_casts(target_func)
+    def __init__(self, cmd: Iterable):
         self.filename, *self.cli_args = cmd
+        self.target_func = utils.get_target_func(self.filename)
+        self.check_cases = utils.get_check_cases(self.filename)
+        self.arg_casts = utils.get_arg_casts(self.target_func)
         self.flag = self.cli_args[0] if len(self.cli_args) > 0 else ''
 
     def run_cases(self):
@@ -45,7 +45,7 @@ class PyChecker:
         print(
             '''🚨 Modo de uso:
 pycheck <program.py> [ARGS]
-    Comprueba tu programa contra los casos especificados.
+    Comprueba tu programa contra los casos establecidos.
     -h: Muestra esta ayuda.
     -l: Muestra un listado de los casos (entradas y salidas esperadas).
     [ARGS]: Ejecuta tu programa con los argumentos indicados.'''
