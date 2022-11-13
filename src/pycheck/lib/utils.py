@@ -1,5 +1,7 @@
+import hashlib
 import importlib.util
 import sys
+from pathlib import Path
 from typing import get_type_hints
 
 
@@ -18,3 +20,11 @@ def load_module(module_path: str, module_name: str = 'program'):
     sys.modules[module_name] = module
     spec.loader.exec_module(module)
     return module
+
+
+def get_check_cases(module_path: str):
+    filename = Path(module_path).name
+    hashed_filename = hashlib.md5(filename.encode()).hexdigest()
+    module_path = f'pycheck.check_cases.{hashed_filename}'
+    module = importlib.import_module(module_path)
+    return module.__CHECK_CASES__
