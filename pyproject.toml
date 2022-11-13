@@ -4,7 +4,10 @@ build-backend = "hatchling.build"
 
 [project]
 name = "pycheck"
-version = "1.0.6"
+version = "1.0.7"
+dependencies = [
+  'prettyconf'
+]
 authors = [
   { name="Sergio Delgado Quintero", email="sdelquin@gmail.com" },
 ]
