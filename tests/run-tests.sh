@@ -7,3 +7,5 @@ echo '------------------------------------------------------------------------'
 python ../src/pycheck/main.py ./test_pycheck.py 10 10
 echo '------------------------------------------------------------------------'
 python ../src/pycheck/main.py ./test_pycheck.py
+echo '------------------------------------------------------------------------'
+python ../src/pycheck/main.py ./test_pycheck.py --hash

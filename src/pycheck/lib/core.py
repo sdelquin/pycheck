@@ -1,3 +1,5 @@
+import hashlib
+import os
 from typing import Iterable
 
 from . import utils
@@ -5,11 +7,12 @@ from . import utils
 
 class PyChecker:
     def __init__(self, cmd: Iterable):
-        self.filename, *self.cli_args = cmd
-        self.target_func = utils.get_target_func(self.filename)
-        self.check_cases = utils.get_check_cases(self.filename)
+        self.filepath, *self.cli_args = cmd
+        self.filename = os.path.basename(self.filepath)
+        self.target_func = utils.get_target_func(self.filepath)
+        self.check_cases = utils.get_check_cases(self.hash)
         self.arg_casts = utils.get_arg_casts(self.target_func)
-        self.flag = self.cli_args[0] if len(self.cli_args) > 0 else ''
+        self.flag = self.cli_args[0].strip() if len(self.cli_args) > 0 else ''
 
     def run_cases(self):
         for args, expected_output in self.check_cases:
@@ -30,6 +33,10 @@ class PyChecker:
         for args, expected_output in self.check_cases:
             print(f'{args}: {expected_output}')
 
+    @property
+    def hash(self):
+        return hashlib.md5(self.filename.encode()).hexdigest()
+
     def run(self):
         match self.flag:
             case '':
@@ -38,6 +45,8 @@ class PyChecker:
                 self.list_cases()
             case '-h':
                 self.usage()
+            case '--hash':
+                print(self.hash)
             case _:
                 self.run_custom()
 
