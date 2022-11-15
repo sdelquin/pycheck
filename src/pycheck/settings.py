@@ -1,3 +1,3 @@
 from prettyconf import config
 
-CHECK_CASES_BASE_PATH = config('CHECK_CASES_BASE_PATH', default='pycheck.check_cases')
+CONFIG_BASE_PATH = config('CONFIG_BASE_PATH', default='pycheck.config')

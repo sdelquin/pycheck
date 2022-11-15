@@ -24,7 +24,6 @@ def get_target_func(program_path: str):
     return module.run
 
 
-def get_check_cases(hashed_filename: str) -> list:
-    program_path = f'{settings.CHECK_CASES_BASE_PATH}.{hashed_filename}'
-    module = importlib.import_module(program_path)
-    return module.__CHECK_CASES__
+def get_config(hashed_filename: str) -> list:
+    config_path = f'{settings.CONFIG_BASE_PATH}.{hashed_filename}'
+    return importlib.import_module(config_path)

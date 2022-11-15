@@ -3,3 +3,4 @@ dist
 __pycache__
 *check_cases.xlsx
 .DS_Store
+tests/sandbox
