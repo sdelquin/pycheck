@@ -1,6 +1,7 @@
 __TEMPLATE__ = '''
 # Comprobar que pycheck funciona correctamente.
 
+
 def run(a: int, b: int) -> int:
     # TU CÓDIGO AQUÍ
     return result
