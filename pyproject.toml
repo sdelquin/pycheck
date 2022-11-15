@@ -5,11 +5,13 @@ build-backend = "hatchling.build"
 [project]
 name = "pycheck"
 version = "1.0.9"
+license = "MIT"
+homepage = "https://pycheck.es"
 dependencies = [
   'prettyconf'
 ]
 authors = [
-  { name="Sergio Delgado Quintero", email="sdelquin@gmail.com" },
+  "Sergio Delgado Quintero <sdelquin@gmail.com>",
 ]
 description = "Check the execution of python exercises and assignments"
 readme = "README.md"
