@@ -48,6 +48,10 @@ def run(
         help='Actualiza pycheck a su última versión disponible.',
     ),
 ):
+    if update:
+        utils.update_pycheck()
+        return
+
     pychecker = PyCheck(filepath)
     if list_cases:
         pychecker.list_cases()
@@ -57,8 +61,6 @@ def run(
         pychecker.run(args)
     if check:
         pychecker.check()
-    if update:
-        utils.update_pycheck()
 
 
 if __name__ == "__main__":
