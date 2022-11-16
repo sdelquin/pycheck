@@ -47,3 +47,7 @@ def {fname}({params}) -> {_return[1].__name__}:
 def update_pycheck():
     url = f'git+{settings.GITHUB_REPO}'
     subprocess.check_call([sys.executable, '-m', 'pip', 'install', '-U', url])
+
+
+def get_pycheck_version():
+    return open(settings.VERSION_PATH).read().strip()
