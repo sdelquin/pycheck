@@ -40,7 +40,7 @@ class PyCheck:
             print(f'{args}: {expected_output}')
 
     @property
-    def hash(self):
+    def hash(self) -> str:
         return hashlib.md5(self.filename.encode()).hexdigest()
 
     def create_template(self):

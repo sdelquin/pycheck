@@ -1,11 +1,12 @@
 import importlib.util
 import os
 import sys
+from types import ModuleType
 
 from pycheck import settings
 
 
-def get_target_func(program_path: str, entrypoint_name: str):
+def get_target_func(program_path: str, entrypoint_name: str) -> callable:
     module_name = os.path.splitext(program_path)[0]
     spec = importlib.util.spec_from_file_location(module_name, program_path)
     module = importlib.util.module_from_spec(spec)
@@ -23,7 +24,7 @@ def get_arg_casts(entrypoint_params: list) -> list:
     return arg_casts
 
 
-def get_config(hashed_filename: str) -> list:
+def get_config(hashed_filename: str) -> ModuleType:
     config_path = f'{settings.CONFIG_BASE_PATH}.{hashed_filename}'
     return importlib.import_module(config_path)
 
