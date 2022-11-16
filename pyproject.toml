@@ -13,7 +13,11 @@ dependencies = [
   'typer'
 ]
 authors = [
-  "Sergio Delgado Quintero <sdelquin@gmail.com>",
+  {email = "sdelquin@gmail.com"},
+  {name = "Sergio Delgado Quintero"}
+]
+maintainers = [
+  {name = "Sergio Delgado QUintero", email = "sdelquin@gmail.com"}
 ]
 description = "Check the execution of python exercises and assignments"
 readme = "README.md"
