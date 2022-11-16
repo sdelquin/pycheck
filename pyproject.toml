@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "pycheck"
-version = "1.0.12"
+version = "1.0.13"
 license = {file = "LICENSE"}
 dependencies = [
   'prettyconf',
@@ -28,7 +28,7 @@ classifiers = [
 ]
 
 [project.urls]
-home-page = "https://pycheck.es"
+url = "https://pycheck.es"
 repository = "https://github.com/sdelquin/pycheck"
 
 [project.scripts]
