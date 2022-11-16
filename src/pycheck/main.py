@@ -39,6 +39,13 @@ def run(
         show_default=False,
         help='Ejecuta el programa contra los casos de prueba.',
     ),
+    update: bool = typer.Option(
+        False,
+        '--update',
+        '-u',
+        show_default=False,
+        help='Actualiza pycheck a su última versión disponible.',
+    ),
 ):
     pychecker = PyCheck(filepath)
     if list_cases:
@@ -49,6 +56,8 @@ def run(
         pychecker.run(args)
     if check:
         pychecker.check()
+    if update:
+        pychecker.update()
 
 
 if __name__ == "__main__":
