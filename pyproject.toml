@@ -19,7 +19,6 @@ maintainers = [
   {name = "Sergio Delgado QUintero", email = "sdelquin@gmail.com"}
 ]
 description = "Check the execution of python exercises and assignments"
-Home-page = "https://pycheck.es"
 readme = "README.md"
 requires-python = ">=3.7"
 classifiers = [
@@ -29,6 +28,7 @@ classifiers = [
 ]
 
 [project.urls]
+homepage = "https://pycheck.es"
 repository = "https://github.com/sdelquin/pycheck"
 
 [project.scripts]
