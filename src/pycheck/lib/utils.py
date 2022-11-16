@@ -1,9 +1,10 @@
 import importlib.util
 import os
-import re
 import subprocess
 import sys
 from types import ModuleType
+
+import pkg_resources
 
 from pycheck import settings
 
@@ -51,5 +52,4 @@ def update_pycheck():
 
 
 def get_pycheck_version():
-    data = open(settings.PYPROJECT_PATH).read()
-    return re.search(r'version *= *"(.*)"', data).group(1)
+    return pkg_resources.get_distribution('pycheck').version

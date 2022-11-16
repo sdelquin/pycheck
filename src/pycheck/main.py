@@ -52,7 +52,7 @@ def run(
         '--version',
         '-v',
         show_default=False,
-        help='Muestra la versión actual de pycheck.',
+        help='Muestra la versión de pycheck instalada en el sistema.',
     ),
 ):
     if update:
