@@ -27,3 +27,14 @@ def get_target_func(program_path: str):
 def get_config(hashed_filename: str) -> list:
     config_path = f'{settings.CONFIG_BASE_PATH}.{hashed_filename}'
     return importlib.import_module(config_path)
+
+
+def render_template(description, function):
+    return f"""
+'''
+{description}
+'''
+
+
+{function}
+""".lstrip()

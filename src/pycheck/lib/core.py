@@ -9,13 +9,15 @@ class PyCheck:
         self.filepath = filepath
         self.filename = os.path.basename(self.filepath)
         self.config = utils.get_config(self.hash)
-        self.check_cases = self.config.__CHECK_CASES__
-        self.template = self.config.__TEMPLATE__.lstrip()
+        self.description = self.config.DESCRIPTION.strip()
+        self.tmpl_func = self.config.FUNCTION.strip()
+        self.template = utils.render_template(self.description, self.tmpl_func)
+        self.check_cases = self.config.CHECK_CASES
 
     def check(self):
-        self.target_func = utils.get_target_func(self.filepath)
+        target_func = utils.get_target_func(self.filepath)
         for args, expected_output in self.check_cases:
-            if (output := self.target_func(*args)) != expected_output:
+            if (output := target_func(*args)) != expected_output:
                 print(f'❌ No funciona para la entrada {args}')
                 print(f'   Salida esperada: {expected_output}')
                 print(f'   Salida obtenida: {output}')
@@ -24,10 +26,10 @@ class PyCheck:
             print('✅ ¡Enhorabuena! Todo funciona bien')
 
     def run(self, args: list[str]):
-        self.target_func = utils.get_target_func(self.filepath)
-        self.arg_casts = utils.get_arg_casts(self.target_func)
+        target_func = utils.get_target_func(self.filepath)
+        self.arg_casts = utils.get_arg_casts(target_func)
         args = [cast(arg) for cast, arg in zip(self.arg_casts, args)]
-        if (result := self.target_func(*args)) is not None:
+        if (result := target_func(*args)) is not None:
             print(result)
 
     def list_cases(self):
