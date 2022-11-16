@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "pycheck"
-version = {file = "VERSION"}
+version = "1.0.21"
 license = {file = "LICENSE"}
 dependencies = [
   'prettyconf',

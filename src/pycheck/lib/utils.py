@@ -1,5 +1,6 @@
 import importlib.util
 import os
+import re
 import subprocess
 import sys
 from types import ModuleType
@@ -50,4 +51,5 @@ def update_pycheck():
 
 
 def get_pycheck_version():
-    return open(settings.VERSION_PATH).read().strip()
+    data = open(settings.PYPROJECT_PATH).read()
+    return re.search(r'version *= *"(.*)"', data).group(1)
