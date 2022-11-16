@@ -2,11 +2,13 @@ DESCRIPTION = '''
 Comprobar que pycheck funciona correctamente.
 '''
 
-FUNCTION = '''
-def run(a: int, b: int) -> int:
-    # TU CÓDIGO AQUÍ
-    return result
-'''
+ENTRYPOINT = {
+    'PARAMS': [
+        ['a', int],
+        ['b', int],
+    ],
+    'RETURN': ['result', int],
+}
 
 CHECK_CASES = [
     [[3, 4], 7],

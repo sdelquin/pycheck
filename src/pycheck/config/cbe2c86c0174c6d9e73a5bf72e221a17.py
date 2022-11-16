@@ -3,11 +3,12 @@ Dada una lista de strings, obtenga otra lista que contenga todos los caracteres 
 de los strings de la lista de entrada.
 '''
 
-FUNCTION = '''
-def run(texts: list) -> list:
-    # TU CÓDIGO AQUÍ
-    return chars
-'''
+ENTRYPOINT = {
+    'PARAMS': [
+        ['texts', list],
+    ],
+    'RETURN': ['chars', list],
+}
 
 CHECK_CASES = [
     [[['uno', 'dos', 'tres']], ['u', 'n', 'o', 'd', 'o', 's', 't', 'r', 'e', 's']],
