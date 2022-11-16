@@ -4,11 +4,13 @@ build-backend = "hatchling.build"
 
 [project]
 name = "pycheck"
-version = "1.0.9"
+version = "1.0.10"
 license = "MIT"
 homepage = "https://pycheck.es"
 dependencies = [
-  'prettyconf'
+  'prettyconf',
+  'rich',
+  'typer'
 ]
 authors = [
   "Sergio Delgado Quintero <sdelquin@gmail.com>",
@@ -27,4 +29,4 @@ classifiers = [
 "Bug Tracker" = "https://github.com/sdelquin/pycheck/issues"
 
 [project.scripts]
-pycheck = "pycheck.main:entrypoint"
+pycheck = "pycheck.main:app"

@@ -1,6 +1,6 @@
 dist
 *.pyc
 __pycache__
-*check_cases.xlsx
+*config.xlsx
 .DS_Store
 tests/sandbox
