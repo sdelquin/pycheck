@@ -1,5 +1,6 @@
 import importlib.util
 import os
+import subprocess
 import sys
 from types import ModuleType
 
@@ -41,3 +42,8 @@ def {fname}({params}) -> {_return[1].__name__}:
     # TU CÓDIGO AQUÍ
     return {_return[0]}
 """.lstrip()
+
+
+def update_pycheck():
+    url = f'git+{settings.GITHUB_REPO}'
+    subprocess.check_call([sys.executable, '-m', 'pip', 'install', '-U', url])

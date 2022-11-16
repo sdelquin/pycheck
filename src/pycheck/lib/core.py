@@ -1,7 +1,5 @@
 import hashlib
 import os
-import subprocess
-import sys
 
 from pycheck import settings
 
@@ -54,7 +52,3 @@ class PyCheck:
         )
         with open(self.filename, 'w') as f:
             f.write(template)
-
-    def update(self):
-        url = f'git+{settings.GITHUB_REPO}'
-        subprocess.check_call([sys.executable, '-m', 'pip', 'install', '-U', url])

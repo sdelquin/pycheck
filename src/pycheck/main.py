@@ -1,6 +1,7 @@
 import typer
 
 from pycheck import PyCheck
+from pycheck.lib import utils
 
 app = typer.Typer(add_completion=False)
 
@@ -57,7 +58,7 @@ def run(
     if check:
         pychecker.check()
     if update:
-        pychecker.update()
+        utils.update_pycheck()
 
 
 if __name__ == "__main__":
