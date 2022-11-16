@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "pycheck"
-version = "1.0.14"
+version = "1.0.15"
 license = {file = "LICENSE"}
 dependencies = [
   'prettyconf',
@@ -19,6 +19,7 @@ maintainers = [
   {name = "Sergio Delgado QUintero", email = "sdelquin@gmail.com"}
 ]
 description = "Check the execution of python exercises and assignments"
+homepage = "https://pycheck.es"
 readme = "README.md"
 requires-python = ">=3.7"
 classifiers = [
@@ -28,7 +29,6 @@ classifiers = [
 ]
 
 [project.urls]
-"Homepage" = "https://pycheck.es"
 repository = "https://github.com/sdelquin/pycheck"
 
 [project.scripts]
