@@ -19,6 +19,13 @@ def run(
         show_default=False,
         help='Muestra los casos de prueba establecidos.',
     ),
+    description: bool = typer.Option(
+        False,
+        '--description',
+        '-d',
+        show_default=False,
+        help='Muestra la descripción del problema.',
+    ),
     create_template: bool = typer.Option(
         False,
         '--template',
@@ -61,14 +68,16 @@ def run(
         print(utils.get_pycheck_version())
     else:
         pychecker = PyCheck(filepath)
-        if list_cases:
-            pychecker.list_cases()
         if create_template:
             pychecker.create_template()
-        if run:
-            pychecker.run(args)
+        if description:
+            print(pychecker.description)
+        if list_cases:
+            pychecker.list_cases()
         if check:
             pychecker.check()
+        if run:
+            pychecker.run(args)
 
 
 if __name__ == "__main__":

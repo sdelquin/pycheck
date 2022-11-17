@@ -13,7 +13,7 @@ x  = ────────────────
  2          2a       
 
 Escriba un programa en Python que calcule estas dos soluciones. Tenga en cuenta subdividir
-los cálculos y reutilizar variables.
+los cálculos y reutilizar variables, por ejemplo el dicriminante [https://bit.ly/3OcZSuN].
 '''
 
 ENTRYPOINT = {
