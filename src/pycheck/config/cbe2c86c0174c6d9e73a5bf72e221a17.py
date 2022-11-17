@@ -7,11 +7,13 @@ ENTRYPOINT = {
     'PARAMS': [
         ['texts', list],
     ],
-    'RETURN': ['chars', list],
+    'RETURN': [
+        ['chars', list],
+    ],
 }
 
 CHECK_CASES = [
-    [[['uno', 'dos', 'tres']], ['u', 'n', 'o', 'd', 'o', 's', 't', 'r', 'e', 's']],
-    [[['', '', '']], []],
-    [[['abc', 'abc', 'abc']], ['a', 'b', 'c', 'a', 'b', 'c', 'a', 'b', 'c']],
+    [[['uno', 'dos', 'tres']], [['u', 'n', 'o', 'd', 'o', 's', 't', 'r', 'e', 's']]],
+    [[['', '', '']], [[]]],
+    [[['abc', 'abc', 'abc']], [['a', 'b', 'c', 'a', 'b', 'c', 'a', 'b', 'c']]],
 ]

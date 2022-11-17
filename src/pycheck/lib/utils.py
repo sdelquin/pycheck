@@ -5,6 +5,8 @@ import sys
 from types import ModuleType
 
 import pkg_resources
+from rich.console import Console
+from rich.table import Table
 
 from pycheck import settings
 
@@ -34,15 +36,17 @@ def get_config(hashed_filename: str) -> ModuleType:
 
 def render_template(description: str, fname: str, params: list, _return: list) -> str:
     params = ', '.join(f'{param}: {annot.__name__}' for param, annot in params)
+    return_names = ', '.join(ret_name for ret_name, _ in _return)
+    return_type = _return[0][1].__name__ if len(_return) == 1 else 'tuple'
     return f"""
 '''
 {description}
 '''
 
 
-def {fname}({params}) -> {_return[1].__name__}:
+def {fname}({params}) -> {return_type}:
     # TU CÓDIGO AQUÍ
-    return {_return[0]}
+    return {return_names}
 """.lstrip()
 
 
@@ -53,3 +57,21 @@ def update_pycheck():
 
 def get_pycheck_version():
     return pkg_resources.get_distribution('pycheck').version
+
+
+def show_cases(check_cases: list, params: list, _return: list):
+    console = Console()
+    table = Table(show_header=True)
+
+    for param_name, _ in params:
+        table.add_column(param_name, header_style='yellow')
+    for return_name, _ in _return:
+        table.add_column(return_name, header_style='blue')
+
+    for args, expected_output in check_cases:
+        fargs = [str(arg) for arg in args]
+        fout = [str(out) for out in expected_output]
+        row = fargs + fout
+        table.add_row(*row)
+
+    console.print(table)

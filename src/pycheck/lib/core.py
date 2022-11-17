@@ -21,6 +21,11 @@ class PyCheck:
     def check(self):
         target_func = utils.get_target_func(self.filepath, self.entrypoint_name)
         for args, expected_output in self.check_cases:
+            expected_output = (
+                tuple(expected_output)
+                if self.return_multiple_values
+                else expected_output[0]
+            )
             if (output := target_func(*args)) != expected_output:
                 print(f'❌ No funciona para la entrada {args}')
                 print(f'   Salida esperada: {expected_output}')
@@ -29,6 +34,10 @@ class PyCheck:
         else:
             print('✅ ¡Enhorabuena! Todo funciona bien')
 
+    @property
+    def return_multiple_values(self):
+        return len(self.entrypoint_return) > 1
+
     def run(self, args: list[str]):
         target_func = utils.get_target_func(self.filepath, self.entrypoint_name)
         args = [cast(arg) for cast, arg in zip(self.arg_casts, args)]
@@ -36,8 +45,7 @@ class PyCheck:
             print(result)
 
     def list_cases(self):
-        for args, expected_output in self.check_cases:
-            print(f'{args}: {expected_output}')
+        utils.show_cases(self.check_cases, self.entrypoint_params, self.entrypoint_return)
 
     @property
     def hash(self) -> str:
