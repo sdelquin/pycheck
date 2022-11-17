@@ -1,6 +1,6 @@
 import typer
 
-from pycheck import PyCheck
+from pycheck import PyProblem
 from pycheck.lib import utils
 
 app = typer.Typer(add_completion=False)
@@ -67,17 +67,18 @@ def run(
     elif version:
         print(utils.get_pycheck_version())
     else:
-        pychecker = PyCheck(filepath)
+        pyproblem = PyProblem(filepath)
         if create_template:
-            pychecker.create_template()
+            pyproblem.create_template()
         if description:
-            print(pychecker.description)
+            print(pyproblem.description)
         if list_cases:
-            pychecker.list_cases()
+            pyproblem.list_cases()
         if check:
-            pychecker.check()
+            grade = pyproblem.check()
+            utils.show_grade(grade)
         if run:
-            pychecker.run(args)
+            pyproblem.run(args)
 
 
 if __name__ == "__main__":

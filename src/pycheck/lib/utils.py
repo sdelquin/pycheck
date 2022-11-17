@@ -75,3 +75,12 @@ def show_cases(check_cases: list, params: list, _return: list):
         table.add_row(*row)
 
     console.print(table)
+
+
+def show_grade(grade: dict):
+    if grade['passed']:
+        print('✅ ¡Enhorabuena! Todo funciona bien')
+    else:
+        print(f'❌ No funciona para la entrada {grade["args"]}')
+        print(f'   Salida esperada: {grade["expected_output"]}')
+        print(f'   Salida obtenida: {grade["output"]}')

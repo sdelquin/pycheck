@@ -6,7 +6,7 @@ from pycheck import settings
 from . import utils
 
 
-class PyCheck:
+class PyProblem:
     def __init__(self, filepath: str):
         self.filepath = filepath
         self.filename = os.path.basename(self.filepath)
@@ -18,7 +18,7 @@ class PyCheck:
         self.check_cases = config.CHECK_CASES
         self.arg_casts = utils.get_arg_casts(self.entrypoint_params)
 
-    def check(self):
+    def check(self) -> dict:
         target_func = utils.get_target_func(self.filepath, self.entrypoint_name)
         for args, expected_output in self.check_cases:
             expected_output = (
@@ -27,12 +27,11 @@ class PyCheck:
                 else expected_output[0]
             )
             if (output := target_func(*args)) != expected_output:
-                print(f'❌ No funciona para la entrada {args}')
-                print(f'   Salida esperada: {expected_output}')
-                print(f'   Salida obtenida: {output}')
-                break
+                return dict(
+                    passed=False, args=args, expected_output=expected_output, output=output
+                )
         else:
-            print('✅ ¡Enhorabuena! Todo funciona bien')
+            return dict(passed=True)
 
     @property
     def return_multiple_values(self):

@@ -1,1 +1,1 @@
-from pycheck.lib.core import PyCheck
+from pycheck.lib.core import PyProblem
