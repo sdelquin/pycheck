@@ -8,8 +8,6 @@ from rich.table import Table
 
 from pycheck import settings
 
-from . import utils
-
 
 class Exercise:
     def __init__(self, filepath: str):
@@ -24,7 +22,7 @@ class Exercise:
         return hashlib.md5(self.filename.encode()).hexdigest()
 
     def create_template(self):
-        template = utils.render_template(self.description, self.entrypoint)
+        template = self.render_template()
         with open(self.filepath, 'w') as f:
             f.write(template)
 
@@ -61,16 +59,15 @@ class Exercise:
         return_type = (
             'tuple' if self.multiple_returns else self.entrypoint['return'][0][1].__name__
         )
-        return f"""
-    '''
-    {self.description}
-    '''
+        return f"""'''
+{self.description}
+'''
 
 
-    def {self.entrypoint['name']}({params}) -> {return_type}:
-        # TU CÓDIGO AQUÍ
-        return {return_names}
-    """.lstrip()
+def {self.entrypoint['name']}({params}) -> {return_type}:
+    # TU CÓDIGO AQUÍ
+    return {return_names}
+"""
 
     def get_config(self):
         config_path = f'{settings.CONFIG_BASE_PATH}.{self.hash}'
