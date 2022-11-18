@@ -1,6 +1,6 @@
 dist
 *.pyc
 __pycache__
-config.csv
+exercises.csv
 .DS_Store
 tests/sandbox

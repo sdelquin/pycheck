@@ -70,7 +70,7 @@ def {self.entrypoint['name']}({params}) -> {return_type}:
 """
 
     def get_config(self):
-        config_path = f'{settings.CONFIG_BASE_PATH}.{self.hash}'
+        config_path = f'{settings.EXERCISES_FOLDER}.{self.hash}'
         config = importlib.import_module(config_path)
         self.description = config.DESCRIPTION.strip()
         self.entrypoint = {
