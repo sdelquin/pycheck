@@ -1,61 +1,21 @@
-import hashlib
-import os
-
-from pycheck import settings
-
-from . import utils
+from .checking import Checking
+from .exercise import Exercise
 
 
-class PyProblem:
-    def __init__(self, filepath: str):
-        self.filepath = filepath
-        self.filename = os.path.basename(self.filepath)
-        config = utils.get_config(self.hash)
-        self.description = config.DESCRIPTION.strip()
-        self.entrypoint_name = config.ENTRYPOINT.get('NAME', settings.ENTRYPOINT_NAME)
-        self.entrypoint_params = config.ENTRYPOINT['PARAMS']
-        self.entrypoint_return = config.ENTRYPOINT['RETURN']
-        self.check_cases = config.CHECK_CASES
-        self.arg_casts = utils.get_arg_casts(self.entrypoint_params)
+def check(filepath: str) -> dict:
+    exercise = Exercise(filepath)
+    target_func = exercise.get_target_func()
+    runnings = []
+    for args, expected_output in exercise.check_cases:
+        output = target_func(*args)
+        output = output if exercise.multiple_returns else [output]
+        passed = all(pout == pexp for pout, pexp in zip(output, expected_output))
+        runnings.append(dict(passed=passed, output=output))
+    return Checking(exercise, runnings)
 
-    def check(self) -> dict:
-        target_func = utils.get_target_func(self.filepath, self.entrypoint_name)
-        for args, expected_output in self.check_cases:
-            expected_output = (
-                tuple(expected_output)
-                if self.return_multiple_values
-                else expected_output[0]
-            )
-            if (output := target_func(*args)) != expected_output:
-                return dict(
-                    passed=False, args=args, expected_output=expected_output, output=output
-                )
-        else:
-            return dict(passed=True)
 
-    @property
-    def return_multiple_values(self):
-        return len(self.entrypoint_return) > 1
-
-    def run(self, args: list[str]):
-        target_func = utils.get_target_func(self.filepath, self.entrypoint_name)
-        args = [cast(arg) for cast, arg in zip(self.arg_casts, args)]
-        if (result := target_func(*args)) is not None:
-            print(result)
-
-    def list_cases(self):
-        utils.show_cases(self.check_cases, self.entrypoint_params, self.entrypoint_return)
-
-    @property
-    def hash(self) -> str:
-        return hashlib.md5(self.filename.encode()).hexdigest()
-
-    def create_template(self):
-        template = utils.render_template(
-            self.description,
-            self.entrypoint_name,
-            self.entrypoint_params,
-            self.entrypoint_return,
-        )
-        with open(self.filename, 'w') as f:
-            f.write(template)
+def run(filepath: str, args: list[str]):
+    exercise = Exercise(filepath)
+    target_func = exercise.get_target_func()
+    args = [cast(arg) for cast, arg in zip(exercise.arg_casts, args)]
+    return target_func(*args)
