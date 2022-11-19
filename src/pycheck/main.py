@@ -64,21 +64,20 @@ def run(
 ):
     if update:
         utils.update_pycheck()
-    elif version:
+    if version:
         print(utils.get_pycheck_version())
-    else:
-        exercise = pycheck.Exercise(filepath)
-        if create_template:
-            exercise.create_template()
-        if description:
-            print(exercise.description)
-        if list_cases:
-            exercise.list_cases()
-        if check:
-            checking = pycheck.check(filepath)
-            checking.display()
-        if run:
-            print(pycheck.run(filepath, args))
+    exercise = pycheck.Exercise(filepath)
+    if create_template:
+        exercise.create_template()
+    if description:
+        print(exercise.description)
+    if list_cases:
+        exercise.list_cases()
+    if check:
+        checking = pycheck.check(exercise)
+        checking.display()
+    if run:
+        print(pycheck.run(exercise, args))
 
 
 if __name__ == "__main__":

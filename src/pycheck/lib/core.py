@@ -2,8 +2,10 @@ from .checking import Checking
 from .exercise import Exercise
 
 
-def check(filepath: str) -> dict:
-    exercise = Exercise(filepath)
+def check(source: str | Exercise) -> dict:
+    '''source puede ser la ruta al fichero del ejercicio o bien
+    una instancia del ejercicio'''
+    exercise = source if isinstance(source, Exercise) else Exercise(source)
     target_func = exercise.get_target_func()
     runnings = []
     for args, expected_output in exercise.check_cases:
@@ -14,8 +16,10 @@ def check(filepath: str) -> dict:
     return Checking(exercise, runnings)
 
 
-def run(filepath: str, args: list[str]):
-    exercise = Exercise(filepath)
+def run(source: str | Exercise, args: list[str]):
+    '''source puede ser la ruta al fichero del ejercicio o bien
+    una instancia del ejercicio'''
+    exercise = source if isinstance(source, Exercise) else Exercise(source)
     target_func = exercise.get_target_func()
     args = [cast(arg) for cast, arg in zip(exercise.arg_casts, args)]
     return target_func(*args)

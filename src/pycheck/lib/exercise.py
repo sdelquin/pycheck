@@ -8,6 +8,8 @@ from rich.table import Table
 
 from pycheck import settings
 
+from .exceptions import ExerciseNotFoundError
+
 
 class Exercise:
     def __init__(self, filepath: str):
@@ -71,7 +73,10 @@ def {self.entrypoint['name']}({params}) -> {return_type}:
 
     def get_config(self):
         config_path = f'{settings.EXERCISES_FOLDER}.{self.hash}'
-        config = importlib.import_module(config_path)
+        try:
+            config = importlib.import_module(config_path)
+        except ModuleNotFoundError:
+            raise ExerciseNotFoundError(self.filename)
         self.description = config.DESCRIPTION.strip()
         self.entrypoint = {
             'name': config.ENTRYPOINT.get('NAME', settings.ENTRYPOINT_NAME),
