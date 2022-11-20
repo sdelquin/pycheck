@@ -99,6 +99,6 @@ class Exercise:
 
 
 def {self.entrypoint['name']}({params}) -> {return_type}:
-    # TU CÓDIGO AQUÍ
+    {settings.CODEHERE_PLACEHOLDER}
     return {return_names}
 """
