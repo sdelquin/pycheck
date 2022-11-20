@@ -64,8 +64,10 @@ def run(
 ):
     if update:
         utils.update_pycheck()
+        return
     if version:
         print(utils.get_pycheck_version())
+        return
     exercise = pycheck.Exercise(filepath)
     if create_template:
         exercise.create_template()

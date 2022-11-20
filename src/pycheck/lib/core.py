@@ -2,7 +2,7 @@ from .checking import Checking
 from .exercise import Exercise
 
 
-def check(source: str | Exercise) -> dict:
+def check(source: str | Exercise) -> Checking:
     '''source puede ser la ruta al fichero del ejercicio o bien
     una instancia del ejercicio'''
     exercise = source if isinstance(source, Exercise) else Exercise(source)

@@ -1,5 +1,5 @@
 '''
-Comprobar que pycheck funciona correctamente.
+Escriba un programa en Python que sume dos números enteros a y b.
 '''
 
 

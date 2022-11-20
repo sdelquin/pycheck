@@ -1,30 +1,39 @@
 import hashlib
 import importlib
 import os
+import shutil
 import sys
 
+import typer
 from rich.console import Console
 from rich.table import Table
 
 from pycheck import settings
 
-from .exceptions import ExerciseNotFoundError
+from .exceptions import ExerciseNotFoundError, TemplateNotFoundError
 
 
 class Exercise:
     def __init__(self, filepath: str):
         self.filepath = filepath
         self.filename = os.path.basename(self.filepath)
-        self.get_config()
-        self.get_arg_casts()
+        self.config_hash = hashlib.md5(self.filename.encode()).hexdigest()
+        self.config_path = f'{settings.EXERCISES_FOLDER}.{self.config_hash}'
+        self.__get_config()
+        self.__get_arg_casts()
         self.multiple_returns = len(self.entrypoint['return']) > 1
 
-    @property
-    def hash(self) -> str:
-        return hashlib.md5(self.filename.encode()).hexdigest()
-
-    def create_template(self):
-        template = self.render_template()
+    def create_template(self, ask_on_overwrite: bool = True):
+        if os.path.exists(self.filepath):
+            backup = False
+            if ask_on_overwrite:
+                backup = not typer.confirm(
+                    'Ya existe la plantilla. ¿Desea sobreescribirla?'
+                )
+            if not ask_on_overwrite or backup:
+                self.filepath_bak = self.filepath + '.bak'
+                shutil.copy(self.filepath, self.filepath_bak)
+        template = self.__render_template()
         with open(self.filepath, 'w') as f:
             f.write(template)
 
@@ -33,7 +42,10 @@ class Exercise:
         spec = importlib.util.spec_from_file_location(module_name, self.filepath)
         module = importlib.util.module_from_spec(spec)
         sys.modules[module_name] = module
-        spec.loader.exec_module(module)
+        try:
+            spec.loader.exec_module(module)
+        except FileNotFoundError:
+            raise TemplateNotFoundError(self.filepath)
         return getattr(module, self.entrypoint['name'])
 
     def list_cases(self):
@@ -53,7 +65,27 @@ class Exercise:
 
         console.print(table)
 
-    def render_template(self) -> str:
+    def __get_config(self):
+        try:
+            config = importlib.import_module(self.config_path)
+        except ModuleNotFoundError:
+            raise ExerciseNotFoundError(self.filename)
+        self.description = config.DESCRIPTION.strip()
+        self.entrypoint = {
+            'name': config.ENTRYPOINT.get('NAME', settings.ENTRYPOINT_NAME),
+            'params': config.ENTRYPOINT['PARAMS'],
+            'return': config.ENTRYPOINT['RETURN'],
+        }
+        self.check_cases = config.CHECK_CASES
+
+    def __get_arg_casts(self):
+        PRIMITIVE_TYPES = [int, bool, float, str]
+        self.arg_casts = []
+        for _, param_type in self.entrypoint['params']:
+            cast = param_type if param_type in PRIMITIVE_TYPES else eval
+            self.arg_casts.append(cast)
+
+    def __render_template(self) -> str:
         params = ', '.join(
             f'{param}: {annot.__name__}' for param, annot in self.entrypoint['params']
         )
@@ -70,24 +102,3 @@ def {self.entrypoint['name']}({params}) -> {return_type}:
     # TU CÓDIGO AQUÍ
     return {return_names}
 """
-
-    def get_config(self):
-        config_path = f'{settings.EXERCISES_FOLDER}.{self.hash}'
-        try:
-            config = importlib.import_module(config_path)
-        except ModuleNotFoundError:
-            raise ExerciseNotFoundError(self.filename)
-        self.description = config.DESCRIPTION.strip()
-        self.entrypoint = {
-            'name': config.ENTRYPOINT.get('NAME', settings.ENTRYPOINT_NAME),
-            'params': config.ENTRYPOINT['PARAMS'],
-            'return': config.ENTRYPOINT['RETURN'],
-        }
-        self.check_cases = config.CHECK_CASES
-
-    def get_arg_casts(self):
-        PRIMITIVE_TYPES = [int, bool, float, str]
-        self.arg_casts = []
-        for _, param_type in self.entrypoint['params']:
-            cast = param_type if param_type in PRIMITIVE_TYPES else eval
-            self.arg_casts.append(cast)
