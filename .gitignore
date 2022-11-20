@@ -4,5 +4,4 @@ dist
 __pycache__
 exercises.csv
 .DS_Store
-tests/sandbox
 solutions
