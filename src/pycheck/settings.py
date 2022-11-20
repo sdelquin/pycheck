@@ -10,6 +10,6 @@ GITHUB_REPO = config('GITHUB_REPO', default='https://github.com/sdelquin/pycheck
 PYPROJECT_PATH = config('PYPROJECT_PATH', default=PROJECT_DIR / 'pyproject.toml')
 STATUS_PASSED_EMOJI = config('STATUS_PASSED_EMOJI', default='✅')
 STATUS_NOT_PASSED_EMOJI = config('STATUS_NOT_PASSED_EMOJI', default='❌')
-MSG_PASSED_EMOJI = config('MSG_PASSED_EMOJI', default='🍏')
+MSG_PASSED_EMOJI = config('MSG_PASSED_EMOJI', default='💚')
 MSG_NOT_PASSED_EMOJI = config('MSG_NOT_PASSED_EMOJI', default='🚨')
 CODEHERE_PLACEHOLDER = config('CODEHERE_PLACEHOLDER', default='# TU CÓDIGO AQUÍ')
