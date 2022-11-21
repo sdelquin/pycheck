@@ -19,9 +19,9 @@ class Checking:
         for param_name, _ in self.exercise.entrypoint['params']:
             table.add_column(param_name, header_style='yellow')
         for return_name, _ in self.exercise.entrypoint['return']:
-            table.add_column(f'{return_name} (esperado)', header_style='blue')
+            table.add_column(f'{return_name}:obj', header_style='blue')
         for return_name, _ in self.exercise.entrypoint['return']:
-            table.add_column(f'{return_name} (obtenido)', header_style='cyan')
+            table.add_column(f'{return_name}:res', header_style='cyan')
         table.add_column('Status')
 
         for check_case, running in zip(self.exercise.check_cases, self.runnings):
