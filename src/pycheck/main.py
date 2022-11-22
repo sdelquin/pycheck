@@ -24,6 +24,13 @@ def check(
     filepath: Path = typer.Argument(
         ..., help='Ruta al ejercicio que se quiere comprobar.', show_default=False
     ),
+    only_summary: bool = typer.Option(
+        False,
+        '--only-summary',
+        '-s',
+        show_default=False,
+        help='Muestra únicamente el resumen como salida de la comprobación.',
+    ),
 ):
     '''Comprueba el ejercicio contra los casos de prueba establecidos.'''
     try:
@@ -33,7 +40,7 @@ def check(
     except ExerciseNotAvailableError as err:
         print(err)
     else:
-        checking.display()
+        checking.display(only_summary)
 
 
 @app.command()

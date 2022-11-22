@@ -12,31 +12,37 @@ class Checking:
         self.runnings = runnings
         self.passed = all([running['passed'] for running in self.runnings])
 
-    def display(self):
+    def display(self, only_summary=False):
         console = Console()
         table = Table(show_header=True)
 
-        for param_name, _ in self.exercise.entrypoint['params']:
-            table.add_column(param_name, header_style='yellow')
-        for return_name, _ in self.exercise.entrypoint['return']:
-            table.add_column(f'[italic](esperado)[/]\n{return_name}', header_style='blue')
-        for return_name, _ in self.exercise.entrypoint['return']:
-            table.add_column(f'[italic](obtenido)[/]\n{return_name}', header_style='cyan')
-        table.add_column('Status')
+        if not only_summary:
+            for param_name, _ in self.exercise.entrypoint['params']:
+                table.add_column(param_name, header_style='yellow')
+            for return_name, _ in self.exercise.entrypoint['return']:
+                table.add_column(
+                    f'[italic](esperado)[/]\n{return_name}', header_style='blue'
+                )
+            for return_name, _ in self.exercise.entrypoint['return']:
+                table.add_column(
+                    f'[italic](obtenido)[/]\n{return_name}', header_style='cyan'
+                )
+            table.add_column('Status')
 
-        for check_case, running in zip(self.exercise.check_cases, self.runnings):
-            args, expected_output = check_case
-            fargs = [str(arg) for arg in args]
-            fexp = [str(out) for out in expected_output]
-            fout = [str(out) for out in running['output']]
-            emoji = (
-                settings.STATUS_PASSED_EMOJI
-                if running['passed']
-                else settings.STATUS_NOT_PASSED_EMOJI
-            )
-            table.add_row(*fargs, *fexp, *fout, emoji)
+            for check_case, running in zip(self.exercise.check_cases, self.runnings):
+                args, expected_output = check_case
+                fargs = [str(arg) for arg in args]
+                fexp = [str(out) for out in expected_output]
+                fout = [str(out) for out in running['output']]
+                emoji = (
+                    settings.STATUS_PASSED_EMOJI
+                    if running['passed']
+                    else settings.STATUS_NOT_PASSED_EMOJI
+                )
+                table.add_row(*fargs, *fexp, *fout, emoji)
 
-        console.print(table)
+            console.print(table)
+
         if self.passed:
             console.print(
                 f'{settings.MSG_PASSED_EMOJI} ¡Enhorabuena! Todo funciona bien',
