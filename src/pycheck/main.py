@@ -90,6 +90,27 @@ def show(
     filepath: str = typer.Argument(
         ..., help='Identificador del ejercicio.', show_default=False
     ),
+    description: bool = typer.Option(
+        False,
+        '--description',
+        '-d',
+        show_default=False,
+        help='Mostrar la descripción del ejercicio.',
+    ),
+    check_cases: bool = typer.Option(
+        False,
+        '--check-cases',
+        '-c',
+        show_default=False,
+        help='Mostrar los casos de prueba del ejercicio.',
+    ),
+    pycoins: bool = typer.Option(
+        False,
+        '--pycoins',
+        '-p',
+        show_default=False,
+        help='Mostrar los pycoins del ejercicio.',
+    ),
 ):
     '''Muestra la especificación del ejercicio.'''
     try:
@@ -97,7 +118,9 @@ def show(
     except ExerciseNotAvailableError as err:
         print(err)
     else:
-        exercise.show()
+        if not description and not check_cases and not pycoins:
+            description = check_cases = pycoins = True
+        exercise.show(description, check_cases, pycoins)
 
 
 @app.callback(invoke_without_command=True)

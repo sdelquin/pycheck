@@ -60,7 +60,7 @@ class Exercise:
         )
         print(panel)
 
-    def show_list_cases(self):
+    def show_check_cases(self):
         table = Table(show_header=True)
 
         for param_name, _ in self.entrypoint['params']:
@@ -79,10 +79,12 @@ class Exercise:
     def show_pycoins(self):
         print(f'[orange1]PYCOINS: {self.pycoins_as_emojis}')
 
-    def show(self):
-        self.show_description()
-        self.show_list_cases()
-        if self.pycoins > 0:
+    def show(self, description=True, check_cases=True, pycoins=True):
+        if description:
+            self.show_description()
+        if check_cases:
+            self.show_check_cases()
+        if pycoins and self.pycoins > 0:
             self.show_pycoins()
 
     @property
