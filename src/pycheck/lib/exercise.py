@@ -4,13 +4,13 @@ import os
 import sys
 
 import typer
-from rich import print as rprint
+from rich import print
 from rich.panel import Panel
 from rich.table import Table
 
 from pycheck import settings
 
-from .exceptions import ExerciseNotFoundError, TemplateNotFoundError
+from .exceptions import ExerciseNotAvailableError, TemplateNotFoundError
 
 
 class Exercise:
@@ -52,7 +52,7 @@ class Exercise:
             expand=False,
             border_style='purple',
         )
-        rprint(panel)
+        print(panel)
 
     def show_list_cases(self):
         table = Table(show_header=True)
@@ -68,7 +68,7 @@ class Exercise:
             row = fargs + fout
             table.add_row(*row)
 
-        rprint(table)
+        print(table)
 
     def show(self):
         self.show_description()
@@ -78,7 +78,7 @@ class Exercise:
         try:
             config = importlib.import_module(self.config_path)
         except ModuleNotFoundError:
-            raise ExerciseNotFoundError(self.filename)
+            raise ExerciseNotAvailableError(self.filename)
         self.description = config.DESCRIPTION.strip()
         self.entrypoint = {
             'name': config.ENTRYPOINT.get('NAME', settings.ENTRYPOINT_NAME),

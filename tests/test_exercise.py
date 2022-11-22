@@ -6,7 +6,7 @@ import conftest
 import pytest
 
 from pycheck import Exercise
-from pycheck.lib.exceptions import ExerciseNotFoundError, TemplateNotFoundError
+from pycheck.lib.exceptions import ExerciseNotAvailableError, TemplateNotFoundError
 
 
 def test_instance(exercise: Exercise):
@@ -22,7 +22,7 @@ def test_instance(exercise: Exercise):
 
 
 def test_instance_file_not_found():
-    with pytest.raises(ExerciseNotFoundError):
+    with pytest.raises(ExerciseNotAvailableError):
         Exercise('strange.py')
 
 

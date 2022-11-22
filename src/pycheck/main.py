@@ -1,7 +1,9 @@
 import typer
+from rich import print
 
 import pycheck
 from pycheck.lib import utils
+from pycheck.lib.exceptions import ExerciseNotAvailableError, TemplateNotFoundError
 
 app = typer.Typer(
     add_completion=False,
@@ -22,8 +24,14 @@ def check(
     ),
 ):
     '''Comprueba el ejercicio contra los casos de prueba establecidos.'''
-    checking = pycheck.check(filepath)
-    checking.display()
+    try:
+        checking = pycheck.check(filepath)
+    except TemplateNotFoundError as err:
+        print(err)
+    except ExerciseNotAvailableError as err:
+        print(err)
+    else:
+        checking.display()
 
 
 @app.command()
@@ -36,8 +44,14 @@ def run(
     ),
 ):
     '''Lanza la ejecución del ejercicio con argumentos propios.'''
-    exercise = pycheck.Exercise(filepath)
-    print(pycheck.run(exercise, args))
+    try:
+        result = pycheck.run(filepath, args)
+    except TemplateNotFoundError as err:
+        print(err)
+    except ExerciseNotAvailableError as err:
+        print(err)
+    else:
+        print(result)
 
 
 @app.command()
@@ -54,8 +68,12 @@ def template(
     ),
 ):
     '''Crea la plantilla para resolver el ejercicio.'''
-    exercise = pycheck.Exercise(filepath)
-    exercise.create_template(ask_on_overwrite=not force)
+    try:
+        exercise = pycheck.Exercise(filepath)
+    except ExerciseNotAvailableError as err:
+        print(err)
+    else:
+        exercise.create_template(ask_on_overwrite=not force)
 
 
 @app.command()
@@ -65,8 +83,12 @@ def show(
     ),
 ):
     '''Muestra la especificación del ejercicio.'''
-    exercise = pycheck.Exercise(filepath)
-    exercise.show()
+    try:
+        exercise = pycheck.Exercise(filepath)
+    except ExerciseNotAvailableError as err:
+        print(err)
+    else:
+        exercise.show()
 
 
 @app.callback(invoke_without_command=True)
