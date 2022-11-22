@@ -11,8 +11,8 @@ from pycheck.lib.exceptions import ExerciseNotAvailableError, TemplateNotFoundEr
 
 def test_instance(exercise: Exercise):
     assert isinstance(exercise, Exercise)
-    assert exercise.filename == os.path.basename(conftest.EXERCISE_PATH)
     assert exercise.filepath == conftest.EXERCISE_PATH
+    assert exercise.filename == conftest.EXERCISE_PATH.name
     assert re.match(r'^[a-f0-9]{32}$', exercise.config_hash)
     assert len(exercise.description) > 0
     assert len(exercise.entrypoint.keys()) > 0
@@ -26,19 +26,24 @@ def test_instance_file_not_found():
         Exercise('strange.py')
 
 
+def test_instance_from_stem():
+    exercise = Exercise(conftest.EXERCISE_PATH.stem)
+    assert isinstance(exercise, Exercise)
+
+
 def test_get_target_func(exercise: Exercise):
     func = exercise.get_target_func()
     assert func is not None
 
 
 def test_get_target_func_no_template():
-    exercise = Exercise(conftest.EXERCISE_NAME)
+    exercise = Exercise(conftest.EXERCISE_PATH.name)
     with pytest.raises(TemplateNotFoundError):
         exercise.get_target_func()
 
 
 def test_create_template(exercise: Exercise):
-    filepath_bak = exercise.filepath + '.bak'
+    filepath_bak = exercise.filepath.with_suffix('.bak')
     shutil.copy(exercise.filepath, filepath_bak)
     exercise.create_template(ask_on_overwrite=False)
     template_contents = open(exercise.filepath).read()

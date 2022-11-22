@@ -1,7 +1,7 @@
 import hashlib
 import importlib
-import os
 import sys
+from pathlib import Path
 
 import typer
 from rich import print
@@ -14,9 +14,17 @@ from .exceptions import ExerciseNotAvailableError, TemplateNotFoundError
 
 
 class Exercise:
-    def __init__(self, filepath: str):
-        self.filepath = filepath
-        self.filename = os.path.basename(self.filepath)
+    def __init__(self, exercise_id: Path | str):
+        '''
+        exercise_id puede ser:
+            a) El identificador del ejercicio (sum)
+            b) Un string representando la ruta al ejercicio (ex/sum.py)
+            c) Un objeto Path que almacena el ejercicio (ex/sum.py)
+        '''
+        self.filepath = exercise_id if isinstance(exercise_id, Path) else Path(exercise_id)
+        if not self.filepath.suffix:
+            self.filepath = self.filepath.with_suffix('.py')
+        self.filename = self.filepath.name
         self.config_hash = hashlib.md5(self.filename.encode()).hexdigest()
         self.config_path = f'{settings.EXERCISES_FOLDER}.{self.config_hash}'
         self.__get_config()
@@ -25,17 +33,15 @@ class Exercise:
 
     def create_template(self, ask_on_overwrite: bool = True):
         if (
-            os.path.exists(self.filepath)
+            self.filepath.exists()
             and ask_on_overwrite
             and not typer.confirm('Ya existe la plantilla. ¿Desea sobreescribirla?')
         ):
             return
-        template = self.__render_template()
-        with open(self.filepath, 'w') as f:
-            f.write(template)
+        self.filepath.write_text(self.__render_template())
 
     def get_target_func(self) -> callable:
-        module_name = os.path.splitext(self.filepath)[0]
+        module_name = self.filepath.stem
         spec = importlib.util.spec_from_file_location(module_name, self.filepath)
         module = importlib.util.module_from_spec(spec)
         sys.modules[module_name] = module

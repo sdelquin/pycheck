@@ -23,26 +23,26 @@ def test_update(mocker):
 
 def test_create_template(mocker, exercise: Exercise):
     mocker.patch('pycheck.lib.exercise.Exercise.create_template')
-    result = runner.invoke(app, ['template', exercise.filepath])
+    result = runner.invoke(app, ['template', str(exercise.filepath)])
     assert result.exit_code == 0
     exercise.create_template.assert_called_once()
 
 
 def test_show(exercise: Exercise):
-    result = runner.invoke(app, ['show', exercise.filepath])
+    result = runner.invoke(app, ['show', str(exercise.filepath)])
     assert result.exit_code == 0
 
 
 def test_check(mocker, exercise: Exercise):
     mocker.patch('pycheck.check')
-    result = runner.invoke(app, ['check', exercise.filepath])
+    result = runner.invoke(app, ['check', str(exercise.filepath)])
     assert result.exit_code == 0
     pycheck.check.assert_called_once()
 
 
 def test_run(mocker, exercise: Exercise):
     mocker.patch('pycheck.run')
-    result = runner.invoke(app, ['run', exercise.filepath, '2', '3'])
+    result = runner.invoke(app, ['run', str(exercise.filepath), '2', '3'])
     assert result.exit_code == 0
     pycheck.run.assert_called_once()
 

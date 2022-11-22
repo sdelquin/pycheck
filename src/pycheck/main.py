@@ -1,3 +1,5 @@
+from pathlib import Path
+
 import typer
 from rich import print
 
@@ -19,7 +21,7 @@ def update():
 
 @app.command()
 def check(
-    filepath: str = typer.Argument(
+    filepath: Path = typer.Argument(
         ..., help='Ruta al ejercicio que se quiere comprobar.', show_default=False
     ),
 ):
@@ -36,7 +38,7 @@ def check(
 
 @app.command()
 def run(
-    filepath: str = typer.Argument(
+    filepath: Path = typer.Argument(
         ..., help='Ruta al ejercicio que se quiere ejecutar.', show_default=False
     ),
     args: list[str] = typer.Argument(
@@ -56,8 +58,8 @@ def run(
 
 @app.command()
 def template(
-    filepath: str = typer.Argument(
-        ..., help='Identificador del ejercicio.', show_default=False
+    filepath: Path = typer.Argument(
+        ..., help='Ruta en la que crear la plantilla para el ejercicio.', show_default=False
     ),
     force: bool = typer.Option(
         False,
