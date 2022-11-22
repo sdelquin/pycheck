@@ -5,8 +5,7 @@ import shutil
 import conftest
 import pytest
 
-from pycheck import Exercise
-from pycheck.lib.exceptions import ExerciseNotAvailableError, TemplateNotFoundError
+from pycheck import Exercise, ExerciseNotAvailableError, TemplateNotFoundError, settings
 
 
 def test_instance(exercise: Exercise):
@@ -63,3 +62,4 @@ def test_show(exercise: Exercise, capsys):
     for args, output in exercise.check_cases:
         assert all(str(arg) in captured.out for arg in args)
         assert all(str(out) in captured.out for out in output)
+    assert settings.PYCOIN_EMOJI in captured.out

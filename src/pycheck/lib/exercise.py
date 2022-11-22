@@ -76,9 +76,18 @@ class Exercise:
 
         print(table)
 
+    def show_pycoins(self):
+        print(f'[orange1]PYCOINS: {self.pycoins_as_emojis}')
+
     def show(self):
         self.show_description()
         self.show_list_cases()
+        if self.pycoins > 0:
+            self.show_pycoins()
+
+    @property
+    def pycoins_as_emojis(self):
+        return settings.PYCOIN_EMOJI * self.pycoins
 
     def __get_config(self):
         try:
@@ -92,6 +101,7 @@ class Exercise:
             'return': config.ENTRYPOINT['RETURN'],
         }
         self.check_cases = config.CHECK_CASES
+        self.pycoins = getattr(config, 'PYCOINS', 0)
 
     def __get_arg_casts(self):
         PRIMITIVE_TYPES = [int, bool, float, str]
