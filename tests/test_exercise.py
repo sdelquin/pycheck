@@ -38,20 +38,23 @@ def test_get_target_func_no_template():
 
 
 def test_create_template(exercise: Exercise):
+    filepath_bak = exercise.filepath + '.bak'
+    shutil.copy(exercise.filepath, filepath_bak)
     exercise.create_template(ask_on_overwrite=False)
     template_contents = open(exercise.filepath).read()
     assert os.path.isfile(exercise.filepath)
     assert exercise.description in template_contents
     assert 'def' in template_contents
     assert 'return' in template_contents
-    shutil.copy(exercise.filepath_bak, exercise.filepath)
-    os.remove(exercise.filepath_bak)
+    shutil.copy(filepath_bak, exercise.filepath)
+    os.remove(filepath_bak)
 
 
-def test_list_cases(exercise: Exercise, capsys):
-    exercise.list_cases()
+def test_show(exercise: Exercise, capsys):
+    exercise.show()
     captured = capsys.readouterr()
     assert len(captured.out) > 0
+    assert exercise.description in captured.out
     for args, output in exercise.check_cases:
         assert all(str(arg) in captured.out for arg in args)
         assert all(str(out) in captured.out for out in output)

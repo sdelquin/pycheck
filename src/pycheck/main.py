@@ -3,83 +3,83 @@ import typer
 import pycheck
 from pycheck.lib import utils
 
-app = typer.Typer(add_completion=False)
+app = typer.Typer(
+    add_completion=False,
+    help='✨ pycheck es un comprobador de ejercicios escritos en Python.',
+)
+
+
+@app.command()
+def update():
+    '''Actualiza pycheck a su última versión disponible.'''
+    utils.update_pycheck()
+
+
+@app.command()
+def check(
+    filepath: str = typer.Argument(
+        ..., help='Ruta al ejercicio que se quiere comprobar.', show_default=False
+    ),
+):
+    '''Comprueba el ejercicio contra los casos de prueba establecidos.'''
+    checking = pycheck.check(filepath)
+    checking.display()
 
 
 @app.command()
 def run(
-    filepath: str = typer.Argument(None, help='Ruta al programa que se quiere comprobar.'),
+    filepath: str = typer.Argument(
+        ..., help='Ruta al ejercicio que se quiere ejecutar.', show_default=False
+    ),
     args: list[str] = typer.Argument(
-        None, help='Argumentos propios para ejecutar el programa.'
+        None, help='Argumentos propios para ejecutar el programa.', show_default=False
     ),
-    list_cases: bool = typer.Option(
+):
+    '''Lanza la ejecución del ejercicio con argumentos propios.'''
+    exercise = pycheck.Exercise(filepath)
+    print(pycheck.run(exercise, args))
+
+
+@app.command()
+def template(
+    filepath: str = typer.Argument(
+        ..., help='Identificador del ejercicio.', show_default=False
+    ),
+    force: bool = typer.Option(
         False,
-        '--list-cases',
-        '-l',
+        '--force',
+        '-f',
         show_default=False,
-        help='Muestra los casos de prueba establecidos.',
+        help='Fuerza la creación de la plantilla, incluso si ya existe el fichero.',
     ),
-    description: bool = typer.Option(
-        False,
-        '--description',
-        '-d',
-        show_default=False,
-        help='Muestra la descripción del problema.',
+):
+    '''Crea la plantilla para resolver el ejercicio.'''
+    exercise = pycheck.Exercise(filepath)
+    exercise.create_template(ask_on_overwrite=not force)
+
+
+@app.command()
+def show(
+    filepath: str = typer.Argument(
+        ..., help='Identificador del ejercicio.', show_default=False
     ),
-    create_template: bool = typer.Option(
-        False,
-        '--template',
-        '-t',
-        show_default=False,
-        help='Crea la plantilla para resolver el problema.',
-    ),
-    run: bool = typer.Option(
-        False,
-        '--run',
-        '-r',
-        show_default=False,
-        help='Ejecuta el programa con argumentos propios.',
-    ),
-    check: bool = typer.Option(
-        False,
-        '--check',
-        '-c',
-        show_default=False,
-        help='Ejecuta el programa contra los casos de prueba.',
-    ),
-    update: bool = typer.Option(
-        False,
-        '--update',
-        '-u',
-        show_default=False,
-        help='Actualiza pycheck a su última versión disponible.',
-    ),
+):
+    '''Muestra la especificación del ejercicio.'''
+    exercise = pycheck.Exercise(filepath)
+    exercise.show()
+
+
+@app.callback(invoke_without_command=True)
+def init(
     version: bool = typer.Option(
         False,
         '--version',
-        '-v',
         show_default=False,
         help='Muestra la versión de pycheck instalada en el sistema.',
     ),
 ):
-    if update:
-        utils.update_pycheck()
-        return
     if version:
         print(utils.get_pycheck_version())
-        return
-    exercise = pycheck.Exercise(filepath)
-    if create_template:
-        exercise.create_template()
-    if description:
-        print(exercise.description)
-    if list_cases:
-        exercise.list_cases()
-    if check:
-        checking = pycheck.check(exercise)
-        checking.display()
-    if run:
-        print(pycheck.run(exercise, args))
 
 
 if __name__ == "__main__":

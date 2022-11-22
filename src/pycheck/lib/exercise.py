@@ -1,11 +1,11 @@
 import hashlib
 import importlib
 import os
-import shutil
 import sys
 
 import typer
-from rich.console import Console
+from rich import print as rprint
+from rich.panel import Panel
 from rich.table import Table
 
 from pycheck import settings
@@ -24,15 +24,12 @@ class Exercise:
         self.multiple_returns = len(self.entrypoint['return']) > 1
 
     def create_template(self, ask_on_overwrite: bool = True):
-        if os.path.exists(self.filepath):
-            backup = False
-            if ask_on_overwrite:
-                backup = not typer.confirm(
-                    'Ya existe la plantilla. ¿Desea sobreescribirla?'
-                )
-            if not ask_on_overwrite or backup:
-                self.filepath_bak = self.filepath + '.bak'
-                shutil.copy(self.filepath, self.filepath_bak)
+        if (
+            os.path.exists(self.filepath)
+            and ask_on_overwrite
+            and not typer.confirm('Ya existe la plantilla. ¿Desea sobreescribirla?')
+        ):
+            return
         template = self.__render_template()
         with open(self.filepath, 'w') as f:
             f.write(template)
@@ -48,8 +45,16 @@ class Exercise:
             raise TemplateNotFoundError(self.filepath)
         return getattr(module, self.entrypoint['name'])
 
-    def list_cases(self):
-        console = Console()
+    def show_description(self):
+        panel = Panel(
+            self.description,
+            title='Descripción del ejercicio',
+            expand=False,
+            border_style='purple',
+        )
+        rprint(panel)
+
+    def show_list_cases(self):
         table = Table(show_header=True)
 
         for param_name, _ in self.entrypoint['params']:
@@ -63,7 +68,11 @@ class Exercise:
             row = fargs + fout
             table.add_row(*row)
 
-        console.print(table)
+        rprint(table)
+
+    def show(self):
+        self.show_description()
+        self.show_list_cases()
 
     def __get_config(self):
         try:
