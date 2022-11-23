@@ -5,3 +5,4 @@ __pycache__
 exercises.csv
 .DS_Store
 solutions
+/gen
