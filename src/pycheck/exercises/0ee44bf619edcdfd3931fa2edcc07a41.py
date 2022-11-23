@@ -1,5 +1,5 @@
 DESCRIPTION = '''
-Dada una lista, genere otra lista eliminando el segundo elemento de forma repetida.
+Dada una lista, genere otra lista eliminando los elementos que ocupan posiciones pares.
 '''
 
 ENTRYPOINT = {
