@@ -22,6 +22,4 @@ CHECK_CASES = [
     [[5, 2], [9]],
 ]
 
-PYCOINS = 1
-
 SOURCE = 'https://www.codewars.com/kata/563a631f7cbbc236cf0000c2'

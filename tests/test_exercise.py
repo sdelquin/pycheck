@@ -5,7 +5,7 @@ import shutil
 import conftest
 import pytest
 
-from pycheck import Exercise, ExerciseNotAvailableError, TemplateNotFoundError, settings
+from pycheck import Exercise, ExerciseNotAvailableError, TemplateNotFoundError
 
 
 def test_instance(exercise: Exercise):
@@ -62,31 +62,19 @@ def test_show(exercise: Exercise, capsys):
     for args, output in exercise.check_cases:
         assert all(str(arg) in captured.out for arg in args)
         assert all(str(out) in captured.out for out in output)
-    assert settings.PYCOIN_EMOJI in captured.out
 
 
 def test_show_description(exercise: Exercise, capsys):
-    exercise.show(description=True, check_cases=False, pycoins=False)
+    exercise.show(description=True, check_cases=False)
     captured = capsys.readouterr()
     assert len(captured.out) > 0
     assert exercise.description in captured.out
     assert 'result' not in captured.out
-    assert settings.PYCOIN_EMOJI not in captured.out
 
 
 def test_show_check_cases(exercise: Exercise, capsys):
-    exercise.show(description=False, check_cases=True, pycoins=False)
+    exercise.show(description=False, check_cases=True)
     captured = capsys.readouterr()
     assert len(captured.out) > 0
     assert exercise.description not in captured.out
     assert 'result' in captured.out
-    assert settings.PYCOIN_EMOJI not in captured.out
-
-
-def test_show_pycoins(exercise: Exercise, capsys):
-    exercise.show(description=False, check_cases=False, pycoins=True)
-    captured = capsys.readouterr()
-    assert len(captured.out) > 0
-    assert exercise.description not in captured.out
-    assert 'result' not in captured.out
-    assert settings.PYCOIN_EMOJI in captured.out

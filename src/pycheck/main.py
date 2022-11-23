@@ -104,13 +104,6 @@ def show(
         show_default=False,
         help='Mostrar los casos de prueba del ejercicio.',
     ),
-    pycoins: bool = typer.Option(
-        False,
-        '--pycoins',
-        '-p',
-        show_default=False,
-        help='Mostrar los pycoins del ejercicio.',
-    ),
 ):
     '''Muestra la especificación del ejercicio.'''
     try:
@@ -118,9 +111,9 @@ def show(
     except ExerciseNotAvailableError as err:
         print(err)
     else:
-        if not description and not check_cases and not pycoins:
-            description = check_cases = pycoins = True
-        exercise.show(description, check_cases, pycoins)
+        if not description and not check_cases:
+            description = check_cases = True
+        exercise.show(description, check_cases)
 
 
 @app.callback(invoke_without_command=True)

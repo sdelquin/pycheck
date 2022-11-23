@@ -26,6 +26,4 @@ CHECK_CASES = [
     [[True, True], [False]],
 ]
 
-PYCOINS = 2
-
 SOURCE = 'https://www.codewars.com/kata/56fa3c5ce4d45d2a52001b3c'
