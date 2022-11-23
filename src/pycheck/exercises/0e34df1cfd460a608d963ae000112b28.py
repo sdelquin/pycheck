@@ -1,5 +1,5 @@
 DESCRIPTION = '''
-Genere una lista on los "n" primeros múltiplos de "x", donde "n" y "x" son parámetros de
+Genere una lista con los "n" primeros múltiplos de "x", donde "n" y "x" son parámetros de
 entrada representando valores enteros mayores que 0.
 
 Resuelva el ejercicio utilizando listas por comprensión.
