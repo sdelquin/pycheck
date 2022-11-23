@@ -12,7 +12,7 @@ def test_instance(exercise: Exercise):
     assert isinstance(exercise, Exercise)
     assert exercise.filepath == conftest.EXERCISE_PATH
     assert exercise.filename == conftest.EXERCISE_PATH.name
-    assert re.match(r'^[a-f0-9]{32}$', exercise.config_hash)
+    assert re.match(r'^[a-f0-9]{32}$', exercise.hash)
     assert len(exercise.description) > 0
     assert len(exercise.entrypoint.keys()) > 0
     assert len(exercise.check_cases) > 0

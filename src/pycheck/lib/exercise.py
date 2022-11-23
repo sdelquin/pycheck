@@ -24,9 +24,10 @@ class Exercise:
         self.filepath = exercise_id if isinstance(exercise_id, Path) else Path(exercise_id)
         if not self.filepath.suffix:
             self.filepath = self.filepath.with_suffix('.py')
+        self.id = self.filepath.stem
         self.filename = self.filepath.name
-        self.config_hash = hashlib.md5(self.filename.encode()).hexdigest()
-        self.config_path = f'{settings.EXERCISES_FOLDER}.{self.config_hash}'
+        self.hash = hashlib.md5(self.id.encode()).hexdigest()
+        self.config_path = f'{settings.EXERCISES_FOLDER}.{self.hash}'
         self.__get_config()
         self.__get_arg_casts()
         self.multiple_returns = len(self.entrypoint['return']) > 1
