@@ -19,15 +19,14 @@ class Checking:
         if not only_summary:
             table.add_column('#', header_style='grey42', style='grey42')
             for param_name, _ in self.exercise.entrypoint['params']:
-                table.add_column(param_name, header_style='yellow')
+                heading = f'[italic](entrada)[/]\n{param_name}'
+                table.add_column(heading, header_style='yellow')
             for return_name, _ in self.exercise.entrypoint['return']:
-                table.add_column(
-                    f'[italic](esperado)[/]\n{return_name}', header_style='blue'
-                )
+                heading = f'[italic](esperado)[/]\n{return_name}'
+                table.add_column(heading, header_style='blue')
             for return_name, _ in self.exercise.entrypoint['return']:
-                table.add_column(
-                    f'[italic](obtenido)[/]\n{return_name}', header_style='cyan'
-                )
+                heading = f'[italic](obtenido)[/]\n{return_name}'
+                table.add_column(heading, header_style='cyan')
             table.add_column('Status')
 
             case_start = 1 if self.exercise.case_no == 0 else self.exercise.case_no
