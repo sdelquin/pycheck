@@ -41,7 +41,7 @@ class Exercise:
             return
         self.filepath.write_text(self.__render_template())
 
-    def get_target_func(self) -> callable:
+    def get_target_func(self, ignore_stdin: bool = False) -> callable:
         module_name = self.filepath.stem
         spec = importlib.util.spec_from_file_location(module_name, self.filepath)
         module = importlib.util.module_from_spec(spec)
@@ -50,6 +50,8 @@ class Exercise:
             spec.loader.exec_module(module)
         except FileNotFoundError:
             raise TemplateNotFoundError(self.filepath)
+        if ignore_stdin:
+            setattr(module, 'input', lambda _: '0')
         return getattr(module, self.entrypoint['name'])
 
     def show_description(self):

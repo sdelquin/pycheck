@@ -31,10 +31,24 @@ def check(
         show_default=False,
         help='Muestra únicamente el resumen como salida de la comprobación.',
     ),
+    ignore_stdout: bool = typer.Option(
+        False,
+        '--ignore-stdout',
+        '-t',
+        show_default=False,
+        help='Ignora los mensajes enviados a stdout al ejecutar el ejercicio.',
+    ),
+    ignore_stdin: bool = typer.Option(
+        False,
+        '--ignore-stdin',
+        '-n',
+        show_default=False,
+        help='Ignora la entrada por stdin al ejecutar el ejercicio.',
+    ),
 ):
     '''Comprueba el ejercicio contra los casos de prueba establecidos.'''
     try:
-        checking = pycheck.check(filepath)
+        checking = pycheck.check(filepath, ignore_stdout, ignore_stdin)
     except TemplateNotFoundError as err:
         print(err)
     except ExerciseNotAvailableError as err:
