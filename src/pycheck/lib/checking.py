@@ -12,7 +12,7 @@ class Checking:
         self.runnings = runnings
         self.passed = all([running['passed'] for running in self.runnings])
 
-    def display(self, only_summary=False):
+    def show(self, only_summary=False):
         console = Console()
         table = Table(show_header=True)
 
@@ -35,9 +35,9 @@ class Checking:
             ):
                 args, expected_output = check_case
                 case = str(case_no)
-                fargs = [str(arg) for arg in args]
-                fexp = [str(out) for out in expected_output]
-                fout = [str(out) for out in running['output']]
+                fargs = [repr(arg) for arg in args]
+                fexp = [repr(out) for out in expected_output]
+                fout = [repr(out) for out in running['output']]
                 emoji = (
                     settings.STATUS_PASSED_EMOJI
                     if running['passed']

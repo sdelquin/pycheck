@@ -94,8 +94,8 @@ class Exercise:
             self.check_cases, start=case_start
         ):
             case = str(case_no)
-            fargs = [str(arg) for arg in args]
-            fout = [str(out) for out in expected_output]
+            fargs = [repr(arg) for arg in args]
+            fout = [repr(out) for out in expected_output]
             row = fargs + fout
             table.add_row(case, *row)
 

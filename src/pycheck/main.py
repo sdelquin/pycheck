@@ -67,7 +67,7 @@ def check(
     except CheckCaseNotFoundError as err:
         print(err)
     else:
-        checking.display(only_summary)
+        checking.show(only_summary)
 
 
 @app.command()
