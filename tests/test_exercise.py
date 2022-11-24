@@ -5,7 +5,12 @@ import shutil
 import conftest
 import pytest
 
-from pycheck import Exercise, ExerciseNotAvailableError, TemplateNotFoundError
+from pycheck import (
+    CheckCaseNotFoundError,
+    Exercise,
+    ExerciseNotAvailableError,
+    TemplateNotFoundError,
+)
 
 
 def test_instance(exercise: Exercise):
@@ -79,3 +84,14 @@ def test_show_check_cases(exercise: Exercise, capsys):
     assert len(captured.out) > 0
     assert exercise.description not in captured.out
     assert 'result' in captured.out
+
+
+def test_set_check_case(exercise: Exercise):
+    exercise.set_check_case(2)
+    assert len(exercise.check_cases) == 1
+    assert exercise.check_cases == [[[1, 9], [10]]]
+
+
+def test_set_check_case_not_found(exercise: Exercise):
+    with pytest.raises(CheckCaseNotFoundError):
+        exercise.set_check_case(100)

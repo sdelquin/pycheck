@@ -17,6 +17,7 @@ class Checking:
         table = Table(show_header=True)
 
         if not only_summary:
+            table.add_column('#', header_style='grey42', style='grey42')
             for param_name, _ in self.exercise.entrypoint['params']:
                 table.add_column(param_name, header_style='yellow')
             for return_name, _ in self.exercise.entrypoint['return']:
@@ -29,8 +30,12 @@ class Checking:
                 )
             table.add_column('Status')
 
-            for check_case, running in zip(self.exercise.check_cases, self.runnings):
+            case_start = 1 if self.exercise.case_no == 0 else self.exercise.case_no
+            for case_no, (check_case, running) in enumerate(
+                zip(self.exercise.check_cases, self.runnings), start=case_start
+            ):
                 args, expected_output = check_case
+                case = str(case_no)
                 fargs = [str(arg) for arg in args]
                 fexp = [str(out) for out in expected_output]
                 fout = [str(out) for out in running['output']]
@@ -39,7 +44,7 @@ class Checking:
                     if running['passed']
                     else settings.STATUS_NOT_PASSED_EMOJI
                 )
-                table.add_row(*fargs, *fexp, *fout, emoji)
+                table.add_row(case, *fargs, *fexp, *fout, emoji)
 
             console.print(table)
 

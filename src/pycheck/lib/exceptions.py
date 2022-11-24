@@ -10,3 +10,11 @@ class TemplateNotFoundError(Exception):
         message = f"""No se encuentra la plantilla para el ejercicio '{filepath}'.
 Puede generarla usando: 'pycheck template {filepath}'"""
         super().__init__(message)
+
+
+class CheckCaseNotFoundError(Exception):
+    def __init__(self, case_no: int, filename: str):
+        message = (
+            f"No se encuentra el caso de prueba {case_no} para el ejercicio '{filename}'"
+        )
+        super().__init__(message)

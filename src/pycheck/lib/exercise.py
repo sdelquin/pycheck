@@ -10,7 +10,11 @@ from rich.table import Table
 
 from pycheck import settings
 
-from .exceptions import ExerciseNotAvailableError, TemplateNotFoundError
+from .exceptions import (
+    CheckCaseNotFoundError,
+    ExerciseNotAvailableError,
+    TemplateNotFoundError,
+)
 
 
 class Exercise:
@@ -31,6 +35,17 @@ class Exercise:
         self.__get_config()
         self.__get_arg_casts()
         self.multiple_returns = len(self.entrypoint['return']) > 1
+        self.case_no = 0
+
+    def set_check_case(self, case_no: int = 0):
+        try:
+            self.check_cases = (
+                self.check_cases if case_no == 0 else [self.check_cases[case_no - 1]]
+            )
+        except IndexError:
+            raise CheckCaseNotFoundError(case_no, self.filename)
+        else:
+            self.case_no = case_no
 
     def create_template(self, ask_on_overwrite: bool = True):
         if (
@@ -66,7 +81,7 @@ class Exercise:
     def show_check_cases(self):
         table = Table(show_header=True)
 
-        table.add_column('#')
+        table.add_column('#', header_style='grey42', style='grey42')
         for param_name, _ in self.entrypoint['params']:
             heading = f'[italic](entrada)[/]\n{param_name}'
             table.add_column(heading, header_style='yellow')
@@ -74,11 +89,14 @@ class Exercise:
             heading = f'[italic](salida)[/]\n{return_name}'
             table.add_column(heading, header_style='blue')
 
-        for case_no, (args, expected_output) in enumerate(self.check_cases, start=1):
+        case_start = 1 if self.case_no == 0 else self.case_no
+        for case_no, (args, expected_output) in enumerate(
+            self.check_cases, start=case_start
+        ):
+            case = str(case_no)
             fargs = [str(arg) for arg in args]
             fout = [str(out) for out in expected_output]
             row = fargs + fout
-            case = str(case_no)
             table.add_row(case, *row)
 
         print(table)

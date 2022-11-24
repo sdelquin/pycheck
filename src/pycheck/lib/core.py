@@ -6,11 +6,15 @@ from .exercise import Exercise
 
 
 def check(
-    source: str | Exercise, ignore_stdout: bool = False, ignore_stdin: bool = False
+    source: str | Exercise,
+    ignore_stdout: bool = False,
+    ignore_stdin: bool = False,
+    case_no: int = 0,
 ) -> Checking:
     '''source puede ser la ruta al fichero del ejercicio o bien
     una instancia del ejercicio'''
     exercise = source if isinstance(source, Exercise) else Exercise(source)
+    exercise.set_check_case(case_no)
     redirect_stdout = None if ignore_stdout else sys.stdout
     target_func = exercise.get_target_func(ignore_stdin)
     runnings = []

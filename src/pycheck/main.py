@@ -5,7 +5,11 @@ from rich import print
 
 import pycheck
 from pycheck.lib import utils
-from pycheck.lib.exceptions import ExerciseNotAvailableError, TemplateNotFoundError
+from pycheck.lib.exceptions import (
+    CheckCaseNotFoundError,
+    ExerciseNotAvailableError,
+    TemplateNotFoundError,
+)
 
 app = typer.Typer(
     add_completion=False,
@@ -45,13 +49,22 @@ def check(
         show_default=False,
         help='Ignora la entrada por stdin al ejecutar el ejercicio.',
     ),
+    case_no: int = typer.Option(
+        0,
+        '--case-no',
+        '-n',
+        min=0,
+        help='Número de caso a ejecutar. Con valor 0 se ejecutarán todos los casos.',
+    ),
 ):
     '''Comprueba el ejercicio contra los casos de prueba establecidos.'''
     try:
-        checking = pycheck.check(filepath, ignore_stdout, ignore_stdin)
+        checking = pycheck.check(filepath, ignore_stdout, ignore_stdin, case_no)
     except TemplateNotFoundError as err:
         print(err)
     except ExerciseNotAvailableError as err:
+        print(err)
+    except CheckCaseNotFoundError as err:
         print(err)
     else:
         checking.display(only_summary)
