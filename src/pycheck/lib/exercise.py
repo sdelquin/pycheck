@@ -66,16 +66,20 @@ class Exercise:
     def show_check_cases(self):
         table = Table(show_header=True)
 
+        table.add_column('#')
         for param_name, _ in self.entrypoint['params']:
-            table.add_column(param_name, header_style='yellow')
+            heading = f'[italic](entrada)[/]\n{param_name}'
+            table.add_column(heading, header_style='yellow')
         for return_name, _ in self.entrypoint['return']:
-            table.add_column(return_name, header_style='blue')
+            heading = f'[italic](salida)[/]\n{return_name}'
+            table.add_column(heading, header_style='blue')
 
-        for args, expected_output in self.check_cases:
+        for case_no, (args, expected_output) in enumerate(self.check_cases, start=1):
             fargs = [str(arg) for arg in args]
             fout = [str(out) for out in expected_output]
             row = fargs + fout
-            table.add_row(*row)
+            case = str(case_no)
+            table.add_row(case, *row)
 
         print(table)
 
