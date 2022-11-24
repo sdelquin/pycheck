@@ -48,14 +48,15 @@ class Checking:
 
             console.print(table)
 
-        if self.passed:
-            console.print(
-                f'{settings.MSG_PASSED_EMOJI} ¡Enhorabuena! Todo funciona bien',
-                style='bold green',
-            )
-        else:
-            console.print(
-                f'{settings.MSG_NOT_PASSED_EMOJI} ¡Atención! Hay errores en '
-                'algunos casos de prueba',
-                style='bold red',
-            )
+        if self.exercise.case_no == 0:
+            if self.passed:
+                console.print(
+                    f'{settings.MSG_PASSED_EMOJI} ¡Enhorabuena! Todo funciona bien',
+                    style='bold green',
+                )
+            else:
+                console.print(
+                    f'{settings.MSG_NOT_PASSED_EMOJI} ¡Atención! Hay errores en '
+                    'algunos casos de prueba',
+                    style='bold red',
+                )
