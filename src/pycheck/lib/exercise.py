@@ -109,7 +109,7 @@ class Exercise:
         params = ', '.join(
             f'{param}: {annot.__name__}' for param, annot in self.entrypoint['params']
         )
-        args = ', '.join(str(c) for c in self.check_cases[0][0])
+        args = ', '.join(repr(c) for c in self.check_cases[0][0])
         return_names = ', '.join(ret_name for ret_name, _ in self.entrypoint['return'])
         return_type = (
             'tuple' if self.multiple_returns else self.entrypoint['return'][0][1].__name__
