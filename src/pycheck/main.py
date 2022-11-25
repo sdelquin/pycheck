@@ -144,6 +144,29 @@ def show(
         exercise.show(description, check_cases)
 
 
+@app.command(hidden=True)
+def generate(
+    exercise_id: str = typer.Argument(
+        ..., help='Identificador del ejercicio.', show_default=False
+    ),
+    category: str = typer.Option(
+        'undefined',
+        '--categoría',
+        '-c',
+        help='Categoría que se va a asignar al ejercicio.',
+    ),
+    test: bool = typer.Option(
+        False,
+        '--test',
+        '-t',
+        help='Indica si el ejercicio es para examen.',
+    ),
+):
+    '''Genera un nuevo ejercicio.'''
+    admin_required()
+    admin.generate_exercise(exercise_id, category, int(test))
+
+
 @app.callback(invoke_without_command=True)
 def init(
     version: bool = typer.Option(
@@ -155,17 +178,6 @@ def init(
 ):
     if version:
         print(utils.get_pycheck_version())
-
-
-@app.command(hidden=True)
-def generate(
-    exercise_id: str = typer.Argument(
-        ..., help='Identificador del ejercicio.', show_default=False
-    ),
-):
-    '''Genera un nuevo ejercicio.'''
-    admin_required()
-    admin.generate_exercise(exercise_id)
 
 
 if __name__ == "__main__":

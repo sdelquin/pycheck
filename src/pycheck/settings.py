@@ -8,6 +8,7 @@ EXERCISES_CONFIG_PATH = config(
     'EXERCISES_CONFIG_PATH', default=PROJECT_DIR / 'src/pycheck/exercises'
 )
 EXERCISES_CONFIG_MODULE = config('EXERCISES_CONFIG_MODULE', default='pycheck.exercises')
+EXERCISES_DB = config('EXERCISES_DB', default=PROJECT_DIR / 'exercises.csv')
 ENTRYPOINT_NAME = config('ENTRYPOINT_NAME', default='run')
 GITHUB_REPO = config('GITHUB_REPO', default='https://github.com/sdelquin/pycheck.git')
 PYPROJECT_PATH = config('PYPROJECT_PATH', default=PROJECT_DIR / 'pyproject.toml')
