@@ -4,12 +4,13 @@ import typer
 from rich import print
 
 import pycheck
-from pycheck.lib import utils
+from pycheck.lib import admin, utils
 from pycheck.lib.exceptions import (
     CheckCaseNotFoundError,
     ExerciseNotAvailableError,
     TemplateNotFoundError,
 )
+from pycheck.lib.utils import admin_required
 
 app = typer.Typer(
     add_completion=False,
@@ -154,6 +155,17 @@ def init(
 ):
     if version:
         print(utils.get_pycheck_version())
+
+
+@app.command(hidden=True)
+def generate(
+    exercise_id: str = typer.Argument(
+        ..., help='Identificador del ejercicio.', show_default=False
+    ),
+):
+    '''Genera un nuevo ejercicio.'''
+    admin_required()
+    admin.generate_exercise(exercise_id)
 
 
 if __name__ == "__main__":

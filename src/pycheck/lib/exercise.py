@@ -31,7 +31,8 @@ class Exercise:
         self.id = self.filepath.stem
         self.filename = self.filepath.name
         self.hash = hashlib.md5(self.id.encode()).hexdigest()
-        self.config_path = f'{settings.EXERCISES_FOLDER}.{self.hash}'
+        self.config_path = settings.EXERCISES_CONFIG_PATH / self.hash
+        self.config_module = f'{settings.EXERCISES_CONFIG_MODULE}.{self.hash}'
         self.__get_config()
         self.__get_arg_casts()
         self.multiple_returns = len(self.entrypoint['return']) > 1
@@ -109,7 +110,7 @@ class Exercise:
 
     def __get_config(self):
         try:
-            config = importlib.import_module(self.config_path)
+            config = importlib.import_module(self.config_module)
         except ModuleNotFoundError:
             raise ExerciseNotAvailableError(self.filename)
         self.description = config.DESCRIPTION.strip()

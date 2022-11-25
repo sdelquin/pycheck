@@ -19,3 +19,8 @@ class CheckCaseNotFoundError(Exception):
             f"No se encuentra el caso de prueba {case_no} para el ejercicio '{filename}'"
         )
         super().__init__(message)
+
+
+class NotAuthorizedError(Exception):
+    def __init__(self):
+        super().__init__('Usted no está autorizado para acceder a este recurso.')
