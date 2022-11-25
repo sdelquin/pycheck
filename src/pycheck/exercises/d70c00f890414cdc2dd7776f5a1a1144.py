@@ -1,6 +1,10 @@
 DESCRIPTION = '''
 Dado un nombre y apellidos en formato "apellidos, nombre", obtenga las iniciales de dicha
 persona pasadas a mayúsculas y con punto al final.
+
+Notas:
+- El nombre puede tener uno o dos elementos.
+- El apellido puede tener uno o dos elementos.
 '''
 
 ENTRYPOINT = {
