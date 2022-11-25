@@ -8,7 +8,8 @@ Revise el nombre del fichero. Si el problema persiste consulte al profesorado.""
 class TemplateNotFoundError(Exception):
     def __init__(self, filepath: str):
         message = f"""No se encuentra la plantilla para el ejercicio '{filepath}'.
-Puede generarla usando: 'pycheck template {filepath}'"""
+Revise el nombre del ejercicio y si está trabajando en la carpeta adecuada.
+Puede generar la plantilla usando: 'pycheck template {filepath}'"""
         super().__init__(message)
 
 
