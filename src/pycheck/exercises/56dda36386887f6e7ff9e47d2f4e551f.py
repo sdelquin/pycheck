@@ -1,3 +1,5 @@
+TITLE = 'Valor mínimo'
+
 DESCRIPTION = '''
 Dada una lista de valores numéricos enteros, obtenga su mínimo valor.
 

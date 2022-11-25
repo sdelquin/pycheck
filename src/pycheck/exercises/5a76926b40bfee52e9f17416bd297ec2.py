@@ -1,6 +1,7 @@
+TITLE = 'Animales super rápidos'
+
 DESCRIPTION = '''
-El escarabajo tigre es el animal más veloz del planeta llegando a alcanzar el equivalente
-a 400 km/h.
+El escarabajo tigre es el animal más veloz del planeta llegando a alcanzar el equivalente a 400 km/h.
 
 Dado que sus distancias son más cortas, convierta la velocidad de km/h a cm/s.
 '''

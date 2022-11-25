@@ -1,6 +1,7 @@
+TITLE = 'N elevado a N'
+
 DESCRIPTION = '''
-Dada una lista de números enteros positivos y un número no negativo N, calcule el valor del
-elemento en la posición N elevado a N.
+Dada una lista de números enteros positivos y un número no negativo N, calcule el valor del elemento en la posición N elevado a N.
 
 Ejemplo:
 [1, 2, 3, 4] y N=2, el resultado sería 3^2 = 9

@@ -1,6 +1,7 @@
+TITLE = 'Contando milisegundos'
+
 DESCRIPTION = '''
-Un reloj muestra horas, minutos y segundos a partir de medianoche.
-Calcule el número de milisegundos desde media noche a partir de estos tres parámetros.
+Un reloj muestra horas, minutos y segundos a partir de medianoche. Calcule el número de milisegundos desde media noche a partir de estos tres parámetros.
 
 0 <= horas <= 23
 0 <= minutos <= 59

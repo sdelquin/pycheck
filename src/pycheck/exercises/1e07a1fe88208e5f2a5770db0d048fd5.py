@@ -1,6 +1,7 @@
+TITLE = 'Suma de la diagonal principal'
+
 DESCRIPTION = '''
-Escriba un programa en Python que acepte una lista de listas representando una matriz
-numérica de valores enteros y compute la suma de los elementos de la diagonal principal.
+Escriba un programa en Python que acepte una lista de listas representando una matriz numérica de valores enteros y compute la suma de los elementos de la diagonal principal.
 
 Lo puede afrontar en "versión clásica" o con "listas por comprensión". ¡O incluso ambas!
 '''

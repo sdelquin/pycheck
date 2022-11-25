@@ -1,6 +1,7 @@
+TITLE = 'Aplana la lista'
+
 DESCRIPTION = '''
-Dada una lista - que puede contener sublistas (sólo en 1 nivel de anidamiento) - genere
-otra lista "aplanada".
+Dada una lista - que puede contener sublistas (sólo en 1 nivel de anidamiento) - genere otra lista "aplanada".
 '''
 
 ENTRYPOINT = {

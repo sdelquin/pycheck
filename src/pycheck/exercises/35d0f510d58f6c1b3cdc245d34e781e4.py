@@ -1,6 +1,7 @@
+TITLE = 'Somos iguales, pero distintos'
+
 DESCRIPTION = '''
-Dada una lista de entrada, devuelva True si todos sus elementos son iguales o
-False en otro caso.
+Dada una lista de entrada, devuelva True si todos sus elementos son iguales o False en otro caso.
 '''
 
 ENTRYPOINT = {

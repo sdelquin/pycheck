@@ -1,14 +1,15 @@
+TITLE = 'Postes en la carretera'
+
 DESCRIPTION = '''
-Hay columnas cerca de la carretera. La distancia entre las columnas es la misma y el ancho
-de las columnas también es el mismo.
+Hay postes cerca de la carretera. La distancia entre los postes es la misma y el ancho de los postes también es el mismo.
 
 Se aceptan tres parámetros de entrada:
-- Número de columnas.
-- Distancia entre columnas (en metros).
-- Ancho de la columna (centímetros).
+- Número de postes.
+- Distancia entre postes (en metros).
+- Ancho del poste (centímetros).
 
-Calcule la distancia (en centímetros) entre la primera y la última columna (quitando el
-ancho de la primera y la última columna).
+Calcule la distancia (en centímetros) entre la primera y el último poste (quitando el
+ancho de la primera y el último poste).
 '''
 
 ENTRYPOINT = {

@@ -1,9 +1,9 @@
-DESCRIPTION = '''
-El objetivo de este ejercicio es simular el comportamiento de un intervalo matemático de
-dos números enteros.
+TITLE = 'Intervalo desplegado'
 
-Dada una cadena de texto que contiene una descripción del intervalo, genere una lista con
-todos los números incluidos en dicho intervalo.
+DESCRIPTION = '''
+El objetivo de este ejercicio es simular el comportamiento de un intervalo matemático de dos números enteros.
+
+Dada una cadena de texto que contiene una descripción del intervalo, genere una lista con todos los números incluidos en dicho intervalo.
 
 [a,b]: Todos los números entre a y b, con a y b incluidos en el intervalo.
 (a,b]: Todos los números entre a y b, sin incluir a pero incluyendo a b.

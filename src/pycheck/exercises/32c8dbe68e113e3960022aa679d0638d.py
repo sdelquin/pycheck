@@ -1,6 +1,7 @@
+TITLE = 'Eliminando duplicados'
+
 DESCRIPTION = '''
-Dada una lista de números, obtenga otra lista donde se eliminen los duplicados.
-Mantenga el orden de los números en la lista de salida tal y como aparecen en la de entrada.
+Dada una lista de números, obtenga otra lista donde se eliminen los duplicados. Mantenga el orden de los números en la lista de salida tal y como aparecen en la de entrada.
 '''
 
 ENTRYPOINT = {

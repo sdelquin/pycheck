@@ -1,3 +1,5 @@
+TITLE = 'Distancia euclídea'
+
 DESCRIPTION = '''
 Calcule la distancia euclídea entre dos puntos (x1, y1) y (x2, y2).
 '''

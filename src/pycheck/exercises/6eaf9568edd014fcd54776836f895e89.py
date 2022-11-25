@@ -1,3 +1,5 @@
+TITLE = 'Aproximando el seno'
+
 DESCRIPTION = '''
 Existe una aproximación al seno de un ángulo x expresado en grados:
 
@@ -5,9 +7,7 @@ Existe una aproximación al seno de un ángulo x expresado en grados:
 sin(x) ≈ ──────────────────
          40500 - x(180 - x)
 
-Calcule dicha aproximación utilizando operaciones en Python. Descomponga la expresión en
-subcálculos almacenados en variables. Tenga en cuenta aquellas expresiones comunes para no
-repetir cálculos y seguir el principio DRY[https://es.wikipedia.org/wiki/No_te_repitas].
+Calcule dicha aproximación utilizando operaciones en Python. Descomponga la expresión en subcálculos almacenados en variables. Tenga en cuenta aquellas expresiones comunes para no repetir cálculos y seguir el principio DRY[https://es.wikipedia.org/wiki/No_te_repitas].
 
 ¿Qué tal funciona la aproximación? Compare sus resultados con los "verdaderos":
 - sin(90) = 1.0

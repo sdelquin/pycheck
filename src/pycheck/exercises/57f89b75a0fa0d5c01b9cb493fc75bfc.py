@@ -1,7 +1,7 @@
+TITLE = 'Troceado extremo'
+
 DESCRIPTION = '''
-Partiendo de una cadena de texto con números separados por comas, obtenga una nueva cadena
-de texto donde se elimine el primer y el último número, y los elementos aparezcan separados
-por espacios.
+Partiendo de una cadena de texto con números separados por comas, obtenga una nueva cadena de texto donde se elimine el primer y el último número, y los elementos aparezcan separados por espacios.
 '''
 
 ENTRYPOINT = {

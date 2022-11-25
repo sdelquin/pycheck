@@ -1,6 +1,7 @@
+TITLE = 'Desplegando caracteres'
+
 DESCRIPTION = '''
-Dada una lista de strings, obtenga otra lista que contenga todos los caracteres de cada uno
-de los strings de la lista de entrada.
+Dada una lista de strings, obtenga otra lista que contenga todos los caracteres de cada uno de los strings de la lista de entrada.
 '''
 
 ENTRYPOINT = {

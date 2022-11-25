@@ -1,6 +1,7 @@
+TITLE = 'Ficho cuando toca'
+
 DESCRIPTION = '''
-Dada una hora en formato HH:MM y un número de minutos (en valor entero), calcule la hora
-resultante (en formato HH:MM) si sumamos los minutos a la hora de entrada.
+Dada una hora en formato HH:MM y un número de minutos (en valor entero), calcule la hora resultante (en formato HH:MM) si sumamos los minutos a la hora de entrada.
 
 Trabaje con formato de 24 horas.
 '''

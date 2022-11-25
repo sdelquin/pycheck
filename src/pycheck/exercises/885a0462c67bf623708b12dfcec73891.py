@@ -1,8 +1,7 @@
+TITLE = 'Ventas en tienda de informática'
+
 DESCRIPTION = '''
-Una tienda de informática quiere llevar la cuenta de cuántos ordenadores y cuántos
-monitores vende. Para ello lleva un registro en una lista donde cada elemento representa un
-día de trabajo. A su vez, cada día de trabajo es una sublista con dos elementos: el primero
-representa el número de PCs vendidos y el segundo el número de monitores vendidos.
+Una tienda de informática quiere llevar la cuenta de cuántos ordenadores y cuántos monitores vende. Para ello lleva un registro en una lista donde cada elemento representa un día de trabajo. A su vez, cada día de trabajo es una sublista con dos elementos: el primero representa el número de PCs vendidos y el segundo el número de monitores vendidos.
 
 Calcule el número total de PCs vendidos y de monitores vendidos.
 '''

@@ -1,6 +1,7 @@
+TITLE = 'Buscando la mayor distancia'
+
 DESCRIPTION = '''
-Dada una lista de valores numéricos enteros y un valor entero "target", obtenga
-la mayor distancia de cualquier elemento de la lista con respecto a "target".
+Dada una lista de valores numéricos enteros y un valor entero "target", obtenga la mayor distancia de cualquier elemento de la lista con respecto a "target".
 '''
 
 ENTRYPOINT = {

@@ -1,6 +1,7 @@
+TITLE = 'Hexadecimal a texto'
+
 DESCRIPTION = '''
-Dada una lista de entrada que contiene cadenas de texto representando el código numérico de
-un carácter en valor hexadecimal, obtenga la cadena de texto correspondiente.
+Dada una lista de entrada que contiene cadenas de texto representando el código numérico de un carácter en valor hexadecimal, obtenga la cadena de texto correspondiente.
 '''
 
 ENTRYPOINT = {

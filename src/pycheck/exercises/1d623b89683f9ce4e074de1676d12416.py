@@ -1,3 +1,5 @@
+TITLE = 'La suma más sencilla'
+
 DESCRIPTION = '''
 Escriba un programa en Python que sume dos números enteros a y b.
 '''

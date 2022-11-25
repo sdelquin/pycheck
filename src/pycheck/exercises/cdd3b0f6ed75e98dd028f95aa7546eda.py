@@ -1,3 +1,5 @@
+TITLE = 'El cuadrado rojo'
+
 DESCRIPTION = '''
 Calcule el área del cuadrado rojo dada la longitud del arco A.
 Use PI con 2 cifras decimales.

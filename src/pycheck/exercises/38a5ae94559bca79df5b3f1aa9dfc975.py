@@ -1,3 +1,5 @@
+TITLE = 'Suma invertida'
+
 DESCRIPTION = '''
 Dada una lista de valores numéricos, obtenga la suma de los valores invertidos.
 '''

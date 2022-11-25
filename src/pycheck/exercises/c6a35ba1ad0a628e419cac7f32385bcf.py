@@ -1,3 +1,5 @@
+TITLE = 'Valor máximo'
+
 DESCRIPTION = '''
 Dada una lista de valores numéricos enteros, obtenga su máximo valor.
 

@@ -1,9 +1,9 @@
-DESCRIPTION = '''
-En este juego, la heroína se mueve de izquierda a derecha. El jugador tira el dado y se
-mueve dos veces el número indicado por el dado.
+TITLE = 'Tiro porque me toca'
 
-Dada la posición actual de la heroína y el resultado del dado (1-6) calcule la nueva
-posición.
+DESCRIPTION = '''
+En este juego, la heroína se mueve de izquierda a derecha. El jugador tira el dado y se mueve dos veces el número indicado por el dado.
+
+Dada la posición actual de la heroína y el resultado del dado (1-6) calcule la nueva posición.
 '''
 
 ENTRYPOINT = {

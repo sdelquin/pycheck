@@ -10,6 +10,7 @@ from pycheck import (
     Exercise,
     ExerciseNotAvailableError,
     TemplateNotFoundError,
+    settings,
 )
 
 
@@ -52,7 +53,8 @@ def test_create_template(exercise: Exercise):
     exercise.create_template(ask_on_overwrite=False)
     template_contents = open(exercise.filepath).read()
     assert os.path.isfile(exercise.filepath)
-    assert exercise.description in template_contents
+    assert exercise.title in template_contents
+    assert settings.CODEHERE_PLACEHOLDER in template_contents
     assert "if __name__ == '__main__':" in template_contents
     assert 'def' in template_contents
     assert 'return' in template_contents

@@ -1,6 +1,7 @@
+TITLE = 'Dígitos en orden inverso'
+
 DESCRIPTION = '''
-Dado un número entero no negativo, genere una lista con los dígitos de dicho número
-en orden inverso.
+Dado un número entero no negativo, genere una lista con los dígitos de dicho número en orden inverso.
 '''
 
 ENTRYPOINT = {

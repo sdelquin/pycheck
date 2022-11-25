@@ -1,6 +1,7 @@
+TITLE = 'Subconjuntos en cascada'
+
 DESCRIPTION = '''
-A partir de una lista de valores numéricos y un tamaño, obtenga otra lista con todos los
-subconjuntos en cascada que se puedan crear con dicho tamaño.
+A partir de una lista de valores numéricos y un tamaño, obtenga otra lista con todos los subconjuntos en cascada que se puedan crear con dicho tamaño.
 '''
 
 ENTRYPOINT = {

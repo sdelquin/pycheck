@@ -1,6 +1,7 @@
+TITLE = 'Multiplicación en cadena'
+
 DESCRIPTION = '''
-Dada una lista de valores numéricos enteros, obtenga el resultado de multiplicar
-todos los valores en orden.
+Dada una lista de valores numéricos enteros, obtenga el resultado de multiplicar todos los valores en orden.
 '''
 
 ENTRYPOINT = {

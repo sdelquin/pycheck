@@ -1,3 +1,5 @@
+TITLE = 'Xor'
+
 DESCRIPTION = '''
 El "o exclusivo" (xor) es una operación lógica que sigue las siguientes reglas:
 - False xor False -> False

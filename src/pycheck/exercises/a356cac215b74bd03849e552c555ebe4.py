@@ -1,3 +1,5 @@
+TITLE = 'Precio sin IGIC'
+
 DESCRIPTION = '''
 Calcule el precio de un artículo quitándole el IGIC indicado.
 '''

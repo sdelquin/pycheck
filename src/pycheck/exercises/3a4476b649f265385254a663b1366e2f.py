@@ -1,3 +1,5 @@
+TITLE = 'Sumando solo positivos'
+
 DESCRIPTION = '''
 Dada una lista de números, calcule la suma de todos los valores positivos.
 '''

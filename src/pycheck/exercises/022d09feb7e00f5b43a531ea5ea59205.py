@@ -1,6 +1,7 @@
+TITLE = 'Buscando el siglo adecuado'
+
 DESCRIPTION = '''
-El primer siglo abarca desde el año 1 hasta el año 100 (inclusive). El segundo siglo desde
-el año 101 hasta el año 200 (inclusive). Y así sucesivamente.
+El primer siglo abarca desde el año 1 hasta el año 100 (inclusive). El segundo siglo desde el año 101 hasta el año 200 (inclusive). Y así sucesivamente.
 
 Dado un año, calcule el siglo al que pertenece.
 '''

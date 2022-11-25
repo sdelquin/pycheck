@@ -1,3 +1,5 @@
+TITLE = 'Área de un triángulo'
+
 DESCRIPTION = '''
 Calcule el área de un triángulo a partir de su base y su altura.
 '''

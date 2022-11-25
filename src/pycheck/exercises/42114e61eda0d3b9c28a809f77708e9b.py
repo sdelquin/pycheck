@@ -1,3 +1,5 @@
+TITLE = 'Decimal a binario'
+
 DESCRIPTION = '''
 Convierta un número decimal entero a su representación binaria (como string).
 '''

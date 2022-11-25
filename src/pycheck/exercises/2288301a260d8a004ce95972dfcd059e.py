@@ -1,6 +1,7 @@
+TITLE = 'Interés compuesto'
+
 DESCRIPTION = '''
-Compute el valor futuro de una cantidad de dinero (capital final), a partir del capital
-inicial, el tipo de interés y el número de años. Fórmula del interés compuesto:
+Compute el valor futuro de una cantidad de dinero (capital final), a partir del capital inicial, el tipo de interés y el número de años. Fórmula del interés compuesto:
 
                  n
 C  = C  ⋅ (1 + i)

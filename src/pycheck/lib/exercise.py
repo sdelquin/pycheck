@@ -73,7 +73,7 @@ class Exercise:
     def show_description(self):
         panel = Panel(
             self.description,
-            title='Descripción del ejercicio',
+            title=self.title,
             expand=False,
             border_style='purple',
         )
@@ -120,6 +120,7 @@ class Exercise:
             'return': config.ENTRYPOINT['RETURN'],
         }
         self.check_cases = config.CHECK_CASES
+        self.title = config.TITLE.upper()
 
     def __get_arg_casts(self):
         PRIMITIVE_TYPES = [int, bool, float, str]
@@ -133,20 +134,23 @@ class Exercise:
             f'{param}: {annot.__name__}' for param, annot in self.entrypoint['params']
         )
         args = ', '.join(repr(c) for c in self.check_cases[0][0])
-        return_names = ', '.join(ret_name for ret_name, _ in self.entrypoint['return'])
+        return_names = [ret_name for ret_name, _ in self.entrypoint['return']]
+        code_here = ' = '.join(return_names) + f" = '{settings.CODEHERE_PLACEHOLDER}'"
+        return_sentence = 'return ' + ', '.join(return_names)
         return_type = (
             'tuple' if self.multiple_returns else self.entrypoint['return'][0][1].__name__
         )
-        return f"""'''
-{self.description}
-'''
+        title = f"# {'*' * len(self.title)}\n# {self.title}\n# {'*' * len(self.title)}"
+        func = self.entrypoint['name']
+
+        return f"""{title}
 
 
-def {self.entrypoint['name']}({params}) -> {return_type}:
-    {settings.CODEHERE_PLACEHOLDER}
-    return {return_names}
+def {func}({params}) -> {return_type}:
+    {code_here}
+    {return_sentence}
 
 
 if __name__ == '__main__':
-    {self.entrypoint['name']}({args})
+    {func}({args})
 """

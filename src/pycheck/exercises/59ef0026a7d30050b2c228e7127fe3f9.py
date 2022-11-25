@@ -1,6 +1,7 @@
+TITLE = 'Potencias de 2'
+
 DESCRIPTION = '''
-Dado un número entero no negativo obtenga una lista con todas las potencias de 2
-con el exponente variando desde 0 hasta dicho valor (inclusive).
+Dado un número entero no negativo obtenga una lista con todas las potencias de 2 con el exponente variando desde 0 hasta dicho valor (inclusive).
 
 ¿Podrías resolverlo también con listas por comprensión?
 '''
