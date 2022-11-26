@@ -5,6 +5,7 @@ from pathlib import Path
 
 import typer
 from rich import print
+from rich.markdown import Markdown
 from rich.panel import Panel
 from rich.table import Table
 
@@ -72,7 +73,7 @@ class Exercise:
 
     def show_description(self):
         panel = Panel(
-            self.description,
+            Markdown(self.description),
             title=self.title,
             expand=False,
             border_style='purple',
