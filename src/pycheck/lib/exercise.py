@@ -83,11 +83,13 @@ class Exercise:
         table = Table(show_header=True)
 
         table.add_column('#', header_style='grey42', style='grey42')
-        for param_name, _ in self.entrypoint['params']:
-            heading = f'[italic](entrada)[/]\n{param_name}'
+        # Parámetros de entrada
+        for param_name, param_type in self.entrypoint['params']:
+            heading = f'[italic](entrada)[/]\n{param_name}: {param_type.__name__}'
             table.add_column(heading, header_style='yellow')
-        for return_name, _ in self.entrypoint['return']:
-            heading = f'[italic](salida)[/]\n{return_name}'
+        # Valores de retorno
+        for return_name, return_type in self.entrypoint['return']:
+            heading = f'[italic](salida)[/]\n{return_name}: {return_type.__name__}'
             table.add_column(heading, header_style='blue')
 
         case_start = 1 if self.case_no == 0 else self.case_no
