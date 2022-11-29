@@ -4,8 +4,8 @@ DESCRIPTION = '''
 Dada una lista de valores numéricos enteros, obtenga su máximo valor.
 
 Prohibido utilizar:
-- La función "built-in" max().
-- La función "built-in" sorted().
+- La función "built-in" _max()_.
+- La función "built-in" _sorted()_.
 '''
 
 ENTRYPOINT = {

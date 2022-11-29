@@ -1,7 +1,7 @@
 TITLE = 'Elementos duplicados consecutivos'
 
 DESCRIPTION = '''
-Dada una lista, genere otra lista eliminando los elementos duplicados consecutivos.
+Dada una lista, genere otra lista eliminando los **elementos duplicados consecutivos**.
 '''
 
 ENTRYPOINT = {

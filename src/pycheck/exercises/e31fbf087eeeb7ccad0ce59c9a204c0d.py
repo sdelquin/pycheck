@@ -8,8 +8,8 @@ Se aceptan tres parámetros de entrada:
 - Distancia entre postes (en metros).
 - Ancho del poste (centímetros).
 
-Calcule la distancia (en centímetros) entre la primera y el último poste (quitando el
-ancho de la primera y el último poste).
+Calcule la distancia (en centímetros) entre el primer y el último poste (quitando el
+ancho del primer y del último poste).
 '''
 
 ENTRYPOINT = {

@@ -1,7 +1,7 @@
 TITLE = 'No eres consecutivo'
 
 DESCRIPTION = '''
-El objetivo es encontrar el primer número no consecutivo dentro de una lista de valores numéricos enteros. Si todos los valores son consecutivos entonces el resultado es None.
+El objetivo es encontrar el primer número no consecutivo dentro de una lista de valores numéricos enteros. Si todos los valores son consecutivos entonces el resultado debe ser _None_.
 '''
 
 ENTRYPOINT = {

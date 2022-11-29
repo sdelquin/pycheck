@@ -1,7 +1,7 @@
 TITLE = 'Área de un círculo'
 
 DESCRIPTION = '''
-Calcule el área de un círculo a partir de su radio. Tenga en cuenta usar PI con 2 cifras decimales.
+Calcule el área de un círculo a partir de su radio. Tenga en cuenta usar _PI_ con 2 cifras decimales.
 '''
 
 ENTRYPOINT = {

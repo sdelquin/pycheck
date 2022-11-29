@@ -1,7 +1,7 @@
 TITLE = 'Distancia euclídea'
 
 DESCRIPTION = '''
-Calcule la distancia euclídea entre dos puntos (x1, y1) y (x2, y2).
+Calcule la distancia euclídea entre dos puntos _(x1, y1)_ y _(x2, y2)_.
 '''
 
 ENTRYPOINT = {

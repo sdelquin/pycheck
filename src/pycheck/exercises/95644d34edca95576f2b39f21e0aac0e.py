@@ -4,7 +4,7 @@ DESCRIPTION = '''
 Como datos de entrada dispone de dos listas con valores numéricos que ya vienen ordenadas. Obtenga una lista de salida con la mezcla de las dos listas de entrada de forma ordenada.
 
 Notas:
-- No se puede utilizar la función sorted().
+- No se puede utilizar la función _sorted()_.
 - No hay que realizar ninguna validación en los datos de entrada.
 - Las listas de entrada pueden tener elementos repetidos.
 - Las listas de entrada pueden tener distinto tamaño.

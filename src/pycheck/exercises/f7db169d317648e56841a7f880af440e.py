@@ -1,8 +1,4 @@
-ID = 'npartition'
-
 TITLE = 'Partición por el número'
-
-TOPIC = 'lists'
 
 DESCRIPTION = '''
 Dada una lista de entrada de valores numéricos y dado un número de referencia, obtenga una lista de dos listas, donde la primera lista contenga todos los números de la lista de entrada menores que el número de referencia y donde la segunda lista contenga todos los números de la lista de salida mayores o iguales que el número de referencia.

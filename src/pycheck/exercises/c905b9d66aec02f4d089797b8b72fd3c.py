@@ -3,7 +3,7 @@ TITLE = '¿Qué es lo siguiente?'
 DESCRIPTION = '''
 Dada una lista de elementos y un elemento de dicha lista, devuelva **el elemento que sigue al elemento dado**. Si el elemento aparece más de una vez en la lista de entrada, devuelva el elemento después de la primera ocurrencia.
 
-Cuando el elemento dado *no esté presente* en la lista o *no haya ninguno a continuación*, debería devolver None.
+Cuando el elemento dado _no esté presente* en la lista o *no haya ninguno a continuación_, debería devolver _None_.
 '''
 
 ENTRYPOINT = {

@@ -1,7 +1,7 @@
 TITLE = 'La suma más sencilla'
 
 DESCRIPTION = '''
-Escriba un programa en Python que sume dos números enteros a y b.
+Escriba un programa en Python que sume dos números enteros _a_ y _b_.
 '''
 
 ENTRYPOINT = {

@@ -2,6 +2,7 @@ TITLE = 'Ecuación de segundo grado'
 
 DESCRIPTION = '''
 Una ecuación de segundo grado se define como ax^2 + bx + c = 0 y, (en determinados casos) tiene dos soluciones:
+```
              ________
             ╱ 2
      -b + ╲╱ b  - 4ac
@@ -12,8 +13,9 @@ x  = ────────────────
      -b - ╲╱ b  - 4ac
 x  = ────────────────
  2          2a
+```
 
-Escriba un programa en Python que calcule estas dos soluciones. Tenga en cuenta subdividir los cálculos y reutilizar variables, por ejemplo el dicriminante [https://bit.ly/3OcZSuN].
+Escriba un programa en Python que calcule estas dos soluciones. Tenga en cuenta subdividir los cálculos y reutilizar variables, por ejemplo con el [dicriminante](https://bit.ly/3OcZSuN).
 '''
 
 ENTRYPOINT = {

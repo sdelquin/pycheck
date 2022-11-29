@@ -2,6 +2,7 @@ TITLE = 'Cuboides y volúmenes'
 
 DESCRIPTION = '''
 Como datos de entrada tendrá dos listas representando las dimensiones de sendos cuboides:
+```
    o--------o
   / c      /|
  /        / | b
@@ -10,6 +11,7 @@ o--------o  |      ---> [a, b, c]
 |        | /
 |    a   |/
 o--------o
+```
 
 Debe calcular la diferencia de volumen entre los dos cuboides como valor positivo, indpendientemente de qué cuboide sea mayor.
 '''

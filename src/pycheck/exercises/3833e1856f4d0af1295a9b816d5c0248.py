@@ -1,7 +1,7 @@
 TITLE = 'Valor máximo y mínimo'
 
 DESCRIPTION = '''
-Dada una lista de valores numéricos, encuentre el valor máximo y el valor mínimo de la misma. No se pueden utilizar las funciones "built-in" max() y min(), y tampoco sorted().
+Dada una lista de valores numéricos, encuentre el valor máximo y el valor mínimo de la misma. No se pueden utilizar las funciones "built-in" _max()_ y _min()_, y tampoco _sorted()_.
 '''
 
 ENTRYPOINT = {

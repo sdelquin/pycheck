@@ -2,10 +2,10 @@ TITLE = 'Xor'
 
 DESCRIPTION = '''
 El "o exclusivo" (xor) es una operación lógica que sigue las siguientes reglas:
-- False xor False -> False
-- True xor False -> True
-- False xor True -> True
-- True xor True -> False
+- _False_ xor _False_ -> _False_
+- _True_ xor _False_ -> _True_
+- _False_ xor _True_ -> _True_
+- _True_ xor _True_ -> _False_
 
 Básicamente sólo es verdadero cuando una (y solo una) de las dos entradas es verdadera.
 Escriba un programa que calcule el xor a partir de dos parámetros de entrada.

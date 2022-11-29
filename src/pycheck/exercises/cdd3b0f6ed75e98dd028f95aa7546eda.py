@@ -1,10 +1,9 @@
 TITLE = 'El cuadrado rojo'
 
 DESCRIPTION = '''
-Calcule el área del cuadrado rojo dada la longitud del arco A.
-Use PI con 2 cifras decimales.
+Calcule el área del cuadrado rojo dada la longitud del arco _A_. Use _PI_ con 2 cifras decimales.
 
-Círculo rojo: https://i.imgur.com/nJrae8n.png
+[Imagen del cuadrado rojo](https://i.imgur.com/nJrae8n.png)
 '''
 
 ENTRYPOINT = {

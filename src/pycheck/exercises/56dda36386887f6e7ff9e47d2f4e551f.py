@@ -4,8 +4,8 @@ DESCRIPTION = '''
 Dada una lista de valores numéricos enteros, obtenga su mínimo valor.
 
 Prohibido utilizar:
-- La función "built-in" min().
-- La función "built-in" sorted().
+- La función "built-in" _min()_.
+- La función "built-in" _sorted()_.
 '''
 
 ENTRYPOINT = {

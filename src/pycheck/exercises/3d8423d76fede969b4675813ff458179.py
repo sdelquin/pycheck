@@ -4,7 +4,7 @@ DESCRIPTION = '''
 Dada una lista de valores numéricos, calcule la suma de todos sus elementos sin tener en cuenta el valor máximo y el valor mínimo.
 
 NOTAS:
-- Pueden haber varios valores máximos o varios valores mínimos (repeticiones).
+- Puede haber varios valores máximos o varios valores mínimos (repeticiones).
 - Puede venir la lista vacía como entrada.
 '''
 
