@@ -55,6 +55,15 @@ def test_help(mocker):
     assert 'Usage' in result.stdout
 
 
+def test_boot(mocker, exercise: Exercise):
+    mocker.patch('pycheck.lib.exercise.Exercise.show')
+    mocker.patch('pycheck.lib.exercise.Exercise.create_template')
+    result = runner.invoke(app, ['boot', str(exercise.filepath)])
+    assert result.exit_code == 0
+    exercise.show.assert_called_once()
+    exercise.create_template.assert_called_once()
+
+
 # ADMIN
 
 

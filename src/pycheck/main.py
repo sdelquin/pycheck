@@ -144,6 +144,22 @@ def show(
         exercise.show(description, check_cases)
 
 
+@app.command()
+def boot(
+    filepath: str = typer.Argument(
+        ..., help='Identificador del ejercicio.', show_default=False
+    )
+):
+    '''Muestra la especificación del ejercicio y crea la plantilla.'''
+    try:
+        exercise = pycheck.Exercise(filepath)
+    except ExerciseNotAvailableError as err:
+        print(err)
+    else:
+        exercise.show()
+        exercise.create_template()
+
+
 # *************************************************
 # ADMIN
 # *************************************************

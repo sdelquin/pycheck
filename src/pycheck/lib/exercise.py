@@ -60,6 +60,10 @@ class Exercise:
         ):
             return
         self.filepath.write_text(self.__render_template())
+        print(
+            f"{settings.CREATED_TEMPLATE_EMOJI} Plantilla creada satisfactoriamente "
+            f"en el fichero '{self.filepath}'"
+        )
 
     def get_target_func(self, ignore_stdin: bool = False) -> callable:
         module_name = self.filepath.stem
