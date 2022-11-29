@@ -1,7 +1,9 @@
 TITLE = 'Buscando la mayor distancia'
 
 DESCRIPTION = '''
-Dada una lista de valores numéricos enteros y un valor entero "target", obtenga la mayor distancia de cualquier elemento de la lista con respecto a "target".
+Dada una lista de valores numéricos enteros y un valor entero "target", obtenga la mayor distancia de cualquier elemento de la lista con respecto a "target". La distancia **siempre es un valor no negativo**.
+
+No se pueden utilizar las funciones _sorted(), sort(), max(), min()_.
 '''
 
 ENTRYPOINT = {
