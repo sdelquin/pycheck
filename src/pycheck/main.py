@@ -144,6 +144,11 @@ def show(
         exercise.show(description, check_cases)
 
 
+# *************************************************
+# ADMIN
+# *************************************************
+
+
 @app.command(hidden=True)
 def generate(
     exercise_id: str = typer.Argument(

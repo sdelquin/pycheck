@@ -39,13 +39,16 @@ class Exercise:
         self.multiple_returns = len(self.entrypoint['return']) > 1
         self.case_no = 0
 
+    def __str__(self):
+        return self.id
+
     def set_check_case(self, case_no: int = 0):
         try:
             self.check_cases = (
                 self.check_cases if case_no == 0 else [self.check_cases[case_no - 1]]
             )
         except IndexError:
-            raise CheckCaseNotFoundError(case_no, self.filename)
+            raise CheckCaseNotFoundError(self, case_no)
         else:
             self.case_no = case_no
 
@@ -66,7 +69,7 @@ class Exercise:
         try:
             spec.loader.exec_module(module)
         except FileNotFoundError:
-            raise TemplateNotFoundError(self.filepath)
+            raise TemplateNotFoundError(self)
         if ignore_stdin:
             setattr(module, 'input', lambda _: '0')
         return getattr(module, self.entrypoint['name'])
@@ -115,7 +118,7 @@ class Exercise:
         try:
             config = importlib.import_module(self.config_module)
         except ModuleNotFoundError:
-            raise ExerciseNotAvailableError(self.filename)
+            raise ExerciseNotAvailableError(self)
         self.description = config.DESCRIPTION.strip()
         self.entrypoint = {
             'name': config.ENTRYPOINT.get('NAME', settings.ENTRYPOINT_NAME),
