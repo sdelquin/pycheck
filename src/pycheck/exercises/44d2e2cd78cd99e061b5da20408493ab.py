@@ -1,7 +1,7 @@
 TITLE = 'Volumen de una esfera'
 
 DESCRIPTION = '''
-Obtenga el volumen de una esfera dado su radio. Use PI con 2 cifras decimales.
+Obtenga el volumen de una esfera dado su radio. Use _PI_ con 2 cifras decimales.
 '''
 
 ENTRYPOINT = {
