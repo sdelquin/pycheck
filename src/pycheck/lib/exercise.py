@@ -1,4 +1,3 @@
-import hashlib
 import importlib
 import sys
 from pathlib import Path
@@ -11,6 +10,7 @@ from rich.table import Table
 
 from pycheck import settings
 
+from . import utils
 from .exceptions import (
     CheckCaseNotFoundError,
     ExerciseNotAvailableError,
@@ -31,7 +31,7 @@ class Exercise:
             self.filepath = self.filepath.with_suffix('.py')
         self.id = self.filepath.stem
         self.filename = self.filepath.name
-        self.hash = hashlib.md5(self.id.encode()).hexdigest()
+        self.hash = utils.hash(self.id)
         self.config_path = settings.EXERCISES_CONFIG_PATH / self.hash
         self.config_module = f'{settings.EXERCISES_CONFIG_MODULE}.{self.hash}'
         self.__get_config()

@@ -3,6 +3,7 @@ from pathlib import Path
 import pytest
 
 import pycheck
+from pycheck import settings
 
 EXERCISE_PATH = Path(__file__).parent / 'exercises/sum.py'
 
@@ -19,3 +20,7 @@ def runnings():
         dict(passed=True, output=[1, 9]),
         dict(passed=True, output=[200, 55]),
     ]
+
+
+def disable_key_admin():
+    settings.KEY_ADMIN_PRIVATE = ''

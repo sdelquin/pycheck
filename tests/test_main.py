@@ -1,7 +1,8 @@
+import conftest
 from typer.testing import CliRunner
 
 import pycheck
-from pycheck import Exercise
+from pycheck import Exercise, NotAuthorizedError
 from pycheck.main import app
 
 runner = CliRunner()
@@ -52,3 +53,20 @@ def test_help(mocker):
     result = runner.invoke(app, ['--help'])
     assert result.exit_code == 0
     assert 'Usage' in result.stdout
+
+
+# ADMIN
+
+
+def test_generate(exercise: Exercise):
+    conftest.disable_key_admin()
+    result = runner.invoke(app, ['generate', str(exercise.filepath)])
+    assert result.exit_code != 0
+    assert result.exc_info[0] == NotAuthorizedError
+
+
+def test_hash(exercise: Exercise):
+    conftest.disable_key_admin()
+    result = runner.invoke(app, ['hash', exercise.id])
+    assert result.exit_code != 0
+    assert result.exc_info[0] == NotAuthorizedError

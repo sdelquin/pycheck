@@ -19,6 +19,10 @@ def get_pycheck_version():
 
 
 def admin_required():
-    key_hash = hashlib.md5(settings.KEY_ADMIN_PRIVATE.encode()).hexdigest()
+    key_hash = hash(settings.KEY_ADMIN_PRIVATE)
     if key_hash != settings.KEY_ADMIN_PUBLIC:
         raise NotAuthorizedError()
+
+
+def hash(text: str) -> str:
+    return hashlib.md5(text.encode()).hexdigest()

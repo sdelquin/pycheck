@@ -167,6 +167,17 @@ def generate(
     admin.generate_exercise(exercise_id, category, int(test))
 
 
+@app.command(hidden=True)
+def hash(
+    exercise_id: str = typer.Argument(
+        ..., help='Identificador del ejercicio.', show_default=False
+    ),
+):
+    '''Obtiene el hash de un ejercicio.'''
+    admin_required()
+    print(utils.hash(Path(exercise_id).stem))
+
+
 @app.callback(invoke_without_command=True)
 def init(
     version: bool = typer.Option(
