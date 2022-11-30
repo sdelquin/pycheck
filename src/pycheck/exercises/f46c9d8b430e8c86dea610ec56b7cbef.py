@@ -9,6 +9,8 @@ Dada una cadena de texto que contiene una descripción del intervalo, genere una
 - (a,b]: Todos los números entre _a_ y _b_, sin incluir _a_ pero incluyendo _b_.
 - [a,b): Todos los números entre _a_ y _b_, incluyendo _a_ pero sin incluir _b_.
 - (a,b): Todos los números entre _a_ y _b_, sin incluir _a_ ni _b_.
+
+Tener en cuenta que los valores del intervalo pueden ser **números de varias cifras**.
 '''
 
 ENTRYPOINT = {
