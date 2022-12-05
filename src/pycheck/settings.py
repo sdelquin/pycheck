@@ -20,7 +20,7 @@ CODEHERE_PLACEHOLDER = config('CODEHERE_PLACEHOLDER', default='tu código aquí'
 PYCOIN_EMOJI = config('PYCOIN_EMOJI', default='🏆')
 KEY_ADMIN_PRIVATE = config('PYCHECK_KEY_ADMIN', default='pycheck')
 KEY_ADMIN_PUBLIC = '6526dcaf98cd26d64747fad780736a8b'
-CREATED_TEMPLATE_EMOJI = config('CREATED_TEMPLATE_EMOJI', default='💾')
+SUCCESS_MSG_EMOJI = config('SUCCESS_MSG_EMOJI', default='✔')
 
 EXERCISES_CONFIG_TEMPLATE = """
 TITLE = ''

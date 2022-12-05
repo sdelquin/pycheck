@@ -3,6 +3,7 @@ import subprocess
 import sys
 
 import pkg_resources
+from rich import print
 
 from pycheck import settings
 
@@ -26,3 +27,7 @@ def admin_required():
 
 def hash(text: str) -> str:
     return hashlib.md5(text.encode()).hexdigest()
+
+
+def succ_msg(text: str):
+    print(f'[green]{settings.SUCCESS_MSG_EMOJI}[/] {text}')
