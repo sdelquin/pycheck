@@ -19,19 +19,19 @@ from .exceptions import (
 
 
 class Exercise:
-    def __init__(self, exercise_id: Path | str):
+    def __init__(self, name: Path | str):
         '''
-        exercise_id puede ser:
-            a) El identificador del ejercicio (sum)
+        exercise_name puede ser:
+            a) El nombre del ejercicio (sum)
             b) Un string representando la ruta al ejercicio (ex/sum.py)
             c) Un objeto Path que almacena el ejercicio (ex/sum.py)
         '''
-        self.filepath = exercise_id if isinstance(exercise_id, Path) else Path(exercise_id)
+        self.filepath = name if isinstance(name, Path) else Path(name)
         if not self.filepath.suffix:
             self.filepath = self.filepath.with_suffix('.py')
-        self.id = self.filepath.stem
+        self.name = self.filepath.stem
         self.filename = self.filepath.name
-        self.hash = utils.hash(self.id)
+        self.hash = utils.gen_hash(self.name)
         self.config_path = settings.EXERCISES_CONFIG_PATH / self.hash
         self.config_module = f'{settings.EXERCISES_CONFIG_MODULE}.{self.hash}'
         self.__get_config()
@@ -40,7 +40,7 @@ class Exercise:
         self.case_no = 0
 
     def __str__(self):
-        return self.id
+        return self.name
 
     def set_check_case(self, case_no: int = 0):
         try:

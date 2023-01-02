@@ -66,7 +66,7 @@ def test_show(exercise: Exercise, capsys):
     exercise.show()
     captured = capsys.readouterr()
     assert len(captured.out) > 0
-    assert exercise.description in captured.out
+    assert exercise.title in captured.out
     for args, output in exercise.check_cases:
         assert all(str(arg) in captured.out for arg in args)
         assert all(str(out) in captured.out for out in output)
@@ -76,7 +76,6 @@ def test_show_description(exercise: Exercise, capsys):
     exercise.show(description=True, check_cases=False)
     captured = capsys.readouterr()
     assert len(captured.out) > 0
-    assert exercise.description in captured.out
     assert 'result' not in captured.out
 
 

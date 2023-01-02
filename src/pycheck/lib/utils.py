@@ -25,7 +25,7 @@ def admin_required():
         raise NotAuthorizedError()
 
 
-def hash(text: str) -> str:
+def gen_hash(text: str) -> str:
     return hashlib.md5(text.encode()).hexdigest()
 
 

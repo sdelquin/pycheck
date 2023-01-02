@@ -76,6 +76,6 @@ def test_generate(exercise: Exercise):
 
 def test_hash(exercise: Exercise):
     conftest.disable_key_admin()
-    result = runner.invoke(app, ['hash', exercise.id])
+    result = runner.invoke(app, ['hash', exercise.name])
     assert result.exit_code != 0
     assert result.exc_info[0] == NotAuthorizedError

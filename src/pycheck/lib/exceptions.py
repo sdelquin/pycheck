@@ -1,6 +1,6 @@
 class ExerciseNotAvailableError(Exception):
     def __init__(self, exercise):
-        message = f"""El ejercicio '{exercise.id}' no está disponible.
+        message = f"""El ejercicio '{exercise.name}' no está disponible.
 Revise el nombre y si el problema persiste consulte al profesorado.
 Puede actualizar la aplicación usando: 'pycheck update'"""
         super().__init__(message)

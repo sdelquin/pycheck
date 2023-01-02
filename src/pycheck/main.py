@@ -26,8 +26,8 @@ def update():
 
 @app.command()
 def check(
-    filepath: Path = typer.Argument(
-        ..., help='Ruta al ejercicio que se quiere comprobar.', show_default=False
+    name: Path = typer.Argument(
+        ..., help='Nombre del ejercicio (puede ser una ruta).', show_default=False
     ),
     only_summary: bool = typer.Option(
         False,
@@ -60,7 +60,7 @@ def check(
 ):
     '''Comprueba el ejercicio contra los casos de prueba establecidos.'''
     try:
-        checking = pycheck.check(filepath, ignore_stdout, ignore_stdin, case_no)
+        checking = pycheck.check(name, ignore_stdout, ignore_stdin, case_no)
     except TemplateNotFoundError as err:
         print(err)
     except ExerciseNotAvailableError as err:
@@ -73,8 +73,8 @@ def check(
 
 @app.command()
 def run(
-    filepath: Path = typer.Argument(
-        ..., help='Ruta al ejercicio que se quiere ejecutar.', show_default=False
+    name: Path = typer.Argument(
+        ..., help='Nombre del ejercicio (puede ser una ruta).', show_default=False
     ),
     args: list[str] = typer.Argument(
         None, help='Argumentos propios para ejecutar el programa.', show_default=False
@@ -82,7 +82,7 @@ def run(
 ):
     '''Lanza la ejecución del ejercicio con argumentos propios.'''
     try:
-        result = pycheck.run(filepath, args)
+        result = pycheck.run(name, args)
     except TemplateNotFoundError as err:
         print(err)
     except ExerciseNotAvailableError as err:
@@ -93,8 +93,8 @@ def run(
 
 @app.command()
 def template(
-    filepath: Path = typer.Argument(
-        ..., help='Ruta en la que crear la plantilla para el ejercicio.', show_default=False
+    name: Path = typer.Argument(
+        ..., help='Nombre del ejercicio (puede ser una ruta).', show_default=False
     ),
     force: bool = typer.Option(
         False,
@@ -106,7 +106,7 @@ def template(
 ):
     '''Crea la plantilla para resolver el ejercicio.'''
     try:
-        exercise = pycheck.Exercise(filepath)
+        exercise = pycheck.Exercise(name)
     except ExerciseNotAvailableError as err:
         print(err)
     else:
@@ -115,27 +115,25 @@ def template(
 
 @app.command()
 def show(
-    filepath: str = typer.Argument(
-        ..., help='Identificador del ejercicio.', show_default=False
-    ),
+    name: str = typer.Argument(..., help='Nombre del ejercicio.', show_default=False),
     description: bool = typer.Option(
         False,
         '--description',
         '-d',
         show_default=False,
-        help='Mostrar la descripción del ejercicio.',
+        help='Muestra la descripción del ejercicio.',
     ),
     check_cases: bool = typer.Option(
         False,
         '--check-cases',
         '-c',
         show_default=False,
-        help='Mostrar los casos de prueba del ejercicio.',
+        help='Muestra los casos de prueba del ejercicio.',
     ),
 ):
     '''Muestra la especificación del ejercicio.'''
     try:
-        exercise = pycheck.Exercise(filepath)
+        exercise = pycheck.Exercise(name)
     except ExerciseNotAvailableError as err:
         print(err)
     else:
@@ -145,14 +143,10 @@ def show(
 
 
 @app.command()
-def boot(
-    filepath: str = typer.Argument(
-        ..., help='Identificador del ejercicio.', show_default=False
-    )
-):
+def boot(name: str = typer.Argument(..., help='Nombre del ejercicio.', show_default=False)):
     '''Muestra la especificación del ejercicio y crea la plantilla.'''
     try:
-        exercise = pycheck.Exercise(filepath)
+        exercise = pycheck.Exercise(name)
     except ExerciseNotAvailableError as err:
         print(err)
     else:
@@ -167,36 +161,26 @@ def boot(
 
 @app.command(hidden=True)
 def generate(
-    exercise_id: str = typer.Argument(
-        ..., help='Identificador del ejercicio.', show_default=False
-    ),
-    category: str = typer.Option(
+    name: str = typer.Argument(..., help='Nombre del ejercicio.', show_default=False),
+    topic: str = typer.Option(
         'undefined',
-        '--categoría',
-        '-c',
-        help='Categoría que se va a asignar al ejercicio.',
-    ),
-    test: bool = typer.Option(
-        False,
-        '--test',
+        '--topic',
         '-t',
-        help='Indica si el ejercicio es para examen.',
+        help='Tema al que se va a asignar el ejercicio.',
     ),
 ):
     '''Genera un nuevo ejercicio.'''
     admin_required()
-    admin.generate_exercise(exercise_id, category, int(test))
+    admin.generate_exercise(name, topic)
 
 
 @app.command(hidden=True)
 def hash(
-    exercise_id: str = typer.Argument(
-        ..., help='Identificador del ejercicio.', show_default=False
-    ),
+    name: str = typer.Argument(..., help='Nombre del ejercicio.', show_default=False),
 ):
     '''Obtiene el hash de un ejercicio.'''
     admin_required()
-    print(utils.hash(Path(exercise_id).stem))
+    print(utils.gen_hash(Path(name).stem))
 
 
 @app.callback(invoke_without_command=True)

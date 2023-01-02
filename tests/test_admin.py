@@ -12,5 +12,5 @@ def test_admin_required():
 
 
 def test_hash(exercise):
-    hash = utils.hash(conftest.EXERCISE_PATH.stem)
+    hash = utils.gen_hash(conftest.EXERCISE_PATH.stem)
     assert exercise.hash == hash
