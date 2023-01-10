@@ -4,7 +4,6 @@ from prettyconf import config
 
 PROJECT_DIR = Path(__file__).parent.parent.parent
 
-        
 EXERCISES_CONFIG_PATH = config(
     'EXERCISES_CONFIG_PATH', default=PROJECT_DIR / 'src/pycheck/exercises'
 )
@@ -22,6 +21,7 @@ PYCOIN_EMOJI = config('PYCOIN_EMOJI', default='🏆')
 KEY_ADMIN_PRIVATE = config('PYCHECK_KEY_ADMIN', default='pycheck')
 KEY_ADMIN_PUBLIC = '6526dcaf98cd26d64747fad780736a8b'
 SUCCESS_MSG_EMOJI = config('SUCCESS_MSG_EMOJI', default='✔')
+ERROR_MSG_EMOJI = config('SUCCESS_MSG_EMOJI', default='✕')
 
 EXERCISES_CONFIG_TEMPLATE = """
 TITLE = ''
@@ -46,4 +46,4 @@ SOURCE = ''
 """
 
 USER_CONFIG = Path.home() / '.config' / 'pycheck' / 'pycheck.ini'
-URL_API = config('URL_API', default="http://localhost:8000/api")
+URL_API = config('URL_API', default='http://localhost:8000/api')

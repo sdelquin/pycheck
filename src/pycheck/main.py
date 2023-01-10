@@ -2,20 +2,15 @@ from pathlib import Path
 
 import typer
 from rich import print
-from rich.text import Text
 
 import pycheck
-from pycheck.lib import admin, utils
+from pycheck.lib import admin, auth, utils
 from pycheck.lib.exceptions import (
     CheckCaseNotFoundError,
     ExerciseNotAvailableError,
     TemplateNotFoundError,
 )
 from pycheck.lib.utils import admin_required
-from pycheck.lib import auth
-
-OK = Text("[bold green]✓ OK[/bold green]")
-ERROR = Text("[bold red]✕ ERROR[/bold red]")
 
 app = typer.Typer(
     add_completion=False,
@@ -162,43 +157,41 @@ def boot(name: str = typer.Argument(..., help='Nombre del ejercicio.', show_defa
 
 @app.command()
 def whoami():
-    '''Si estás identificado, muestra tu identificador como estudiante.
-    '''
+    '''Si estás identificado, muestra tu identificador como estudiante.'''
     student_id = auth.get_student_id()
     print(student_id or "No estás identificado.")
 
 
 @app.command()
 def status():
-    '''Muestra el estado de la api de pycheck.es.
-    '''
+    '''Muestra el estado de la api de pycheck.es.'''
     status = auth.status()
     print(status['result'])
 
 
 @app.command()
 def login(
-        student: str = typer.Argument(
-            ...,
-            help='Identificador de usuario en formato <username>@<context>',
-            ),
-        password: str = typer.Option(
-            ...,
-            prompt=True,
-            hide_input=True,
-            ),
-        ):
-    '''Validarse como usuario en pycheck.es.
-    '''
+    student: str = typer.Argument(
+        ...,
+        help='Identificador de usuario en formato <username>@<context>',
+    ),
+    password: str = typer.Option(
+        ...,
+        prompt=True,
+        hide_input=True,
+    ),
+):
+    '''Validarse como usuario en pycheck.es.'''
     username, context = student.split('@')
     is_valid, token_or_error_message = auth.login(username, context, password)
     if is_valid:
-        print(
-            f"{OK} [bold]{username}[/bold] Identificado correctamente"
-            f" en [bold]{context}[/bold]")
+        utils.succ_msg(
+            f'[bold]{username}[/bold] Identificado correctamente en [bold]{context}[/bold]'
+        )
     else:
         error_message = token_or_error_message
-        print(f"{ERROR} Error de identificación: {error_message}")
+        utils.err_msg(f'Error de identificación: {error_message}')
+
 
 # *************************************************
 # ADMIN
