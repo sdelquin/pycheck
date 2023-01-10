@@ -20,7 +20,7 @@ def get_pycheck_version():
 
 
 def admin_required():
-    key_hash = hash(settings.KEY_ADMIN_PRIVATE)
+    key_hash = gen_hash(settings.KEY_ADMIN_PRIVATE)
     if key_hash != settings.KEY_ADMIN_PUBLIC:
         raise NotAuthorizedError()
 
