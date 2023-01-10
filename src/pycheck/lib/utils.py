@@ -31,3 +31,7 @@ def gen_hash(text: str) -> str:
 
 def succ_msg(text: str):
     print(f'[green]{settings.SUCCESS_MSG_EMOJI}[/] {text}')
+
+
+def err_msg(text: str):
+    print(f'[red]{settings.ERROR_MSG_EMOJI}[/] {text}')
