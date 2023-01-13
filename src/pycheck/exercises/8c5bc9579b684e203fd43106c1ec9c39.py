@@ -2,6 +2,8 @@ TITLE = 'Contando letras'
 
 DESCRIPTION = '''
 Usando un diccionario, cuente el número de veces que se repite cada letra en una cadena de texto dada.
+
+NOTA: No se puede usar la función "count".
 '''
 
 ENTRYPOINT = {
