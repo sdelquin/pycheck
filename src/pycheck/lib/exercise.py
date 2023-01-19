@@ -142,7 +142,9 @@ class Exercise:
         )
         args = ', '.join(repr(c) for c in self.check_cases[0][0])
         return_names = [ret_name for ret_name, _ in self.entrypoint['return']]
-        code_here = ' = '.join(return_names) + f" = '{settings.CODEHERE_PLACEHOLDER}'"
+        output_placeholder = (
+            ' = '.join(return_names) + f" = '{settings.OUTPUT_PLACEHOLDER}'"
+        )
         return_sentence = 'return ' + ', '.join(return_names)
         return_type = (
             'tuple' if self.multiple_returns else self.entrypoint['return'][0][1].__name__
@@ -154,7 +156,8 @@ class Exercise:
 
 
 def {func}({params}) -> {return_type}:
-    {code_here}
+    # {settings.CODEHERE_PLACEHOLDER}
+    {output_placeholder}
     {return_sentence}
 
 
