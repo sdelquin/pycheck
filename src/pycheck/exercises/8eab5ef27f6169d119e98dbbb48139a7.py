@@ -4,6 +4,7 @@ DESCRIPTION = '''
 Dados dos diccionarios de entrada, escriba un programa en Python que mezcle ambos diccionarios en uno único de salida, **sin usar métodos de mezcla definidos en Python** como:
 ```
 {**a, **b}
+a | b
 a.update(b)
 ```
 '''
