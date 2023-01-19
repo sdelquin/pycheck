@@ -14,7 +14,7 @@ from pycheck.lib.utils import admin_required
 
 app = typer.Typer(
     add_completion=False,
-    help='✨ pycheck es un comprobador de ejercicios escritos en Python.',
+    help='✨ pycheck es un comprobador de ejercicios escritos en Python: 📘 pycheck.es/docs',
     no_args_is_help=True,
 )
 
