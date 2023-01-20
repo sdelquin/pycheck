@@ -15,7 +15,7 @@ ENTRYPOINT = {
         ['unsorted_items', dict],
     ],
     'RETURN': [
-        ['sorted_items', dict],
+        ['sorted_items', list],
     ],
 }
 
