@@ -32,5 +32,9 @@ CHECK_CASES = [
         [{'M': 'MacOS', 'L': 'Linux', 'W': 'Windows'}],
         [[('L', 'Linux'), ('M', 'MacOS'), ('W', 'Windows')]],
     ],
+    [
+        [{'C1': 'Red', 'C2': 'Black', 'C3': 'Red', 'C4': 'Green'}],
+        [[('C2', 'Black'), ('C4', 'Green'), ('C1', 'Red'), ('C3', 'Red')]],
+    ],
     [[{}], [[]]],
 ]
