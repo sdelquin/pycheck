@@ -3,6 +3,7 @@ import sys
 from pathlib import Path
 
 import typer
+from jinja2 import Environment, FileSystemLoader
 from rich import print
 from rich.markdown import Markdown
 from rich.panel import Panel
@@ -32,7 +33,7 @@ class Exercise:
         self.name = self.filepath.stem
         self.filename = self.filepath.name
         self.hash = utils.gen_hash(self.name)
-        self.config_path = settings.EXERCISES_CONFIG_PATH / self.hash
+        self.config_path = settings.EXERCISES_CONFIG_DIR / self.hash
         self.config_module = f'{settings.EXERCISES_CONFIG_MODULE}.{self.hash}'
         self.__get_config()
         self.__get_arg_casts()
@@ -152,15 +153,15 @@ class Exercise:
         title = f"# {'*' * len(self.title)}\n# {self.title}\n# {'*' * len(self.title)}"
         func = self.entrypoint['name']
 
-        return f"""{title}
-
-
-def {func}({params}) -> {return_type}:
-    # {settings.CODEHERE_PLACEHOLDER}
-    {output_placeholder}
-    {return_sentence}
-
-
-if __name__ == '__main__':
-    {func}({args})
-"""
+        env = Environment(loader=FileSystemLoader(settings.TEMPLATES_DIR))
+        template = env.get_template(settings.EXERCISE_TEMPLATE_NAME)
+        context = dict(
+            title=title,
+            func=func,
+            params=params,
+            return_type=return_type,
+            output_placeholder=output_placeholder,
+            return_sentence=return_sentence,
+            args=args,
+        )
+        return template.render(context)
