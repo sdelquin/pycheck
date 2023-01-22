@@ -48,3 +48,4 @@ SOURCE = ''
 
 USER_CONFIG = Path.home() / '.config' / 'pycheck' / 'pycheck.ini'
 URL_API = config('URL_API', default='http://localhost:8000/api')
+PYCHECK_DOCS_URL = config('PYCHECK_DOCS_URL', default='https://pycheck.es/docs')

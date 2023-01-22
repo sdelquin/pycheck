@@ -1,9 +1,11 @@
+import webbrowser
 from pathlib import Path
 
 import typer
 from rich import print
 
 import pycheck
+from pycheck import settings
 from pycheck.lib import admin, auth, utils
 from pycheck.lib.exceptions import (
     CheckCaseNotFoundError,
@@ -191,6 +193,12 @@ def login(
     else:
         error_message = token_or_error_message
         utils.err_msg(f'Error de identificación: {error_message}')
+
+
+@app.command()
+def docs():
+    '''Abre la página que contiene la documentación sobre pycheck.'''
+    webbrowser.open(settings.PYCHECK_DOCS_URL)
 
 
 # *************************************************
