@@ -33,7 +33,6 @@ class Exercise:
         self.name = self.filepath.stem
         self.filename = self.filepath.name
         self.hash = utils.gen_hash(self.name)
-        self.config_path = settings.EXERCISES_CONFIG_DIR / self.hash
         self.config_module = f'{settings.EXERCISES_CONFIG_MODULE}.{self.hash}'
         self.__get_config()
         self.__get_arg_casts()

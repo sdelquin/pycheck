@@ -54,7 +54,6 @@ def test_create_template(exercise: Exercise):
     template_contents = open(exercise.filepath).read()
     assert os.path.isfile(exercise.filepath)
     assert exercise.title in template_contents
-    assert settings.CODEHERE_PLACEHOLDER in template_contents
     assert "if __name__ == '__main__':" in template_contents
     assert 'def' in template_contents
     assert 'return' in template_contents

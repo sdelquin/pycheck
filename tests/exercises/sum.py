@@ -1,4 +1,6 @@
+# ********************
 # LA SUMA MÁS SENCILLA
+# ********************
 
 
 def run(a: int, b: int) -> int:

@@ -2,12 +2,9 @@ from pathlib import Path
 
 from prettyconf import config
 
-PROJECT_DIR = Path(__file__).parent.parent.parent
+PROJECT_DIR = Path(__file__).parent
 
-EXERCISES_CONFIG_DIR = config(
-    'EXERCISES_CONFIG_DIR', default=PROJECT_DIR / 'src/pycheck/exercises'
-)
-
+EXERCISES_CONFIG_DIR = config('EXERCISES_CONFIG_DIR', default=PROJECT_DIR / 'exercises')
 EXERCISES_CONFIG_MODULE = config('EXERCISES_CONFIG_MODULE', default='pycheck.exercises')
 EXERCISES_DB = config('EXERCISES_DB', default=PROJECT_DIR / 'exercises.csv')
 
@@ -29,7 +26,7 @@ KEY_ADMIN_PUBLIC = 'a5bd2041a4fe583cfb4782077d3054da'
 USER_CONFIG = Path.home() / '.config' / 'pycheck' / 'pycheck.ini'
 URL_API = config('URL_API', default='http://localhost:8000/api')
 
-TEMPLATES_DIR = config('TEMPLATES_DIR', default=PROJECT_DIR / 'src/pycheck/templates')
+TEMPLATES_DIR = config('TEMPLATES_DIR', default=PROJECT_DIR / 'templates')
 EXERCISE_TEMPLATE_NAME = config('EXERCISE_TEMPLATE_NAME', default='exercise.py')
 EXERCISE_CONFIG_TEMPLATE_NAME = config(
     'EXERCISE_CONFIG_TEMPLATE_NAME', default='exercise_config.py'
