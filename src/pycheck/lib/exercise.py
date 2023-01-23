@@ -1,5 +1,6 @@
 import importlib
 import sys
+import zipfile
 from pathlib import Path
 
 import typer
@@ -34,8 +35,14 @@ class Exercise:
         self.filename = self.filepath.name
         self.hash = utils.gen_hash(self.name)
         self.config_module = f'{settings.EXERCISES_CONFIG_MODULE}.{self.hash}'
-        self.__get_config()
-        self.__get_arg_casts()
+        self.config_data_path = (settings.EXERCISES_CONFIG_DIR / self.hash).with_suffix(
+            '.zip'
+        )
+        self.data_dir = (
+            self.filepath.parent / f'{settings.EXERCISE_CONFIG_DATA_DIRNAME}/{self.name}'
+        )
+        self._get_config()
+        self._get_arg_casts()
         self.multiple_returns = len(self.entrypoint['return']) > 1
         self.case_no = 0
 
@@ -53,14 +60,27 @@ class Exercise:
             self.case_no = case_no
 
     def create_template(self, ask_on_overwrite: bool = True):
-        if (
+        if not (
             self.filepath.exists()
             and ask_on_overwrite
             and not typer.confirm('Ya existe la plantilla. ¿Desea sobreescribirla?')
         ):
-            return
-        self.filepath.write_text(self.__render_template())
-        utils.succ_msg(f"Plantilla creada satisfactoriamente: [cyan]{self.filepath}")
+            self.filepath.write_text(self.__render_template())
+            utils.succ_msg(f"Plantilla creada satisfactoriamente: [cyan]{self.filepath}")
+
+        if zipfile.is_zipfile(self.config_data_path):
+            if not (
+                self.data_dir.exists()
+                and ask_on_overwrite
+                and not typer.confirm(
+                    'Ya existe la carpeta de datos. ¿Desea sobreescribirla?'
+                )
+            ):
+                with zipfile.ZipFile(self.config_data_path) as zf:
+                    zf.extractall(self.data_dir)
+                utils.succ_msg(
+                    f"Carpeta de datos creada satisfactoriamente: [cyan]{self.data_dir}"
+                )
 
     def get_target_func(self, ignore_stdin: bool = False) -> callable:
         module_name = self.filepath.stem
@@ -115,7 +135,7 @@ class Exercise:
         if check_cases:
             self.show_check_cases()
 
-    def __get_config(self):
+    def _get_config(self):
         try:
             config = importlib.import_module(self.config_module)
         except ModuleNotFoundError:
@@ -129,7 +149,7 @@ class Exercise:
         self.check_cases = config.CHECK_CASES
         self.title = config.TITLE.upper()
 
-    def __get_arg_casts(self):
+    def _get_arg_casts(self):
         PRIMITIVE_TYPES = [int, bool, float, str]
         self.arg_casts = []
         for _, param_type in self.entrypoint['params']:
