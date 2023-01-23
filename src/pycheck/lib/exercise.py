@@ -41,9 +41,9 @@ class Exercise:
         self.data_dir = (
             self.filepath.parent / f'{settings.EXERCISE_CONFIG_DATA_DIRNAME}/{self.name}'
         )
-        self.__get_config()
-        self.__get_arg_casts()
-        self.multiple_returns = len(self.entrypoint['return']) > 1
+        self._get_config()
+        self._get_arg_casts()
+        self.num_returns = len(self.entrypoint['return'])
         self.case_no = 0
 
     def __str__(self):
@@ -105,6 +105,9 @@ class Exercise:
         print(panel)
 
     def show_check_cases(self):
+        if not self.check_cases:
+            return
+
         table = Table(show_header=True)
 
         table.add_column('#', header_style='grey42', style='grey42')
@@ -114,7 +117,8 @@ class Exercise:
             table.add_column(heading, header_style='yellow')
         # Valores de retorno
         for return_name, return_type in self.entrypoint['return']:
-            heading = f'[italic](salida)[/]\n{return_name}: {return_type.__name__}'
+            typename = return_type.__name__ if return_type is not None else 'None'
+            heading = f'[italic](salida)[/]\n{return_name}: {typename}'
             table.add_column(heading, header_style='blue')
 
         case_start = 1 if self.case_no == 0 else self.case_no
@@ -129,13 +133,20 @@ class Exercise:
 
         print(table)
 
+    def show_target_checks(self):
+        if not self.target_checks:
+            return
+        for func, *args in self.target_checks:
+            print(func.__doc__, *args)
+
     def show(self, description=True, check_cases=True):
         if description:
             self.show_description()
         if check_cases:
             self.show_check_cases()
+            self.show_target_checks()
 
-    def __get_config(self):
+    def _get_config(self):
         try:
             config = importlib.import_module(self.config_module)
         except ModuleNotFoundError:
@@ -144,12 +155,15 @@ class Exercise:
         self.entrypoint = {
             'name': config.ENTRYPOINT.get('NAME', settings.ENTRYPOINT_NAME),
             'params': config.ENTRYPOINT['PARAMS'],
-            'return': config.ENTRYPOINT['RETURN'],
+            'return': config.ENTRYPOINT['RETURN'] or [],
         }
-        self.check_cases = config.CHECK_CASES
+        self.check_cases = config.CHECK_CASES if hasattr(config, 'CHECK_CASES') else []
+        self.target_checks = (
+            config.TARGET_CHECKS if hasattr(config, 'TARGET_CHECKS') else []
+        )
         self.title = config.TITLE.upper()
 
-    def __get_arg_casts(self):
+    def _get_arg_casts(self):
         PRIMITIVE_TYPES = [int, bool, float, str]
         self.arg_casts = []
         for _, param_type in self.entrypoint['params']:
@@ -166,9 +180,13 @@ class Exercise:
             ' = '.join(return_names) + f" = '{settings.OUTPUT_PLACEHOLDER}'"
         )
         return_sentence = 'return ' + ', '.join(return_names)
-        return_type = (
-            'tuple' if self.multiple_returns else self.entrypoint['return'][0][1].__name__
-        )
+        match self.num_returns:
+            case 0:
+                return_type = 'None'
+            case 1:
+                return_type = self.entrypoint['return'][0][1].__name__
+            case _:
+                return_type = 'tuple'
         title = f"# {'*' * len(self.title)}\n# {self.title}\n# {'*' * len(self.title)}"
         func = self.entrypoint['name']
 

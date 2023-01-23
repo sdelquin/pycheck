@@ -1,3 +1,5 @@
+from pycheck.lib.checkers import check_file_as_expected, check_file_exists
+
 TITLE = 'Temperaturas medias'
 
 DESCRIPTION = '''
@@ -9,13 +11,16 @@ Dado un fichero de entrada con 12 filas (meses) y 31 columnas (temperaturas de c
 
 ENTRYPOINT = {
     'PARAMS': [
-        ['input.dat', str],
+        ['input', str],
     ],
-    'RETURN': [
-        ['output.dat', str],
-    ],
+    'RETURN': None,
 }
 
 CHECK_CASES = [
-    [['temperatures.dat'], ['avg_temps.dat']],
+    [['data/avg_temps/temperatures.dat'], []],
+]
+
+TARGET_CHECKS = [
+    [check_file_exists, 'data/avg_temps/avg_temps.dat'],
+    [check_file_as_expected, 'data/avg_temps/avg_temps.dat'],
 ]
