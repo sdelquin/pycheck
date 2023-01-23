@@ -34,3 +34,4 @@ EXERCISE_TEMPLATE_NAME = config('EXERCISE_TEMPLATE_NAME', default='exercise.py')
 EXERCISE_CONFIG_TEMPLATE_NAME = config(
     'EXERCISE_CONFIG_TEMPLATE_NAME', default='exercise_config.py'
 )
+EXERCISE_CONFIG_DATA_DIRNAME = config('EXERCISE_CONFIG_DATA_DIRNAME', default='data')
