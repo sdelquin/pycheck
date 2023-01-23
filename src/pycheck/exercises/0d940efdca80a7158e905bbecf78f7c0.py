@@ -1,5 +1,3 @@
-from pycheck.lib.checkers import check_file_as_expected, check_file_exists
-
 TITLE = 'Temperaturas medias'
 
 DESCRIPTION = '''
@@ -13,14 +11,11 @@ ENTRYPOINT = {
     'PARAMS': [
         ['input', str],
     ],
-    'RETURN': None,
+    'RETURN': [
+        ['output', str],
+    ],
 }
 
 CHECK_CASES = [
-    [['data/avg_temps/temperatures.dat'], []],
-]
-
-TARGET_CHECKS = [
-    [check_file_exists, 'data/avg_temps/avg_temps.dat'],
-    [check_file_as_expected, 'data/avg_temps/avg_temps.dat'],
+    [['data/avg_temps/temperatures.dat'], ['data/avg_temps/avg_temps.dat']],
 ]
