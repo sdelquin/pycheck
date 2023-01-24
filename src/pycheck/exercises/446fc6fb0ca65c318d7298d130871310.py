@@ -21,4 +21,5 @@ CHECK_CASES = [
     [[{'pen': 20, 'cup': 11, 'keyring': 40}, 'cup', 9], [True]],
     [[{'pen': 20, 'cup': 11, 'keyring': 40}, 'pen', 21], [False]],
     [[{'pen': 20, 'cup': 11, 'keyring': 40}, 'keyring', 40], [True]],
+    [[{'pen': 20, 'cup': 11, 'keyring': 40}, 'popcorn', 5], [False]],
 ]

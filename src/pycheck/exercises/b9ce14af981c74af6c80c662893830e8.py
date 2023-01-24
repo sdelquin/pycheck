@@ -1,9 +1,9 @@
-TITLE = 'Tupla de duplas'
+TITLE = 'Tuplas y conjuntos'
 
 DESCRIPTION = '''
-Dada una tupla de duplas (2 valores) obtenga una tupla con dos diccionarios:
-- El primer diccionario con los primeros valores de cada dupla.
-- El segundo diccionario con los segundos valores de cada dupla.
+Dada una tupla de duplas (2 valores) obtenga una tupla con dos conjuntos:
+- El primer conjunto con los primeros valores de cada dupla.
+- El segundo conjunto con los segundos valores de cada dupla.
 '''
 
 ENTRYPOINT = {
