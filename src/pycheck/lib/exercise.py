@@ -44,7 +44,8 @@ class Exercise:
         self._get_config()
         self._get_arg_casts()
         self.multiple_returns = len(self.entrypoint['return']) > 1
-        self.output_is_file = self.entrypoint['return'][0][1] == Path
+        self.params_have_files = any(t == Path for _, t in self.entrypoint['params'])
+        self.returns_file = self.entrypoint['return'][0][1] == Path
         self.case_no = 0
 
     def __str__(self):
@@ -171,11 +172,11 @@ class Exercise:
         # Return
         if self.multiple_returns:
             return_type = 'tuple'
-        elif self.output_is_file:
+        elif self.returns_file:
             return_type = 'bool'
         else:
             return_type = self.entrypoint['return'][0][1].__name__
-        if self.output_is_file:
+        if self.returns_file:
             return_name = self.entrypoint['return'][0][0]
             expected_file = f'{self.data_dir / ".expected"}'
             return_items = f"filecmp.cmp({return_name}, '{expected_file}', shallow=False)"
@@ -202,6 +203,7 @@ class Exercise:
             output_placeholder=output_placeholder,
             return_items=return_items,
             args=args,
-            output_is_file=self.output_is_file,
+            returns_file=self.returns_file,
+            params_have_files=self.params_have_files,
         )
         return template.render(context)

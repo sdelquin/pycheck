@@ -1,12 +1,14 @@
 {{title}}
-{% if output_is_file %}
+{% if returns_file %}
 import filecmp
+{% endif %}
+{% if params_have_files or returns_file %}
 from pathlib import Path
 {% endif %}
 
 
 def {{func}}({{params}}) -> {{return_type}}:
-    {% if output_is_file %}
+    {% if returns_file %}
     {{output_placeholder}}
     # TU CÓDIGO AQUÍ
     {% else %}

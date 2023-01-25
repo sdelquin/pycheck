@@ -22,7 +22,7 @@ def check(
         with contextlib.redirect_stdout(redirect_stdout):
             output = target_func(*args)
         output = output if exercise.multiple_returns else [output]
-        if exercise.output_is_file:
+        if exercise.returns_file:
             # filecmp.cmp() is used inside exercise
             expected_output = [True]
         passed = all(pout == pexp for pout, pexp in zip(output, expected_output))
