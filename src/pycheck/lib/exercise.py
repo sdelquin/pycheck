@@ -44,6 +44,7 @@ class Exercise:
         self._get_config()
         self._get_arg_casts()
         self.multiple_returns = len(self.entrypoint['return']) > 1
+        self.output_is_file = self.entrypoint['return'][0][1] == Path
         self.case_no = 0
 
     def __str__(self):
@@ -157,22 +158,41 @@ class Exercise:
             self.arg_casts.append(cast)
 
     def __render_template(self) -> str:
+        # Title
+        title = f"# {'*' * len(self.title)}\n# {self.title}\n# {'*' * len(self.title)}"
+        # Function name
+        func = self.entrypoint['name']
+        # Params
         params = ', '.join(
             f'{param}: {annot.__name__}' for param, annot in self.entrypoint['params']
         )
+        # Args
         args = ', '.join(repr(c) for c in self.check_cases[0][0])
-        return_names = [ret_name for ret_name, _ in self.entrypoint['return']]
-        output_placeholder = (
-            ' = '.join(return_names) + f" = '{settings.OUTPUT_PLACEHOLDER}'"
-        )
-        return_sentence = 'return ' + ', '.join(return_names)
-        return_type = (
-            'tuple' if self.multiple_returns else self.entrypoint['return'][0][1].__name__
-        )
-        title = f"# {'*' * len(self.title)}\n# {self.title}\n# {'*' * len(self.title)}"
-        func = self.entrypoint['name']
+        # Return
+        if self.multiple_returns:
+            return_type = 'tuple'
+        elif self.output_is_file:
+            return_type = 'bool'
+        else:
+            return_type = self.entrypoint['return'][0][1].__name__
+        if self.output_is_file:
+            return_name = self.entrypoint['return'][0][0]
+            expected_file = f'{self.data_dir / ".expected"}'
+            return_items = f"filecmp.cmp({return_name}, '{expected_file}', shallow=False)"
+            output_path = self.check_cases[0][1][0]
+            output_placeholder = f"{return_name} = '{output_path}'"
+        else:
+            return_names = [ret_name for ret_name, _ in self.entrypoint['return']]
+            return_items = ', '.join(return_names)
+            output_placeholder = (
+                ' = '.join(return_names) + f" = '{settings.OUTPUT_PLACEHOLDER}'"
+            )
 
-        env = Environment(loader=FileSystemLoader(settings.TEMPLATES_DIR))
+        env = Environment(
+            loader=FileSystemLoader(settings.TEMPLATES_DIR),
+            trim_blocks=True,
+            lstrip_blocks=True,
+        )
         template = env.get_template(settings.EXERCISE_TEMPLATE_NAME)
         context = dict(
             title=title,
@@ -180,7 +200,8 @@ class Exercise:
             params=params,
             return_type=return_type,
             output_placeholder=output_placeholder,
-            return_sentence=return_sentence,
+            return_items=return_items,
             args=args,
+            output_is_file=self.output_is_file,
         )
         return template.render(context)

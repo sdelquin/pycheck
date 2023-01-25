@@ -1,3 +1,5 @@
+from pathlib import Path
+
 TITLE = 'Temperaturas medias'
 
 DESCRIPTION = '''
@@ -9,10 +11,10 @@ Dado un fichero de entrada con 12 filas (meses) y 31 columnas (temperaturas de c
 
 ENTRYPOINT = {
     'PARAMS': [
-        ['input', str],
+        ['input_path', Path],
     ],
     'RETURN': [
-        ['output', str],
+        ['output_path', Path],
     ],
 }
 
