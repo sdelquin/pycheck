@@ -152,7 +152,7 @@ class Exercise:
         self.title = config.TITLE.upper()
 
     def _get_arg_casts(self):
-        PRIMITIVE_TYPES = [int, bool, float, str]
+        PRIMITIVE_TYPES = [int, bool, float, str, Path]
         self.arg_casts = []
         for _, param_type in self.entrypoint['params']:
             cast = param_type if param_type in PRIMITIVE_TYPES else eval
