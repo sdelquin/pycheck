@@ -7,7 +7,7 @@ Dado un fichero de texto y una palabra objetivo se pide indicar el número de l�
 
 Notas:
 - La salida del programa será una lista de tuplas. Cada tupla contiene dos valores: el número de línea y el número de columna.
-- Se puede suponer que las palabras se separan por un único espacio.
+- Se puede suponer que las palabras se separan por un único espacio, pero hay que tener en cuenta la posible existencia de los siguientes caracteres como frontera de palabras: .,:;()'¡!-
 - La búsqueda debe funcionar aunque no coincidan mayúsculas y minúsculas.
 '''
 
@@ -24,9 +24,40 @@ ENTRYPOINT = {
 CHECK_CASES = [
     [['data/find_words/bzrp.txt', 'persona'], [[(41, 17), (43, 17), (73, 17), (75, 17)]]],
     [['data/find_words/bzrp.txt', 'amor'], [[(52, 5)]]],
-    [['data/find_words/bzrp.txt', 'aquí'], [[(11, 1), (68, 1)]]],
+    [['data/find_words/bzrp.txt', 'buena'], [[(41, 25), (43, 25), (73, 25), (75, 25)]]],
     [
         ['data/find_words/bzrp.txt', 'yo'],
-        [[(18, 5), (19, 15), (20, 15), (33, 1), (55, 1), (59, 1), (70, 1), (76, 17)]],
+        [
+            [
+                (18, 5),
+                (19, 15),
+                (20, 15),
+                (29, 1),
+                (33, 1),
+                (55, 1),
+                (59, 1),
+                (70, 1),
+                (76, 17),
+            ]
+        ],
+    ],
+    [
+        ['data/find_words/bzrp.txt', 'tú'],
+        [
+            [
+                (2, 15),
+                (7, 15),
+                (20, 40),
+                (21, 15),
+                (24, 38),
+                (45, 17),
+                (46, 15),
+                (49, 38),
+                (76, 42),
+                (77, 15),
+                (80, 38),
+                (88, 38),
+            ]
+        ],
     ],
 ]
