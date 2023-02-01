@@ -19,6 +19,8 @@ F ██████████ 10
 G ██████ 6
 H ██████████████ 14
 ```
+
+> El carácter que hay que usar para las barras [lo puedes copiar desde aquí](https://unicode-table.com/en/2588/).
 '''
 
 ENTRYPOINT = {
