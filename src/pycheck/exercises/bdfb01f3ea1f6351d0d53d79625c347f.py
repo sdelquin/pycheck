@@ -5,7 +5,7 @@ TITLE = 'Histograma'
 DESCRIPTION = '''
 Un [histograma](https://es.wikipedia.org/wiki/Histograma) es un diagrama que permite visualizar la distribución de frecuencias sobre un determinado conjunto de valores.
 
-Partiendo de un fichero de entrada que contiene letras de forma consecutiva se pide calcular la _frecuencia absoluta_ de cada una de las etiquetas (letras) y generar un fichero de salida con el histograma correspondiente.
+Partiendo de un fichero de entrada que contiene letras de forma consecutiva se pide calcular la _frecuencia absoluta_ de cada una de las etiquetas (letras) y generar un fichero de salida con el histograma correspondiente. En otras palabras, hay que contar el número de As, Bs, Cs, ...
 
 Para el caso que nos ocupa, la salida debería ser:
 
