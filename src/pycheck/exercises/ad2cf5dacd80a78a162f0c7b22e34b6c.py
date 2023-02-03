@@ -4,6 +4,8 @@ TITLE = 'Han cantado línea'
 
 DESCRIPTION = '''
 Dado un fichero de texto y un número de línea como entradas al programa, devuelva la línea que corresponda del fichero. Si el número de línea indicado no corresponde con ninguno del fichero se debe devolver None.
+
+Tener en cuenta que la primera línea debe empezar en 1.
 '''
 
 ENTRYPOINT = {
