@@ -1,6 +1,6 @@
 TITLE = 'Suma de cuadrados'
 
-CREATE_TEMPLATE = False
+EMPTY_TEMPLATE = True
 
 DESCRIPTION = '''
 Escriba una función en Python que reproduzca lo siguiente:

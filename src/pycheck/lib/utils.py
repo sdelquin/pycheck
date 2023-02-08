@@ -35,3 +35,7 @@ def succ_msg(text: str):
 
 def err_msg(text: str):
     print(f'[red]{settings.ERROR_MSG_EMOJI}[/] {text}')
+
+
+def warn_msg(text: str):
+    print(f'[yellow]{settings.WARNING_MSG_EMOJI}[/] {text}')

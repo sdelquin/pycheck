@@ -67,7 +67,7 @@ class Exercise:
             and ask_on_overwrite
             and not typer.confirm('Ya existe la plantilla. ¿Desea sobreescribirla?')
         ):
-            self.filepath.write_text(self.__render_template())
+            self.filepath.write_text(self._render_template())
             utils.succ_msg(f"Plantilla creada satisfactoriamente: [cyan]{self.filepath}")
 
         if zipfile.is_zipfile(self.config_data_path):
@@ -143,6 +143,7 @@ class Exercise:
         except ModuleNotFoundError:
             raise ExerciseNotAvailableError(self)
         self.description = config.DESCRIPTION.strip()
+        self.empty_template = getattr(config, 'EMPTY_TEMPLATE', settings.EMPTY_TEMPLATE)
         self.entrypoint = {
             'name': config.ENTRYPOINT.get('NAME', settings.ENTRYPOINT_NAME),
             'params': config.ENTRYPOINT['PARAMS'],
@@ -158,7 +159,7 @@ class Exercise:
             cast = param_type if param_type in PRIMITIVE_TYPES else eval
             self.arg_casts.append(cast)
 
-    def __render_template(self) -> str:
+    def _render_template(self) -> str:
         # Title
         title = f"# {'*' * len(self.title)}\n# {self.title}\n# {'*' * len(self.title)}"
         # Function name
@@ -194,7 +195,12 @@ class Exercise:
             trim_blocks=True,
             lstrip_blocks=True,
         )
-        template = env.get_template(settings.EXERCISE_TEMPLATE_NAME)
+        template_name = (
+            settings.EXERCISE_EMPTY_TEMPLATE_NAME
+            if self.empty_template
+            else settings.EXERCISE_TEMPLATE_NAME
+        )
+        template = env.get_template(template_name)
         context = dict(
             title=title,
             func=func,
