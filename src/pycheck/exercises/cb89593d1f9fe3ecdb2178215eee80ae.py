@@ -7,6 +7,10 @@ Escriba una función que calcule el [factorial](https://es.wikipedia.org/wiki/Fa
 ```
 n! = n · (n - 1) · (n - 2) · ... · 1
 ```
+
+Notas:
+- 0! = 1
+- El factorial de un número negativo no se puede calcular.
 '''
 
 ENTRYPOINT = {
@@ -21,4 +25,6 @@ ENTRYPOINT = {
 
 CHECK_CASES = [
     [[5], [120]],
+    [[0], [1]],
+    [[-1], [None]],
 ]
