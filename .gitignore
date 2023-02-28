@@ -6,3 +6,4 @@ exercises.csv
 .DS_Store
 solutions
 .flake8
+.python-version
