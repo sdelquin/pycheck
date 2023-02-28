@@ -6,7 +6,7 @@ DESCRIPTION = '''
 Escriba una función que reciba un parámetro _n_ y que incluya **una expresión generadora** para calcular los _n_ primeros números enteros elevados al cuadrado.
 
 Notas:
-- La función debe **devoler una lista** de los valores al cuadrado.
+- La función debe **devolver una lista** de los valores al cuadrado.
 - _n_ ∈ {0, ℤ+}
 '''
 
