@@ -63,15 +63,15 @@ def check(
 ):
     '''Comprueba el ejercicio contra los casos de prueba establecidos.'''
     try:
-        checking = pycheck.check(name, ignore_stdout, ignore_stdin, case_no)
+        pycheck.check(name, ignore_stdout, ignore_stdin, case_no)
     except TemplateNotFoundError as err:
         print(err)
     except ExerciseNotAvailableError as err:
         print(err)
     except CheckCaseNotFoundError as err:
         print(err)
-    else:
-        checking.show(only_summary)
+    # else:
+    #     checking.show(only_summary)
 
 
 @app.command()

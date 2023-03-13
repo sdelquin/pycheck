@@ -13,27 +13,21 @@ def check(
 ) -> Checking:
     '''source puede ser la ruta al fichero del ejercicio o bien
     una instancia del ejercicio'''
+
+    def as_parameters(**kwargs):
+        buff = [f'{name}={value!r}' for name, value in kwargs.items()]
+        return ', '.join(buff)
+
     exercise = source if isinstance(source, Exercise) else Exercise(source)
-    exercise.set_check_case(case_no)
-    redirect_stdout = None if ignore_stdout else sys.stdout
-    target_func = exercise.get_target_func(ignore_stdin)
-    runnings = []
-    for args, expected_output in exercise.check_cases:
-        with contextlib.redirect_stdout(redirect_stdout):
-            output = target_func(*args)
-        output = output if exercise.multiple_returns else [output]
-        if exercise.returns_file:
-            # filecmp.cmp() is used inside exercise
-            expected_output = [True]
-        passed = all(pout == pexp for pout, pexp in zip(output, expected_output))
-        runnings.append(dict(passed=passed, output=output))
-    return Checking(exercise, runnings)
+    for case_no, chk in enumerate(exercise.checks, start=1):
+        for is_ok, msg in chk.checks():
+            print(case_no, as_parameters(**chk.parameters), msg, is_ok)
 
 
 def run(source: str | Exercise, args: list[str]):
     '''source puede ser la ruta al fichero del ejercicio o bien
     una instancia del ejercicio'''
     exercise = source if isinstance(source, Exercise) else Exercise(source)
-    target_func = exercise.get_target_func()
+    target_func = exercise.get_target()
     args = [cast(arg) for cast, arg in zip(exercise.arg_casts, args)]
     return target_func(*args)

@@ -2,6 +2,7 @@ import importlib
 import sys
 import zipfile
 from pathlib import Path
+from typing import Callable
 
 import typer
 from jinja2 import Environment, FileSystemLoader
@@ -42,24 +43,10 @@ class Exercise:
             self.filepath.parent / f'{settings.EXERCISE_CONFIG_DATA_DIRNAME}/{self.name}'
         )
         self._get_config()
-        self._get_arg_casts()
-        self.multiple_returns = len(self.entrypoint['return']) > 1
-        self.params_have_files = any(t == Path for _, t in self.entrypoint['params'])
-        self.returns_file = self.entrypoint['return'][0][1] == Path
         self.case_no = 0
 
     def __str__(self):
         return self.name
-
-    def set_check_case(self, case_no: int = 0):
-        try:
-            self.check_cases = (
-                self.check_cases if case_no == 0 else [self.check_cases[case_no - 1]]
-            )
-        except IndexError:
-            raise CheckCaseNotFoundError(self, case_no)
-        else:
-            self.case_no = case_no
 
     def create_template(self, ask_on_overwrite: bool = True):
         if not (
@@ -84,7 +71,7 @@ class Exercise:
                     f"Carpeta de datos creada satisfactoriamente: [cyan]{self.data_dir}"
                 )
 
-    def get_target_func(self, ignore_stdin: bool = False) -> callable:
+    def get_target(self, entrypoint: str, ignore_stdin: bool = False) -> Callable:
         module_name = self.filepath.stem
         spec = importlib.util.spec_from_file_location(module_name, self.filepath)
         module = importlib.util.module_from_spec(spec)
@@ -95,7 +82,7 @@ class Exercise:
             raise TemplateNotFoundError(self)
         if ignore_stdin:
             setattr(module, 'input', lambda _: '0')
-        return getattr(module, self.entrypoint['name'])
+        return getattr(module, entrypoint)
 
     def show_description(self):
         panel = Panel(
@@ -107,29 +94,7 @@ class Exercise:
         print(panel)
 
     def show_check_cases(self):
-        table = Table(show_header=True)
-
-        table.add_column('#', header_style='grey42', style='grey42')
-        # Parámetros de entrada
-        for param_name, param_type in self.entrypoint['params']:
-            heading = f'[italic](entrada)[/]\n{param_name}: {param_type.__name__}'
-            table.add_column(heading, header_style='yellow')
-        # Valores de retorno
-        for return_name, return_type in self.entrypoint['return']:
-            heading = f'[italic](salida)[/]\n{return_name}: {return_type.__name__}'
-            table.add_column(heading, header_style='blue')
-
-        case_start = 1 if self.case_no == 0 else self.case_no
-        for case_no, (args, expected_output) in enumerate(
-            self.check_cases, start=case_start
-        ):
-            case = str(case_no)
-            fargs = [repr(arg) for arg in args]
-            fout = [repr(out) for out in expected_output]
-            row = fargs + fout
-            table.add_row(case, *row)
-
-        print(table)
+        pass
 
     def show(self, description=True, check_cases=True):
         if description:
@@ -142,22 +107,9 @@ class Exercise:
             config = importlib.import_module(self.config_module)
         except ModuleNotFoundError:
             raise ExerciseNotAvailableError(self)
-        self.description = config.DESCRIPTION.strip()
-        self.empty_template = getattr(config, 'EMPTY_TEMPLATE', settings.EMPTY_TEMPLATE)
-        self.entrypoint = {
-            'name': config.ENTRYPOINT.get('NAME', settings.ENTRYPOINT_NAME),
-            'params': config.ENTRYPOINT['PARAMS'],
-            'return': config.ENTRYPOINT['RETURN'],
-        }
-        self.check_cases = config.CHECK_CASES
         self.title = config.TITLE.upper()
-
-    def _get_arg_casts(self):
-        PRIMITIVE_TYPES = [int, bool, float, str, Path]
-        self.arg_casts = []
-        for _, param_type in self.entrypoint['params']:
-            cast = param_type if param_type in PRIMITIVE_TYPES else eval
-            self.arg_casts.append(cast)
+        self.description = config.DESCRIPTION.strip()
+        self.checks = config.CHECKS
 
     def _render_template(self) -> str:
         # Title

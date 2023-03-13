@@ -37,14 +37,14 @@ def test_instance_from_stem():
 
 
 def test_get_target_func(exercise: Exercise):
-    func = exercise.get_target_func()
+    func = exercise.get_target()
     assert func is not None
 
 
 def test_get_target_func_no_template():
     exercise = Exercise(conftest.EXERCISE_PATH.name)
     with pytest.raises(TemplateNotFoundError):
-        exercise.get_target_func()
+        exercise.get_target()
 
 
 def test_create_template(exercise: Exercise):
