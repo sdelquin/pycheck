@@ -10,7 +10,7 @@ result = operation(num1, num2)
 ```
 Notas:
 - Las únicas operaciones admitidas son: _add_ _sub_ _mul_ _div_
-- Si llega una operación distinta a las admitidas el resultado debe ser: _None_
+- Si llega una operación distinta a las admitidas el resultado debe ser: _False_
 '''
 
 EMPTY_TEMPLATE = True
@@ -31,5 +31,5 @@ CHECK_CASES = [
     [['sub', 3, 4], [-1]],
     [['mul', 3, 4], [12]],
     [['div', 3, 4], [0.75]],
-    [['abc', 3, 4], [None]],
+    [['abc', 3, 4], [False]],
 ]

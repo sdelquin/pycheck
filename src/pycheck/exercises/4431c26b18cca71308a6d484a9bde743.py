@@ -15,6 +15,8 @@ ____
 k = 1                        
 ```
 Por ejempo, si _n=4_ entonces la suma de cocientes quedaría como: _1 + 1/2 + 1/3 + 1/4_
+
+Tenga en cuenta que n >= 1
 '''
 
 EMPTY_TEMPLATE = True
@@ -30,6 +32,7 @@ ENTRYPOINT = {
 }
 
 CHECK_CASES = [
+    [[1], [1]],
     [[5], [2.283333333333333]],
     [[6], [2.4499999999999997]],
     [[7], [2.5928571428571425]],

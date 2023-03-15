@@ -1,20 +1,20 @@
-TITLE = 'Ordenando IDs en una base de datos'
+TITLE = 'Arreglando IDs en una base de datos'
 
 DESCRIPTION = '''
-Tenemos una base de datos con registros que mantienen un identificador autonumérico. Después de ciertas operaciones de borrado e inserción, el orden de este identificador ha variado, y lo que buscamos es "reordenar" dichos IDs.
+Tenemos una base de datos con registros que mantienen un identificador autonumérico. Después de ciertas operaciones de borrado e inserción, el orden de este identificador ha variado, y lo que buscamos es "arreglar" dichos IDs.
 
-Escriba una función que reciba una lista de diccionarios (base de datos) y devuelva una nueva base de datos (sin modificar la original) con los IDs ordenados y secuenciales empezando desde 1.
+Escriba una función que reciba una lista de diccionarios (base de datos) y devuelva una nueva base de datos (sin modificar la original) con los IDs corregidos y secuenciales empezando desde 1.
 '''
 
 EMPTY_TEMPLATE = True
 
 ENTRYPOINT = {
-    'NAME': 'sort_id',
+    'NAME': 'fix_id',
     'PARAMS': [
         ['db', list],
     ],
     'RETURN': [
-        ['sorted_db', list],
+        ['fixed_db', list],
     ],
 }
 
