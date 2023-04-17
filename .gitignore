@@ -8,3 +8,4 @@ solutions
 .flake8
 .python-version
 future.txt
+.artwork
