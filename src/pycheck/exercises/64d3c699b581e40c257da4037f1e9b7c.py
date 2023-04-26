@@ -6,6 +6,7 @@ Escriba una clase Fibonacci que sea iterable y que devuelva cada vez el siguient
 Notas:
 - La clase se debe construir pasando el número _n_ de valores a generar.
 - La función principal debe hacer uso de la clase Fibonacci convirtiendo a lista los valores generados.
+- No construir previamente los valores: irlos generando a medida que se van necesitando.
 '''
 
 EMPTY_TEMPLATE = True

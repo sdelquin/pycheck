@@ -7,7 +7,7 @@ Este ejercicio también se puede resolver mediante _conjuntos por comprensión_.
 
 Notas:
 - Las vocales pueden estar en minúsculas o en mayúsculas.
-- Una consonante minúscula es equivalente a una consonantes mayúscula.
+- Una consonante minúscula es equivalente a una consonante mayúscula.
 '''
 
 ENTRYPOINT = {

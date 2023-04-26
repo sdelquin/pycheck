@@ -8,6 +8,7 @@ DESCRIPTION = '''
 Escriba un programa en Python que simule el mismo comportamiento, recibiendo una ruta a un fichero y devolviendo esas tres variables.
 
 Notas:
+- Considerar únicamente el espacio en blanco como delimitador de palabras.
 - El número de bytes que ocupa un string "s" se puede calcular con: len(s.encode('utf-8'))
 - Ojo con las líneas en blanco, pueden llevarle a un resultado incorrecto.
 '''
