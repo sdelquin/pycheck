@@ -9,6 +9,8 @@ El "o exclusivo" (xor) es una operación lógica que sigue las siguientes reglas
 
 Básicamente sólo es verdadero cuando una (y solo una) de las dos entradas es verdadera.
 Escriba un programa que calcule el xor a partir de dos parámetros de entrada.
+
+NOTA: Sólo se pueden usar operadores booleanos _and_, _or_ y _not_
 '''
 
 ENTRYPOINT = {
