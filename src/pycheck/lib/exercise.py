@@ -13,11 +13,7 @@ from rich.table import Table
 from pycheck import settings
 
 from . import utils
-from .exceptions import (
-    CheckCaseNotFoundError,
-    ExerciseNotAvailableError,
-    TemplateNotFoundError,
-)
+from .exceptions import CheckCaseNotFoundError, ExerciseNotAvailableError, TemplateNotFoundError
 
 
 class Exercise:
@@ -35,9 +31,7 @@ class Exercise:
         self.filename = self.filepath.name
         self.hash = utils.gen_hash(self.name)
         self.config_module = f'{settings.EXERCISES_CONFIG_MODULE}.{self.hash}'
-        self.config_data_path = (settings.EXERCISES_CONFIG_DIR / self.hash).with_suffix(
-            '.zip'
-        )
+        self.config_data_path = (settings.EXERCISES_CONFIG_DIR / self.hash).with_suffix('.zip')
         self.data_dir = (
             self.filepath.parent / f'{settings.EXERCISE_CONFIG_DATA_DIRNAME}/{self.name}'
         )
@@ -53,9 +47,7 @@ class Exercise:
 
     def set_check_case(self, case_no: int = 0):
         try:
-            self.check_cases = (
-                self.check_cases if case_no == 0 else [self.check_cases[case_no - 1]]
-            )
+            self.check_cases = self.check_cases if case_no == 0 else [self.check_cases[case_no - 1]]
         except IndexError:
             raise CheckCaseNotFoundError(self, case_no)
         else:
@@ -67,22 +59,18 @@ class Exercise:
             and ask_on_overwrite
             and not typer.confirm('Ya existe la plantilla. ¿Desea sobreescribirla?')
         ):
-            self.filepath.write_text(self._render_template())
+            self.filepath.write_text(self._render_template(), encoding='utf-8')
             utils.succ_msg(f"Plantilla creada satisfactoriamente: [cyan]{self.filepath}")
 
         if zipfile.is_zipfile(self.config_data_path):
             if not (
                 self.data_dir.exists()
                 and ask_on_overwrite
-                and not typer.confirm(
-                    'Ya existe la carpeta de datos. ¿Desea sobreescribirla?'
-                )
+                and not typer.confirm('Ya existe la carpeta de datos. ¿Desea sobreescribirla?')
             ):
                 with zipfile.ZipFile(self.config_data_path) as zf:
                     zf.extractall(self.data_dir)
-                utils.succ_msg(
-                    f"Carpeta de datos creada satisfactoriamente: [cyan]{self.data_dir}"
-                )
+                utils.succ_msg(f"Carpeta de datos creada satisfactoriamente: [cyan]{self.data_dir}")
 
     def get_target_func(self, ignore_stdin: bool = False) -> callable:
         module_name = self.filepath.stem
@@ -120,9 +108,7 @@ class Exercise:
             table.add_column(heading, header_style='blue')
 
         case_start = 1 if self.case_no == 0 else self.case_no
-        for case_no, (args, expected_output) in enumerate(
-            self.check_cases, start=case_start
-        ):
+        for case_no, (args, expected_output) in enumerate(self.check_cases, start=case_start):
             case = str(case_no)
             fargs = [repr(arg) for arg in args]
             fout = [repr(out) for out in expected_output]
@@ -186,9 +172,7 @@ class Exercise:
         else:
             return_names = [ret_name for ret_name, _ in self.entrypoint['return']]
             return_items = ', '.join(return_names)
-            output_placeholder = (
-                ' = '.join(return_names) + f" = '{settings.OUTPUT_PLACEHOLDER}'"
-            )
+            output_placeholder = ' = '.join(return_names) + f" = '{settings.OUTPUT_PLACEHOLDER}'"
 
         env = Environment(
             loader=FileSystemLoader(settings.TEMPLATES_DIR),
