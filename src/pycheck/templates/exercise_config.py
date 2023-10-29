@@ -1,7 +1,7 @@
 TITLE = ''
 
-DESCRIPTION = '''
-'''
+DESCRIPTION = """
+"""
 
 ENTRYPOINT = {
     'PARAMS': [
@@ -15,4 +15,3 @@ ENTRYPOINT = {
 CHECK_CASES = [
     [[], []],
 ]
-
