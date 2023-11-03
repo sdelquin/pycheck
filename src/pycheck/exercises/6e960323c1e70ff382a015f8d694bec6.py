@@ -1,7 +1,7 @@
 TITLE = 'Colores en HEXA'
 
 DESCRIPTION = """
-Convierta la representación hexadecimal de un color en su versión decimal RGB.
+Convierta la representación hexadecimal de un color en su versión decimal RGB (_Red_, _Green_, _Blue_).
 """
 
 ENTRYPOINT = {

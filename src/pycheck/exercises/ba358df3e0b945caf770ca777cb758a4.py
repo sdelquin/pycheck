@@ -24,4 +24,5 @@ CHECK_CASES = [
     [['e', 2, 'diferencia'], ['diforoncia']],
     [['u', -2, 'uruguay'], ['irigiay']],
     [['a', 4, 'anatolia'], ['unutoliu']],
+    [['e', 1, 'bereber'], ['biribir']],
 ]

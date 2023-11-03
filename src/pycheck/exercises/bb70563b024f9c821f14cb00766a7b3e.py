@@ -18,6 +18,7 @@ ENTRYPOINT = {
 
 CHECK_CASES = [
     [['hola probando'], ['hola-probando']],
-    [['áéíóú'], ['aeiou']],
+    [['aéíóu'], ['aeiou']],
+    [['El árbol de azúcar'], ['el-arbol-de-azucar']],
     [['TWIST & SHOUT'], ['twist-&-shout']],
 ]
