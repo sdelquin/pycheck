@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "pycheck"
-version = "1.2.40"
+version = "1.2.41"
 license = { file = "LICENSE" }
 dependencies = ['prettyconf', 'rich', 'typer', 'jinja2']
 authors = [
