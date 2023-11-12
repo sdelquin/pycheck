@@ -1,18 +1,13 @@
-TITLE = 'Contando vocales (en recursivo)'
+TITLE = 'Contando vocales'
 
-DESCRIPTION = '''
-Diseñe una función **recursiva** en Python que calcule el número de vocales que tiene un texto de entrada.
+DESCRIPTION = """
+Dada una cadena de texto, indique el número de vocales que tiene.
 
-Notas:
-- Se puede asumir que el texto de entrada simpre vendrá en minúsculas.
-- No hay que preocuparse por vocales con tilde. No aparecerán.
-- No hay que preocuparse por la cadena vacía. No aparecerá.
-'''
-
-EMPTY_TEMPLATE = True
+NOTA:
+- No se puede utilizar la función _count()_
+"""
 
 ENTRYPOINT = {
-    'NAME': 'count_vowels',
     'PARAMS': [
         ['text', str],
     ],
@@ -22,9 +17,9 @@ ENTRYPOINT = {
 }
 
 CHECK_CASES = [
-    [['Bonito es mejor que feo'], [10]],
-    [['Plano es mejor que anidado'], [11]],
-    [['Ahora es mejor que nunca'], [9]],
-    [['La legibilidad cuenta'], [9]],
-    [['Simple es mejor que complejo'], [10]],
+    [['El camión chocó contra el árbol'], [11]],
+    [['WELCOME HOME'], [5]],
+    [['Órbita Laica'], [5]],
+    [['Programar va de pensar, no de escribir'], [12]],
+    [['Simple es mejor que complejo'], [9]],
 ]
