@@ -19,7 +19,7 @@ ENTRYPOINT = {
 CHECK_CASES = [
     [['El camión chocó contra el árbol'], [11]],
     [['WELCOME HOME'], [5]],
-    [['Órbita Laica'], [5]],
+    [['Órbita Laica'], [6]],
     [['Programar va de pensar, no de escribir'], [12]],
-    [['Simple es mejor que complejo'], [9]],
+    [['Simple es mejor que complejo'], [10]],
 ]
