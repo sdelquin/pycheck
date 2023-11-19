@@ -17,7 +17,7 @@ ENTRYPOINT = {
 }
 
 CHECK_CASES = [
-    [['955428PAYLOAD', '0123456789'], ['PAYLOAD']],
-    [['aaaioueeooPAYLOAD', 'aeiou'], ['PAYLOAD']],
-    [[';::-;..PAYLOAD', ',.:;-'], ['PAYLOAD']],
+    [['955428P4YLO4D001', '0123456789'], ['P4YLO4D001']],
+    [['aaaioueeooPaYLoaDi', 'aeiou'], ['PaYLoaDi']],
+    [[';::-;..PAY-LOAD.', ',.:;-'], ['PAY-LOAD.']],
 ]
