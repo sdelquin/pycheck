@@ -2,8 +2,6 @@ TITLE = 'Multiplicando matrices de 2x2'
 
 DESCRIPTION = """
 Escriba un programa que permita [multiplicar matrices](https://www.matricesydeterminantes.com/matrices/multiplicacion-de-matrices-2x2-y-3x3-ejemplos-y-ejercicios-resueltos-paso-a-paso/) únicamente de 2 filas por 2 columnas.
-
-✨ ¿Sabría resolver este ejercicio para cualquier tamaño de matriz?
 """
 
 ENTRYPOINT = {
