@@ -1,8 +1,12 @@
 TITLE = 'Decimal a binario'
 
-DESCRIPTION = '''
+DESCRIPTION = """
 Convierta un número decimal entero a su **representación binaria** (como string).
-'''
+
+No está permitido:
+- Utilizar la función _bin()_
+- Utilizar _f-strings_ con formato binario
+"""
 
 ENTRYPOINT = {
     'PARAMS': [
