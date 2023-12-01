@@ -1,8 +1,8 @@
 TITLE = 'No me interesan los pares'
 
-DESCRIPTION = '''
-Dada una lista, genere otra lista eliminando los elementos que ocupan posiciones pares.
-'''
+DESCRIPTION = """
+Dada una lista, genere otra lista eliminando los elementos que ocupan posiciones pares (_tal y como lo vería un "ser humano no programador"_).
+"""
 
 ENTRYPOINT = {
     'PARAMS': [
