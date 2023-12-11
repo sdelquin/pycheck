@@ -1,8 +1,8 @@
 TITLE = 'Aplana la lista'
 
-DESCRIPTION = '''
+DESCRIPTION = """
 Dada una lista - que puede contener sublistas (con sólo en 1 nivel de anidamiento) - genere otra lista "aplanada".
-'''
+"""
 
 ENTRYPOINT = {
     'PARAMS': [

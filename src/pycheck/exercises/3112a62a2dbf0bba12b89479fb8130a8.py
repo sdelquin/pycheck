@@ -3,8 +3,9 @@ TITLE = 'Valor máximo'
 DESCRIPTION = """
 Dada una lista de valores numéricos enteros, obtenga su máximo valor.
 
+Implementa la solución usando la función "built-in" _min()_.
+
 Prohibido utilizar:
-- La función "built-in" _min()_.
 - La función "built-in" _max()_.
 - La función "built-in" _sorted()_.
 """
