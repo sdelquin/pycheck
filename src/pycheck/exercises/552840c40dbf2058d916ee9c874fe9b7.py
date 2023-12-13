@@ -2,6 +2,8 @@ TITLE = 'Ordenando números'
 
 DESCRIPTION = """
 Ordene la lista de números dada de manera ascendente **sin utilizar la función sorted()**.
+
+IMPORTANTE: No modifique la lista de entrada. En vez de eso haga una copia en otra lista antes de modificar.
 """
 
 ENTRYPOINT = {
