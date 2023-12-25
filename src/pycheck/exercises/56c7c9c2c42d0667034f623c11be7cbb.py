@@ -1,8 +1,12 @@
 TITLE = 'Menor id sin usar'
 
-DESCRIPTION = '''
-Dada una lista de números enteros positivos representando identificadores únicos de objetos, determine cuál es el menor identificador sin usar. Puede suponer que no habrán valores repetidos en la lista de entrada.
-'''
+DESCRIPTION = """
+Dada una lista de números enteros positivos representando identificadores únicos de objetos, determine cuál es el menor identificador sin usar.
+
+Notas:
+- Puede suponer que no habrán valores repetidos en la lista de entrada.
+- Los identificadores "válidos" empiezan en 1.
+"""
 
 ENTRYPOINT = {
     'PARAMS': [
