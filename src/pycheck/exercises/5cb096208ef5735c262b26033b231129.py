@@ -6,7 +6,7 @@ El hiperfactorial de un número _n_ se calcula como el producto sucesivo de los 
 Por ejemplo, el hiperfactorial de 5 se calcula como:
 ```
  5    4    3    2    1
-5  + 4  + 3  + 2  + 1  = 86400000
+5  * 4  * 3  * 2  * 1  = 86400000
 ```
 Se pide escribir una función que calcule el hiperfactorial de un número _n_.
 
