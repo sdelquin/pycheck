@@ -16,5 +16,8 @@ ENTRYPOINT = {
 CHECK_CASES = [
     [[['dictionary', 'turtle', 'flexibility', 'humanity']], ['dictionary']],
     [[['light', 'environment', 'watermelon', 'happiness']], ['watermelon']],
-    [[['telescope', 'blackboard', 'microprocessor', 'destination']], ['microprocessor']],
+    [
+        [['telescope', 'blackboard', 'microprocessor', 'incomprehensibility', 'destination']],
+        ['incomprehensibility'],
+    ],
 ]
