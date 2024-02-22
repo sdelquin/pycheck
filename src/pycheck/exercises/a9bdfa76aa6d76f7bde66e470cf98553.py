@@ -2,7 +2,7 @@ from pathlib import Path
 
 TITLE = 'Yellow Submarine'
 
-DESCRIPTION = '''
+DESCRIPTION = """
 Tenemos un submarino que se mueve en "x" (distancia) y en "y" (profundidad). Los movimientos del submarino vienen definidos en un fichero de entrada con el formato:
 ```
 <Litros de combustible>
@@ -18,7 +18,7 @@ Notas:
 - Si el submarino trata de "subir" de profundidad 0 se debe parar.
 - Si el submarino trata de "bajar" de profundidad 600m se debe parar.
 - La comprobación de si el submarino ha agotado el combustible o a superado los límites de profundidad se realizarán al terminar cada movimiento completo, no en medio del movimiento.
-'''
+"""
 
 ENTRYPOINT = {
     'PARAMS': [
@@ -33,7 +33,7 @@ ENTRYPOINT = {
 
 CHECK_CASES = [
     [['data/submarine/route1.dat'], [320, 151, 382]],
-    [['data/submarine/route2.dat'], [48, 42, 0]],
+    [['data/submarine/route2.dat'], [31, 4, 0]],
     [['data/submarine/route3.dat'], [60, -1, 698]],
     [['data/submarine/route4.dat'], [176, 601, 1590]],
 ]
