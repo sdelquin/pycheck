@@ -17,13 +17,13 @@ ENTRYPOINT = {
 }
 
 CHECK_CASES = [
-    [['data/head/nba_season22.txt', 3], ['John Collins\nJericho Sims\nJaMychal Green']],
+    [['data/tail/nba_season22.txt', 3], ['John Collins\nJericho Sims\nJaMychal Green']],
     [
-        ['data/head/nba_season22.txt', 5],
+        ['data/tail/nba_season22.txt', 5],
         ['Joel Embiid\nJohn Butler Jr.\nJohn Collins\nJericho Sims\nJaMychal Green'],
     ],
     [
-        ['data/head/nba_season22.txt', 7],
+        ['data/tail/nba_season22.txt', 7],
         [
             'Joe Ingles\nJoe Wieskamp\nJoel Embiid\nJohn Butler Jr.\nJohn Collins\nJericho Sims\nJaMychal Green'
         ],
