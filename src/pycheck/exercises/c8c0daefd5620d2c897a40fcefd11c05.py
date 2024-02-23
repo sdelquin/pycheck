@@ -2,9 +2,9 @@ from pathlib import Path
 
 TITLE = 'Sumando filas'
 
-DESCRIPTION = '''
+DESCRIPTION = """
 Dado un fichero de entrada que contiene números enteros (positivos y/o negativos), se pide obtener **la suma por filas** devolviendo una _tupla_ con los resultados.
-'''
+"""
 
 ENTRYPOINT = {
     'PARAMS': [
