@@ -17,15 +17,15 @@ ENTRYPOINT = {
 }
 
 CHECK_CASES = [
-    [['data/head/nba_season22.txt', 3], ['Quentin Grimes\nQuenton Jackson\nPat Connaughton']],
+    [['data/head/nba_season22.txt', 3], ['Quentin Grimes\nQuenton Jackson\nPat Connaughton\n']],
     [
         ['data/head/nba_season22.txt', 5],
-        ['Quentin Grimes\nQuenton Jackson\nPat Connaughton\nRJ Barrett\nPrecious Achiuwa'],
+        ['Quentin Grimes\nQuenton Jackson\nPat Connaughton\nRJ Barrett\nPrecious Achiuwa\n'],
     ],
     [
         ['data/head/nba_season22.txt', 7],
         [
-            'Quentin Grimes\nQuenton Jackson\nPat Connaughton\nRJ Barrett\nPrecious Achiuwa\nRaiQuan Gray\nR.J. Hampton'
+            'Quentin Grimes\nQuenton Jackson\nPat Connaughton\nRJ Barrett\nPrecious Achiuwa\nRaiQuan Gray\nR.J. Hampton\n'
         ],
     ],
 ]
