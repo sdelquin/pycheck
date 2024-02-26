@@ -34,4 +34,8 @@ CHECK_CASES = [
         ['data/morse_code/signals.morse', 'Believe in YOU 😀'],
         ['-... . .-.. .. . ...- . .. -. -.-- --- ..-'],
     ],
+    [
+        ['data/morse_code/signals.morse', 'Count to 10!'],
+        ['-.-. --- ..- -. - - ---'],
+    ],
 ]
