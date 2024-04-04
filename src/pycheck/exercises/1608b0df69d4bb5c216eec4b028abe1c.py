@@ -1,7 +1,7 @@
 TITLE = 'Palíndromo'
 
 DESCRIPTION = """
-Escriba una función en Python que determine si una cadena de texto es un [palíndromo](https://es.wikipedia.org/wiki/Pal%C3%ADndromo).
+Escriba una función en Python que determine si una cadena de texto es un [palíndromo](https://es.wikipedia.org/wiki/Pal%C3%ADndromo) usando una **función recursiva**.
 """
 
 EMPTY_TEMPLATE = True
@@ -17,6 +17,7 @@ ENTRYPOINT = {
 }
 
 CHECK_CASES = [
+    [['ana'], [True]],
     [['ana lava lana'], [True]],
     [['Yo dono rosas oro no doy'], [True]],
     [['yo soy'], [True]],
