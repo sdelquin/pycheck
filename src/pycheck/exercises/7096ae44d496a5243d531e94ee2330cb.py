@@ -8,6 +8,7 @@ Aplique este decorador a la función _factorial()_ que calcula el factorial de u
 Notas:
 - Aunque _factorial()_ sólo recibe un argumento, el decorador debe funcionar para funciones con cualquier número de argumentos, tanto posicionales como nominales.
 - La comprobación de ser positivo sólo se aplica para el caso de argumentos numéricos.
+- No hay que comprobar si _n > 0_ en la función _factorial()_. De esto se debe encargar el decorador.
 """
 
 EMPTY_TEMPLATE = True
