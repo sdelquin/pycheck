@@ -1,6 +1,6 @@
 TITLE = 'Suma de cocientes'
 
-DESCRIPTION = '''
+DESCRIPTION = """
 Escriba una función **recursiva** que calcule la suma de cocientes de un número.
 
 La suma de cocientes un número entero _n_ se define como:
@@ -16,8 +16,9 @@ k = 1
 ```
 Por ejempo, si _n=4_ entonces la suma de cocientes quedaría como: _1 + 1/2 + 1/3 + 1/4_
 
-Tenga en cuenta que n >= 1
-'''
+Notas:
+- Tenga en cuenta que n >= 1
+"""
 
 EMPTY_TEMPLATE = True
 
