@@ -1,3 +1,4 @@
+.venv
 .vscode
 dist
 *.pyc
@@ -6,6 +7,5 @@ exercises.csv
 .DS_Store
 solutions
 .flake8
-.python-version
 future.txt
 .artwork
